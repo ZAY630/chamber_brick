@@ -2,6 +2,7 @@ import sys
 import pandas as pd
 from os.path import join
 import brickschema
+from functions import chamber
 
 sys.path.append(join('./', 'brick-builder'))
 
@@ -41,6 +42,7 @@ def expand_brick_model(brick_schema_file, bldg_brick_model_file, brick_extension
 
 
 if __name__ == "__main__":
+    chamber.make()
     readfile_folder = 'readfiles'
 
     brick_schema_file = join(readfile_folder, 'Brick.ttl')
