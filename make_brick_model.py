@@ -35,14 +35,24 @@ def expand_brick_model(brick_schema_file, bldg_brick_model_file, brick_extension
 
     
     # Validate the data against the SHACL shapes
-    import pdb; pdb.set_trace()
-    valid, _, report = g.validate()
-    print(f"Graph is valid? {valid}")
-    if not valid:
-        print(report)
     
-    g.expand(profile="owlrl")
-    # g.expand(profile='shacl', simplify=True)
+    shacl_graph = brickschema.Graph().parse(brick_schema_file, format="turtle")
+    conforms, results_graph, results_text = pyshacl.validate(
+        g,
+        shacl_graph=shacl_graph,
+        inference="rdfs",
+        abort_on_error=False,
+        meta_shacl=False,
+        debug=False,
+    )
+
+    print("Conforms:", conforms)
+    if not conforms:
+        results_graph.serialize("validation_results.ttl", format="turtle")
+        print("report generated")
+
+    # g.expand(profile="owlrl")
+    g.expand(profile='shacl', simplify=True)
 
     print(f"Inferred graph has {len(g)} triples")
 
