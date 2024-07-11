@@ -1,17 +1,22 @@
 rdf = http://www.w3.org/1999/02/22-rdf-syntax-ns#
-chamber = https://brickschema.org/schema/building_example#
+chamber = http://berkeley.edu/climatechamber#
 unit = http://qudt.org/vocab/unit/
-BACnet = https://brickschema.org/schema/bacnet#
+bacnet = http://data.ashrae.org/bacnet/2020#
+ref = https://brickschema.org/schema/Brick/ref#
 
+chamber:$objectName rdf:type brick:$pointType
+chamber:$objectName brick:hasUnit unit:$units
 
-chamber:$8 rdf:type brick:$9
-chamber:$8 brick:hasUnit unit:$10
+chamber:$objectName ref:hasExternalReference _:bnode_$objectName
+_:bnode_$objectName rdf:type ref:BACnetReference
+_:bnode_$objectName bacnet:objectOf chamber:dev-$device_instance
 
-chamber:$8 brick:bacnetPoint chamber:id-$1-$12-$11
+_:bnode_$objectName bacnet:object-identifier "$object-type,$object-id"
+_:bnode_$objectName bacnet:object-name "$objectName"
+_:bnode_$objectName bacnet:object-type "$object-type"
 
-chamber:id-$1-$12-$11 brick:hasBacnetDeviceInstance "$12"
-chamber:id-$1-$12-$11 brick:hasBacnetDeviceType "$11"
-chamber:id-$1-$12-$11 brick:accessedAt chamber:BACnet-$5
-
-chamber:BACnet-$5 rdf:type BACnet:Network
-chamber:BACnet-$5 chamber:connstring "$5"
+chamber:dev-$device_instance rdf:type bacnet:BACnetDevice
+chamber:dev-$device_instance bacnet:device-instance "$device_instance"
+chamber:dev-$device_instance bacnet:hasPort _:bnode_$address
+_:bnode_$address rdf:type bacnet:Port
+_:bnode_$address ref:storedAt "$address"

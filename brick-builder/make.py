@@ -3,6 +3,8 @@ from functools import partial
 import rdflib
 import csv
 import re
+import os
+from os.path import join
 
 col = re.compile(r'\$(\d+)')
 sw_re = re.compile(r'\$(\d+)\?')
@@ -89,12 +91,15 @@ class Builder:
                 self.apply_prefix(t[1]),
                 self.apply_prefix(t[2]),
             )
-            yield triple
+            empty_field = any([i.split(':')[1] == '' if ':' in i else i == '' for i in t])
+            yield triple, empty_field
 
     def apply_prefix(self, uri):
         literal = re.search(r'^"(.*)"$', uri)
         if literal is not None:
             return rdflib.Literal(literal.groups()[0])
+        if uri.startswith('_:'):
+            return rdflib.BNode(uri)
         for pfx, ns in self.prefixes.items():
             if uri.startswith(f'{pfx}:'):
                 return rdflib.URIRef(uri.replace(f'{pfx}:', ns))
@@ -110,8 +115,11 @@ class Builder:
                 next(csvf)
             for row in csvf:
                 row = [x.strip() for x in row]
-                for triple in self.get_triples(row):
-                    g.add(triple)
+                for triple, empty_field in self.get_triples(row):
+                    if empty_field:
+                        print(f"*****Rule->{triple} is not complete! Will not add to model!*****")
+                    else:
+                        g.add(triple)
         return g
 
 
@@ -152,6 +160,56 @@ def parse(filename):
             rule = parse_rule(line)
             rules.append(rule)
     return Builder(rules, pfxs)
+
+
+def parse_template_pairs(pairs, delimiter=','):
+    parse_template_pairs = []
+    for template_file, csv_file, is_str in pairs:
+        row_dict = None
+
+        # if template does not contain string columns then continue
+        if not is_str:
+            parse_template_pairs.append((template_file, csv_file))
+            continue
+        
+        # if template contains strings columns then convert to integer columns
+        # read in csv file headers
+        with open(csv_file) as f:
+            csvf = csv.reader(f, delimiter=delimiter)
+            for row in csvf:
+                row = [x.strip().replace(' ', '_') for x in row]
+                row_int = range(1,len(row)+1)
+
+                # map string column names to integer location of column
+                row_dict = dict(zip(row, row_int))
+
+                if row_dict is not None:
+                    break
+        
+        # modify template files with integers instead of strings
+        with open(template_file, 'r') as tf:
+            tf_dat = tf.read()
+
+            kwords = [*row_dict]
+            kwords.sort(key=len)
+            kwords.reverse()
+            for kword in kwords:
+                tf_dat = tf_dat.replace('$' + kword, '$' + str(row_dict[kword]))
+            
+        # save file
+        cur_dir = os.path.dirname(template_file)
+        file_name = os.path.basename(template_file)
+
+        temp_dir = join(cur_dir, 'temp_templates')
+        if not os.path.exists(temp_dir):
+            os.mkdir(temp_dir)
+                
+        with open(join(temp_dir, file_name), 'w') as tf:
+                tf.write(tf_dat)
+
+        parse_template_pairs.append((join(temp_dir, file_name), csv_file))
+
+    return parse_template_pairs
 
 
 def generate(pairs):
