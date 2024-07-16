@@ -8,10 +8,12 @@ from rdflib import Namespace
 
 def make():
     CHB = Namespace("http://berkeley.edu/climatechamber#")
-    g = brickschema.Graph()
+    REC = Namespace("http://example.org/rec#")
+    g = brickschema.Graph(load_brick=True, load_brick_nightly=True)
     g.load_file('./readfiles/Brick.ttl')
     g.bind('chamber', CHB)
     g.bind('brick', BRICK)
+    g.bind("rec", REC)
 
 
     #########################################
@@ -27,7 +29,7 @@ def make():
     # Air ventilation
     g.add((CHB["ahu"], A, BRICK["Air_Handling_Unit"]))
     g.add((CHB["OH_diffuser"], A, BRICK["Terminal_Unit"]))
-    g.add((CHB["UF_diffuse"], A, BRICK["Underfloor_Air_Plenum"]))
+    g.add((CHB["UF_diffuser"], A, BRICK["Underfloor_Air_Plenum"]))
     g.add((CHB["damper_exhaust"], A, BRICK["Exhaust_Damper"]))
     g.add((CHB["damper_return"], A, BRICK["Return_Damper"]))
     g.add((CHB["fan_exhaust"], A, BRICK["Exhaust_Fan"]))
@@ -42,6 +44,8 @@ def make():
 
     # Air-cooled chiller
     g.add((CHB["CH_1"], A, BRICK["Chiller"]))
+    g.add((CHB["PCHW_L"], A, BRICK["Chilled_Water_Loop"]))
+    g.add((CHB["SCHW_L"], A, BRICK["Chilled_Water_Loop"]))
     g.add((CHB["CHW_pump_1"], A, BRICK["Chilled_Water_Pump"]))
     g.add((CHB["CHW_valve_S1"], A, BRICK["Chilled_Water_Valve"]))
     g.add((CHB["CHW_pump_2"], A, BRICK["Chilled_Water_Pump"]))
@@ -53,8 +57,9 @@ def make():
     g.add((CHB["CHWR_valve"], A, BRICK["Chilled_Water_Valve"]))
 
     # Electric water heater
-    g.add((CHB["WH_1"], A, BRICK["Water_Heater"]))
-    g.add((CHB["HW_pump_1"], A, BRICK["Hot_Water_pump"]))
+    g.add((CHB["HW_L"], A, BRICK["Hot_Water_Loop"]))
+    g.add((CHB["WH_1"], A, BRICK["Boiler"]))
+    g.add((CHB["HW_pump_1"], A, BRICK["Hot_Water_Pump"]))
     g.add((CHB["HW_valve_S1"], A, BRICK["Hot_Water_Valve"]))
     g.add((CHB["HW_valve_A"], A, BRICK["Hot_Water_Valve"]))
     g.add((CHB["RHWS_valve"], A, BRICK["Hot_Water_Valve"]))
@@ -124,18 +129,18 @@ def make():
     g.add((CHB["chwp2_ss_1"], A, BRICK["Pump_On_Off_Status"]))
     g.add((CHB["Pos_CHW_valve_SC"], A, BRICK["Valve_Position_Sensor"]))
     g.add((CHB["chwp3_ss_1"], A, BRICK["Pump_On_Off_Status"]))
-    g.add((CHB["schws_temp_1"], A, BRICK["Chilled_Water_Supply_Temperature_Sensor"]))
-    g.add((CHB["schwr_temp_1"], A, BRICK["Chilled_Water_Return_Temperature_Sensor"]))
-    g.add((CHB["pchws_temp_1"], A, BRICK["Chilled_Water_Supply_Temperature_Sensor"]))
-    g.add((CHB["pchwr_temp_1"], A, BRICK["Chilled_Water_Return_Temperature_Sensor"]))
+    g.add((CHB["schws_temp_1"], A, BRICK["Leaving_Chilled_Water_Temperature_Sensor"]))
+    g.add((CHB["schwr_temp_1"], A, BRICK["Entering_Chilled_Water_Temperature_Sensor"]))
+    g.add((CHB["pchws_temp_1"], A, BRICK["Leaving_Chilled_Water_Temperature_Sensor"]))
+    g.add((CHB["pchwr_temp_1"], A, BRICK["Entering_Chilled_Water_Temperature_Sensor"]))
     g.add((CHB["Pos_CHWR_valve"], A, BRICK["Valve_Position_Sensor"]))
     g.add((CHB["Pos_RCHWS_valve"], A, BRICK["Valve_Position_Sensor"]))
 
     # Electric water heater sensor
     g.add((CHB["Enable_WH"], A, BRICK["On_Off_Status"]))
-    g.add((CHB["RT_HW"], A, BRICK["Hot_Water_Return_Temperature_Sensor"]))
+    g.add((CHB["RT_HW"], A, BRICK["Entering_Hot_Water_Temperature_Sensor"]))
     g.add((CHB["Start_HW_pump_1"], A, BRICK["Pump_On_Off_Status"]))
-    g.add((CHB["ST_HW"], A, BRICK["Hot_Water_Supply_Temperature_Sensor"]))
+    g.add((CHB["ST_HW"], A, BRICK["Leaving_Hot_Water_Temperature_Sensor"]))
     g.add((CHB["hw_valve_10"], A, BRICK["Valve_Position_Sensor"]))
     g.add((CHB["Start_HW_pump_2"], A, BRICK["Pump_On_Off_Status"]))
     g.add((CHB["Pos_HWR_valve"], A, BRICK["Valve_Position_Sensor"]))
@@ -161,8 +166,7 @@ def make():
     g.add((CHB["Start_RW_pump"], A, BRICK["Pump_On_Off_Status"]))
     g.add((CHB["Speed_RW_pump"], A, BRICK["Motor_Speed_Sensor"]))
     g.add((CHB["T_RWS"], A, BRICK["Water_Temperature_Sensor"]))
-    g.add((CHB["Meter_WF"], A, BRICK["Building_Water_Meter"]))
-    g.add((CHB["T_RWR"], A, BRICK["Return_Water_Temperature_Sensor"]))
+    g.add((CHB["T_RWR"], A, BRICK["Entering_Water_Temperature_Sensor"]))
     g.add((CHB["Pos_RHWR_valve"], A, BRICK["Valve_Position_Sensor"]))
     g.add((CHB["Pos_RCHWR_valve"], A, BRICK["Valve_Position_Sensor"]))
 
@@ -170,9 +174,9 @@ def make():
     #### Equipment Relationship Specification ####
     ##############################################
     # Building site
-    g.add((CHB["site"], BRICK.hasPart, CHB["building"]))
-    g.add((CHB["building"], BRICK.hasPart, CHB["chamber_room"]))
-    g.add((CHB["zone"], BRICK.hasPart, CHB["chamber_room"]))
+    g.add((CHB["UCB"], BRICK.hasPart, CHB["wurster_hall"]))
+    g.add((CHB["wurster_hall"], BRICK.hasPart, CHB["chamber_room"]))
+    g.add((CHB["chamber_room"], BRICK.hasPart, CHB["zone"]))
 
     # Air ventilation
     g.add((CHB["ahu"], BRICK.hasPart, CHB["OH_diffuser"]))
@@ -202,26 +206,43 @@ def make():
     g.add((CHB["damper_exahust"], BRICK.feeds, CHB["fan_exahust"]))
 
     # Air cooled chiller
+    g.add((CHB["CH_1"], BRICK.feeds, CHB["PCHW_L"]))
+    g.add((CHB["PCHW_L"], BRICK.feeds, CHB["SCHW_L"]))
+    g.add((CHB["PCHW_L"], BRICK.hasPart, CHB["CHW_pump_1"]))
+    g.add((CHB["SCHW_L"], BRICK.hasPart, CHB["CHW_pump_2"]))
+    g.add((CHB["SCHW_L"], BRICK.hasPart, CHB["CHW_pump_3"]))
+    g.add((CHB["SCHW_L"], BRICK.feeds, CHB["CHW_coil"]))
+    g.add((CHB["SCHW_L"], BRICK.feeds, CHB["CHW_A_coil"]))
+    g.add((CHB["SCHW_L"], BRICK.feeds, CHB["CHW_SC_coil"]))
+    g.add((CHB["PCHW_L"], BRICK.hasPart, CHB["CHW_valve_S1"]))
+    g.add((CHB["SCHW_L"], BRICK.hasPart, CHB["CHW_valve_S2"]))
+
     g.add((CHB["CH_1"], BRICK.feeds, CHB["CHW_pump_1"]))
-    g.add((CHB["CHW_pump_1"], BRICK.feeds, CHB["CHW_valve_1"]))
-    g.add((CHB["CHW_valve_1"], BRICK.feeds, CHB["CHW_pump_2"]))
-    g.add((CHB["CHW_pump_2"], BRICK.feeds, CHB["CHW_valve_2"]))
-    g.add((CHB["CHW_valve_2"], BRICK.feeds, CHB["CHW_pump_3"]))
+    g.add((CHB["CHW_pump_1"], BRICK.feeds, CHB["CHW_pump_2"]))
+    g.add((CHB["CHW_pump_2"], BRICK.feeds, CHB["CHW_A_coil"]))
+    g.add((CHB["CHW_pump_2"], BRICK.feeds, CHB["CHW_SC_coil"]))
+    g.add((CHB["CHW_pump_2"], BRICK.feeds, CHB["CHW_pump_3"]))
     g.add((CHB["CHW_pump_3"], BRICK.feeds, CHB["CHW_coil"]))
-    g.add((CHB["CHW_coil"], BRICK.feeds, CHB["CHWR_valve"]))
+
+    g.add((CHB["CHW_coil"], BRICK.feeds, CHB["zone"]))
 
     # Electric water heater
+    g.add((CHB["WH_1"], BRICK.feeds, CHB["HW_L"]))
+    g.add((CHB["HW_L"], BRICK.hasPart, CHB["HW_pump_1"]))
+    g.add((CHB["HW_L"], BRICK.hasPart, CHB["HW_pump_2"]))
     g.add((CHB["WH_1"], BRICK.feeds, CHB["HW_pump_1"]))
-    g.add((CHB["HW_pump_1"], BRICK.feeds, CHB["HW_valve_1"]))
-    g.add((CHB["HW_valve_1"], BRICK.feeds, CHB["HW_pump_2"]))
+    g.add((CHB["HW_pump_1"], BRICK.feeds, CHB["HW_A_coil"]))
+    g.add((CHB["HW_pump_1"], BRICK.feeds, CHB["HW_pump_2"]))
     g.add((CHB["HW_pump_2"], BRICK.feeds, CHB["HW_coil"]))
-    g.add((CHB["HW_coil"], BRICK.feeds, CHB["HWR_valve"]))
+    g.add((CHB["HW_L"], BRICK.hasPart, CHB["HW_valve_S1"]))
+    
+    g.add((CHB["HW_L"], BRICK.feeds, CHB["HW_coil"]))
+    g.add((CHB["HW_coil"], BRICK.feeds, CHB["zone"]))
 
     # Spot cooling
     g.add((CHB["damper_SC_supply"], BRICK.feeds, CHB["CHW_SC_coil"]))
     g.add((CHB["CHW_SC_coil"], BRICK.feeds, CHB["VAV"]))
-    g.add((CHB["CHW_SC_coil"], BRICK.feeds, CHB["CHWR_valve_SC"]))
-    g.add((CHB["CHWR_valve_SC"], BRICK.feeds, CHB["CH_1"]))
+    g.add((CHB["CHW_SC_coil"], BRICK.hasPart, CHB["CHWR_valve_SC"]))
     g.add((CHB["VAV"], BRICK.hasPart, CHB["damper_SC_VAV"]))
     g.add((CHB["VAV"], BRICK.feeds, CHB["damper_SC_VAV"]))
     g.add((CHB["damper_SC_supply"], BRICK.feeds, CHB["zone"]))
@@ -236,11 +257,10 @@ def make():
     g.add((CHB["ahu_A"], BRICK.hasPart, CHB["A_diffuser"]))
     g.add((CHB["fan_A_supply"], BRICK.hasPart, CHB["VFD_A_supply"]))
     g.add((CHB["fan_A_supply"], BRICK.feeds, CHB["CHW_A_coil"]))
-    g.add((CHB["CHW_A_coil"], BRICK.feeds, CHB["CHWR_valve_A"]))
+    g.add((CHB["CHW_A_coil"], BRICK.hasPart, CHB["CHWR_valve_A"]))
     g.add((CHB["CHWR_valve_A"], BRICK.feeds, CHB["CH_1"]))
-    g.add((CHB["CHW_A_coil"], BRICK.feeds, CHB["HW_A_coil"]))
-    g.add((CHB["HW_A_coil"], BRICK.feeds, CHB["HWR_valve_A"]))
-    g.add((CHB["HWR_valve_A"], BRICK.feeds, CHB["WH_1"]))
+    g.add((CHB["CHW_A_coil"], BRICK.feeds, CHB["A_diffuser"]))
+    g.add((CHB["HW_A_coil"], BRICK.hasPart, CHB["HWR_valve_A"]))
     g.add((CHB["HW_A_coil"], BRICK.feeds, CHB["A_diffuser"]))
 
     # Radiant system
@@ -293,7 +313,7 @@ def make():
 
     # Annular system
     g.add((CHB["VFD_A_supply"], BRICK.hasPoint, CHB["Speed_A_SF"]))
-    g.add((CHB["VFD_A_supply"], BRICK.hasPoint, CHB["Start_A-SF"]))
+    g.add((CHB["VFD_A_supply"], BRICK.hasPoint, CHB["Start_A_SF"]))
     g.add((CHB["ahu_A"], BRICK.hasPoint, CHB["ra_temp_1"]))
     g.add((CHB["CHWR_valve_A"], BRICK.hasPoint, CHB["chw_valve_1"]))
     g.add((CHB["ahu_A"], BRICK.hasPoint, CHB["T_A_CA"]))
@@ -308,9 +328,7 @@ def make():
 
     # Air cooled chiller
     g.add((CHB["CH_1"], BRICK.hasPoint, CHB["ch1_ss_1"]))
-    g.add((CHB["CH_1"], BRICK.hasPoint, CHB["RT_PCHW"]))
     g.add((CHB["CHW_pump_1"], BRICK.hasPoint, CHB["chwp1_ss_1"]))
-    g.add((CHB["CH_1"], BRICK.hasPoint, CHB["ST_PCHW"]))
     g.add((CHB["CHW_valve_S1"], BRICK.hasPoint, CHB["chw_valve_10"]))
     g.add((CHB["CHW_pump_2"], BRICK.hasPoint, CHB["chwp2_ss_1"]))
     g.add((CHB["CHW_valve_SC"], BRICK.hasPoint, CHB["Pos_CHW_valve_SC"]))
@@ -336,7 +354,7 @@ def make():
     #### Setpoint Specification ####
     ################################
     # Zone State
-    g.add((CHB["temp_stpt_6"], A, BRICK["Zone_Air_Temperature_Setpoint"]))
+    g.add((CHB["temp_stpt_6"], A, BRICK["Target_Zone_Air_Temperature_Setpoint"]))
     g.add((CHB["ZAH_stp"], A, BRICK["Zone_Air_Humidity_Setpoint"]))
 
     # Chamber Air System
@@ -358,10 +376,10 @@ def make():
     g.add((CHB["WF_stp"], A, BRICK["Water_Flow_Setpoint"]))
 
     # Air-Cooled Chilled Water
-    g.add((CHB["eff_chws_temp_stpt_1"], A, BRICK["Chilled_Water_Supply_Temperature_Setpoint"]))
+    g.add((CHB["eff_chws_temp_stpt_1"], A, BRICK["Leaving_Chilled_Water_Temperature_Setpoint"]))
 
     # Hot Water Heating Plant
-    g.add((CHB["HWST_stp"], A, BRICK["Hot_Water_Supply_Temperature_Setpoint"]))
+    g.add((CHB["HWST_stp"], A, BRICK["Leaving_Hot_Water_Temperature_Setpoint"]))
 
     #############################################
     #### Setpoint Relationship Specification ####
@@ -394,6 +412,6 @@ def make():
     g.add((CHB["WH_1"], BRICK.hasPoint, CHB["HWST_stp"]))
 
     print('starting generating ...')
-    g.expand(profile="owlrl")
+    # g.expand(profile="owlrl")
     g.serialize('./readfiles/chamber_brick.ttl')
     print('brick model exported')

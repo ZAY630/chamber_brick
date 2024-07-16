@@ -11,22 +11,19 @@ chamber:All_Programs_Stopped_Alarm ref:hasExternalReference [ a ref:BACnetRefere
             bacnet:objectOf chamber:dev-2400001,
                 chamber:dev-2400002 ] .
 
-chamber:Aux_Pulse_Input_Total_1 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Aux_Pulse_Input_Total_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,15" ;
             bacnet:object-name "Aux_Pulse_Input_Total_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Aux_Pulse_Input_Total_2 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Aux_Pulse_Input_Total_2 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,16" ;
             bacnet:object-name "Aux_Pulse_Input_Total_2" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Aux_Pulse_Input_Total_3 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Aux_Pulse_Input_Total_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,17" ;
             bacnet:object-name "Aux_Pulse_Input_Total_3" ;
             bacnet:object-type "analogValue" ;
@@ -99,15 +96,13 @@ chamber:Controller_Halted_Alarm ref:hasExternalReference [ a ref:BACnetReference
             bacnet:objectOf chamber:dev-2400001,
                 chamber:dev-2400002 ] .
 
-chamber:Cooling_Adjustment_1 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Cooling_Adjustment_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,5" ;
             bacnet:object-name "Cooling_Adjustment_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:Cooling_Adjustment_10 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Cooling_Adjustment_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,165" ;
             bacnet:object-name "Cooling_Adjustment_10" ;
             bacnet:object-type "analogValue" ;
@@ -120,15 +115,13 @@ chamber:Dead_Controller_Timeout_Alarm ref:hasExternalReference [ a ref:BACnetRef
             bacnet:objectOf chamber:dev-2400001,
                 chamber:dev-2400002 ] .
 
-chamber:Delta_Temperature brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Delta_Temperature ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,5" ;
             bacnet:object-name "Delta_Temperature" ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Delta_Temperature_Average brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Delta_Temperature_Average ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,10" ;
             bacnet:object-name "Delta_Temperature_Average" ;
             bacnet:object-type "analogInput" ;
@@ -141,15 +134,13 @@ chamber:Duplicate_Address_Alarm ref:hasExternalReference [ a ref:BACnetReference
             bacnet:objectOf chamber:dev-2400001,
                 chamber:dev-2400002 ] .
 
-chamber:Effective_Cooling_Setpoint_1 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Effective_Cooling_Setpoint_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,7" ;
             bacnet:object-name "Effective_Cooling_Setpoint_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:Effective_Cooling_Setpoint_10 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Effective_Cooling_Setpoint_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,167" ;
             bacnet:object-name "Effective_Cooling_Setpoint_10" ;
             bacnet:object-type "analogValue" ;
@@ -167,15 +158,13 @@ chamber:Effective_Cooling_Setpoint_trend_log_10 ref:hasExternalReference [ a ref
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:Effective_Heating_Setpoint_1 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Effective_Heating_Setpoint_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,8" ;
             bacnet:object-name "Effective_Heating_Setpoint_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:Effective_Heating_Setpoint_10 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Effective_Heating_Setpoint_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,168" ;
             bacnet:object-name "Effective_Heating_Setpoint_10" ;
             bacnet:object-type "analogValue" ;
@@ -193,29 +182,25 @@ chamber:Effective_Heating_Setpoint_trend_log_10 ref:hasExternalReference [ a ref
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:Energy_Rate brick:hasUnit unit:kiloBtusPerHour ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Energy_Rate ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,1" ;
             bacnet:object-name "Energy_Rate" ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Energy_Rate_Peak brick:hasUnit unit:kiloBtusPerHour ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Energy_Rate_Peak ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,9" ;
             bacnet:object-name "Energy_Rate_Peak" ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Energy_Total_Mode_1 brick:hasUnit unit:kiloBtus ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Energy_Total_Mode_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,1" ;
             bacnet:object-name "Energy_Total_Mode_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Energy_Total_Mode_2 brick:hasUnit unit:kiloBtus ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Energy_Total_Mode_2 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,2" ;
             bacnet:object-name "Energy_Total_Mode_2" ;
             bacnet:object-type "analogValue" ;
@@ -262,15 +247,13 @@ chamber:Gig-E_Network_Usage ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400001,
                 chamber:dev-2400002 ] .
 
-chamber:Heating_Adjustment_1 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Heating_Adjustment_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,6" ;
             bacnet:object-name "Heating_Adjustment_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:Heating_Adjustment_10 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Heating_Adjustment_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,166" ;
             bacnet:object-name "Heating_Adjustment_10" ;
             bacnet:object-type "analogValue" ;
@@ -283,29 +266,25 @@ chamber:Heating_Adjustment_10 brick:hasUnit unit:degreesFahrenheit ;
             bacnet:objectOf chamber:dev-2400001,
                 chamber:dev-2400002 ] .
 
-chamber:Incremental_Energy_Total_Mode_1 brick:hasUnit unit:kiloBtus ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Incremental_Energy_Total_Mode_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,19" ;
             bacnet:object-name "Incremental_Energy_Total_Mode_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Incremental_Energy_Total_Mode_2 brick:hasUnit unit:kiloBtus ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Incremental_Energy_Total_Mode_2 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,20" ;
             bacnet:object-name "Incremental_Energy_Total_Mode_2" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Incremental_Volume_Total_Mode_1 brick:hasUnit unit:usGallons ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Incremental_Volume_Total_Mode_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,21" ;
             bacnet:object-name "Incremental_Volume_Total_Mode_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Incremental_Volume_Total_Mode_2 brick:hasUnit unit:usGallons ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Incremental_Volume_Total_Mode_2 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,22" ;
             bacnet:object-name "Incremental_Volume_Total_Mode_2" ;
             bacnet:object-type "analogValue" ;
@@ -475,29 +454,25 @@ chamber:NClass_5 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "file" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:Occupied_Cooling_Setpoint_1 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Occupied_Cooling_Setpoint_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,1" ;
             bacnet:object-name "Occupied_Cooling_Setpoint_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:Occupied_Cooling_Setpoint_10 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Occupied_Cooling_Setpoint_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,161" ;
             bacnet:object-name "Occupied_Cooling_Setpoint_10" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:Occupied_Heating_Setpoint_1 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Occupied_Heating_Setpoint_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,2" ;
             bacnet:object-name "Occupied_Heating_Setpoint_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:Occupied_Heating_Setpoint_10 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Occupied_Heating_Setpoint_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,162" ;
             bacnet:object-name "Occupied_Heating_Setpoint_10" ;
             bacnet:object-type "analogValue" ;
@@ -683,29 +658,25 @@ chamber:Port_S2_Network_Usage ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400001,
                 chamber:dev-2400002 ] .
 
-chamber:Previous_Year_Energy_Total_Mode_1 brick:hasUnit unit:kiloBtus ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Previous_Year_Energy_Total_Mode_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,5" ;
             bacnet:object-name "Previous_Year_Energy_Total_Mode_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Previous_Year_Energy_Total_Mode_2 brick:hasUnit unit:kiloBtus ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Previous_Year_Energy_Total_Mode_2 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,6" ;
             bacnet:object-name "Previous_Year_Energy_Total_Mode_2" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Previous_Year_Volume_Total_Mode_1 brick:hasUnit unit:usGallons ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Previous_Year_Volume_Total_Mode_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,23" ;
             bacnet:object-name "Previous_Year_Volume_Total_Mode_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Previous_Year_Volume_Total_Mode_2 brick:hasUnit unit:usGallons ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Previous_Year_Volume_Total_Mode_2 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,24" ;
             bacnet:object-name "Previous_Year_Volume_Total_Mode_2" ;
             bacnet:object-type "analogValue" ;
@@ -725,8 +696,7 @@ chamber:Reheat_Valve_Alarm ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400001,
                 chamber:dev-2400002 ] .
 
-chamber:Return_Temperature brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Return_Temperature ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,4" ;
             bacnet:object-name "Return_Temperature" ;
             bacnet:object-type "analogInput" ;
@@ -746,8 +716,7 @@ chamber:Router_Packet_Rate ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400001,
                 chamber:dev-2400002 ] .
 
-chamber:Run_Hours brick:hasUnit unit:hours ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Run_Hours ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,18" ;
             bacnet:object-name "Run_Hours" ;
             bacnet:object-type "analogValue" ;
@@ -823,85 +792,73 @@ chamber:Run_Hours brick:hasUnit unit:hours ;
             bacnet:object-type "file" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:Signal_Quality brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Signal_Quality ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,7" ;
             bacnet:object-name "Signal_Quality" ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Signal_Strength brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Signal_Strength ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,6" ;
             bacnet:object-name "Signal_Strength" ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Speed_of_Sound brick:hasUnit unit:feetPerSecond ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Speed_of_Sound ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,8" ;
             bacnet:object-name "Speed_of_Sound" ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Supply_Temperature brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Supply_Temperature ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,3" ;
             bacnet:object-name "Supply_Temperature" ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Unoccupied_Cooling_Setpoint_1 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Unoccupied_Cooling_Setpoint_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,3" ;
             bacnet:object-name "Unoccupied_Cooling_Setpoint_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:Unoccupied_Cooling_Setpoint_10 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Unoccupied_Cooling_Setpoint_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,163" ;
             bacnet:object-name "Unoccupied_Cooling_Setpoint_10" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:Unoccupied_Heating_Setpoint_1 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Unoccupied_Heating_Setpoint_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,4" ;
             bacnet:object-name "Unoccupied_Heating_Setpoint_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:Unoccupied_Heating_Setpoint_10 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Unoccupied_Heating_Setpoint_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,164" ;
             bacnet:object-name "Unoccupied_Heating_Setpoint_10" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:User_Defined_Energy_Total_Mode_1 brick:hasUnit unit:kiloBtus ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:User_Defined_Energy_Total_Mode_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,7" ;
             bacnet:object-name "User_Defined_Energy_Total_Mode_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:User_Defined_Energy_Total_Mode_2 brick:hasUnit unit:kiloBtus ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:User_Defined_Energy_Total_Mode_2 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,8" ;
             bacnet:object-name "User_Defined_Energy_Total_Mode_2" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:User_Defined_Volume_Total_Mode_1 brick:hasUnit unit:usGallons ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:User_Defined_Volume_Total_Mode_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,13" ;
             bacnet:object-name "User_Defined_Volume_Total_Mode_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:User_Defined_Volume_Total_Mode_2 brick:hasUnit unit:usGallons ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:User_Defined_Volume_Total_Mode_2 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,14" ;
             bacnet:object-name "User_Defined_Volume_Total_Mode_2" ;
             bacnet:object-type "analogValue" ;
@@ -931,50 +888,43 @@ chamber:User_Volume_Reset_Mode_2 ref:hasExternalReference [ a ref:BACnetReferenc
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Volume_Rate brick:hasUnit unit:usGallonsPerMinute ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Volume_Rate ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,2" ;
             bacnet:object-name "Volume_Rate" ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Volume_Total_Mode_1 brick:hasUnit unit:usGallons ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Volume_Total_Mode_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,9" ;
             bacnet:object-name "Volume_Total_Mode_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Volume_Total_Mode_2 brick:hasUnit unit:usGallons ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Volume_Total_Mode_2 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,10" ;
             bacnet:object-name "Volume_Total_Mode_2" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Y-T-D_Energy_Total_Mode_1 brick:hasUnit unit:kiloBtus ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Y-T-D_Energy_Total_Mode_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,3" ;
             bacnet:object-name "Y-T-D_Energy_Total_Mode_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Y-T-D_Energy_Total_Mode_2 brick:hasUnit unit:kiloBtus ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Y-T-D_Energy_Total_Mode_2 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,4" ;
             bacnet:object-name "Y-T-D_Energy_Total_Mode_2" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Y-T-D_Volume_Total_Mode_1 brick:hasUnit unit:usGallons ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Y-T-D_Volume_Total_Mode_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,11" ;
             bacnet:object-name "Y-T-D_Volume_Total_Mode_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-57017 ] .
 
-chamber:Y-T-D_Volume_Total_Mode_2 brick:hasUnit unit:usGallons ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:Y-T-D_Volume_Total_Mode_2 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,12" ;
             bacnet:object-name "Y-T-D_Volume_Total_Mode_2" ;
             bacnet:object-type "analogValue" ;
@@ -992,22 +942,19 @@ chamber:Zone_Temp_Trend_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:accel_time_7 brick:hasUnit unit:seconds ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:accel_time_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,120" ;
             bacnet:object-name "accel_time_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:accel_time_8 brick:hasUnit unit:seconds ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:accel_time_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,136" ;
             bacnet:object-name "accel_time_8" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:active_zones_1 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:active_zones_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,9" ;
             bacnet:object-name "active_zones_1" ;
             bacnet:object-type "analogValue" ;
@@ -1025,29 +972,25 @@ chamber:adaptive_learning_inhibit_10 ref:hasExternalReference [ a ref:BACnetRefe
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:ai1_status_7 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:ai1_status_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,122" ;
             bacnet:object-name "ai1_status_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:ai1_status_8 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:ai1_status_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,138" ;
             bacnet:object-name "ai1_status_8" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:ai2_status_7 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:ai2_status_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,123" ;
             bacnet:object-name "ai2_status_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:ai2_status_8 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:ai2_status_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,139" ;
             bacnet:object-name "ai2_status_8" ;
             bacnet:object-type "analogValue" ;
@@ -1269,8 +1212,7 @@ chamber:ann_cc_lo_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:ann_cc_temp_1 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:ann_cc_temp_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,1" ;
             bacnet:object-name "ann_cc_temp_1" ;
             bacnet:object-type "analogInput" ;
@@ -1282,15 +1224,13 @@ chamber:ann_cc_temp_trend_log_1 ref:hasExternalReference [ a ref:BACnetReference
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:ao1_status_7 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:ao1_status_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,124" ;
             bacnet:object-name "ao1_status_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:ao1_status_8 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:ao1_status_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,140" ;
             bacnet:object-name "ao1_status_8" ;
             bacnet:object-type "analogValue" ;
@@ -1308,8 +1248,7 @@ chamber:at_setpt_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:btus_total_b_11 brick:hasUnit unit:65535 ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:btus_total_b_11 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,214" ;
             bacnet:object-name "btus_total_b_11" ;
             bacnet:object-type "analogValue" ;
@@ -1351,15 +1290,13 @@ chamber:cc_vlv_dev_alarm_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:cc_vlv_fdbk_1 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:cc_vlv_fdbk_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,3" ;
             bacnet:object-name "cc_vlv_fdbk_1" ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:cc_vlv_fdbk_10 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:cc_vlv_fdbk_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,18" ;
             bacnet:object-name "cc_vlv_fdbk_10" ;
             bacnet:object-type "analogInput" ;
@@ -1377,8 +1314,7 @@ chamber:cc_vlv_fdbk_trend_log_10 ref:hasExternalReference [ a ref:BACnetReferenc
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:cfm_10 brick:hasUnit unit:cubicFeetPerMinute ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:cfm_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,176" ;
             bacnet:object-name "cfm_10" ;
             bacnet:object-type "analogValue" ;
@@ -1403,6 +1339,7 @@ chamber:cfm_tn_uf_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:ch1_ss_1 a brick:On_Off_Status ;
+    brick:hasUnit unit:UNITLESS ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "binaryOutput,1" ;
             bacnet:object-name "ch1_ss_1" ;
@@ -1446,7 +1383,7 @@ chamber:chamber_cc_low_alarm_10 ref:hasExternalReference [ a ref:BACnetReference
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:chamber_cc_temp_10 a brick:Preheat_Supply_Air_Temperature_Sensor ;
-    brick:hasUnit unit:degreesFahrenheit ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,16" ;
             bacnet:object-name "chamber_cc_temp_10" ;
@@ -1471,8 +1408,7 @@ chamber:chamber_da_low_alarm_10 ref:hasExternalReference [ a ref:BACnetReference
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:chamber_rh_10 brick:hasUnit unit:percentRelativeHumidity ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:chamber_rh_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,15" ;
             bacnet:object-name "chamber_rh_10" ;
             bacnet:object-type "analogInput" ;
@@ -1503,7 +1439,7 @@ chamber:chiller_ss_tn_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
 chamber:chw_valve_1 a brick:Valve_Position_Sensor ;
-    brick:hasUnit unit:percent ;
+    brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,1" ;
             bacnet:object-name "chw_valve_1" ;
@@ -1511,7 +1447,7 @@ chamber:chw_valve_1 a brick:Valve_Position_Sensor ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:chw_valve_10 a brick:Valve_Position_Sensor ;
-    brick:hasUnit unit:percent ;
+    brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,7" ;
             bacnet:object-name "chw_valve_10" ;
@@ -1555,6 +1491,7 @@ chamber:chw_vlv_pid_tn_setpt_trend_log_3 ref:hasExternalReference [ a ref:BACnet
             bacnet:objectOf chamber:dev-2400001 ] .
 
 chamber:chwp1_ss_1 a brick:Pump_On_Off_Status ;
+    brick:hasUnit unit:UNITLESS ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "binaryOutput,2" ;
             bacnet:object-name "chwp1_ss_1" ;
@@ -1568,6 +1505,7 @@ chamber:chwp1_ss_trend_log_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
 chamber:chwp2_ss_1 a brick:Pump_On_Off_Status ;
+    brick:hasUnit unit:UNITLESS ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "binaryOutput,3" ;
             bacnet:object-name "chwp2_ss_1" ;
@@ -1581,6 +1519,7 @@ chamber:chwp2_ss_trend_log_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
 chamber:chwp3_ss_1 a brick:Pump_On_Off_Status ;
+    brick:hasUnit unit:UNITLESS ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "binaryOutput,4" ;
             bacnet:object-name "chwp3_ss_1" ;
@@ -1599,15 +1538,13 @@ chamber:chwr_temp_hi_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:chwv_3 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:chwv_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,7" ;
             bacnet:object-name "chwv_3" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:chwv_signal_3 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:chwv_signal_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,8" ;
             bacnet:object-name "chwv_signal_3" ;
             bacnet:object-type "analogValue" ;
@@ -1631,8 +1568,7 @@ chamber:cl_req_tn_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:clg_avg_av_3 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:clg_avg_av_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,23" ;
             bacnet:object-name "clg_avg_av_3" ;
             bacnet:object-type "analogValue" ;
@@ -1680,43 +1616,37 @@ chamber:clg_on_tn_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:clg_pct_1 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:clg_pct_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,24" ;
             bacnet:object-name "clg_pct_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:clg_pct_10 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:clg_pct_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,191" ;
             bacnet:object-name "clg_pct_10" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:clg_pct_4 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:clg_pct_4 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,47" ;
             bacnet:object-name "clg_pct_4" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:clg_pct_5 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:clg_pct_5 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,66" ;
             bacnet:object-name "clg_pct_5" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:clg_pct_6 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:clg_pct_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,85" ;
             bacnet:object-name "clg_pct_6" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:clg_pct_7 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:clg_pct_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,104" ;
             bacnet:object-name "clg_pct_7" ;
             bacnet:object-type "analogValue" ;
@@ -1758,8 +1688,7 @@ chamber:clg_pct_tn_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:co2_stpt_10 brick:hasUnit unit:partsPerMillion ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:co2_stpt_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,178" ;
             bacnet:object-name "co2_stpt_10" ;
             bacnet:object-type "analogValue" ;
@@ -1771,8 +1700,7 @@ chamber:co2_stpt_tn_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:coil_da_temp_10 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:coil_da_temp_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,17" ;
             bacnet:object-name "coil_da_temp_10" ;
             bacnet:object-type "analogInput" ;
@@ -1838,36 +1766,31 @@ chamber:continuous_failure_freezing_master_tn_8 ref:hasExternalReference [ a ref
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:cool_request_1 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:cool_request_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,10" ;
             bacnet:object-name "cool_request_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:cool_request_4 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:cool_request_4 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,39" ;
             bacnet:object-name "cool_request_4" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:cool_request_5 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:cool_request_5 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,58" ;
             bacnet:object-name "cool_request_5" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:cool_request_6 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:cool_request_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,77" ;
             bacnet:object-name "cool_request_6" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:cool_request_7 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:cool_request_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,96" ;
             bacnet:object-name "cool_request_7" ;
             bacnet:object-type "analogValue" ;
@@ -1897,8 +1820,7 @@ chamber:cool_request_tn_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:cool_sat_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:cool_sat_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,169" ;
             bacnet:object-name "cool_sat_10" ;
             bacnet:object-type "analogValue" ;
@@ -1946,64 +1868,55 @@ chamber:ctrl_ovrd_act_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:current_7 brick:hasUnit unit:amperes ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:current_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,125" ;
             bacnet:object-name "current_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:current_8 brick:hasUnit unit:amperes ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:current_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,141" ;
             bacnet:object-name "current_8" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:dat_sp_clg_10 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:dat_sp_clg_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,170" ;
             bacnet:object-name "dat_sp_clg_10" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:dat_sp_htg_10 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:dat_sp_htg_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,171" ;
             bacnet:object-name "dat_sp_htg_10" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:dcbv_7 brick:hasUnit unit:volts ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:dcbv_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,126" ;
             bacnet:object-name "dcbv_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:dcbv_8 brick:hasUnit unit:volts ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:dcbv_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,142" ;
             bacnet:object-name "dcbv_8" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:decel_time_7 brick:hasUnit unit:seconds ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:decel_time_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,127" ;
             bacnet:object-name "decel_time_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:decel_time_8 brick:hasUnit unit:seconds ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:decel_time_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,143" ;
             bacnet:object-name "decel_time_8" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:dem_man_m_av_8 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:dem_man_m_av_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,94" ;
             bacnet:object-name "dem_man_m_av_8" ;
             bacnet:object-type "analogValue" ;
@@ -2048,8 +1961,7 @@ chamber:device2400002 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "device" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:dewpoint_9 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:dewpoint_9 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,154" ;
             bacnet:object-name "dewpoint_9" ;
             bacnet:object-type "analogValue" ;
@@ -2061,8 +1973,7 @@ chamber:dewpoint_tn_9 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:dh_position_10 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:dh_position_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,8" ;
             bacnet:object-name "dh_position_10" ;
             bacnet:object-type "analogOutput" ;
@@ -2086,29 +1997,26 @@ chamber:drive_fault_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:drive_temp_7 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:drive_temp_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,128" ;
             bacnet:object-name "drive_temp_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:drive_temp_8 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:drive_temp_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,144" ;
             bacnet:object-name "drive_temp_8" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:dsp_fixed_setpoint_10 brick:hasUnit unit:65535 ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:dsp_fixed_setpoint_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,173" ;
             bacnet:object-name "dsp_fixed_setpoint_10" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:duct_stat_press_ai_10 a brick:Static_Pressure_Sensor ;
-    brick:hasUnit unit:inchesOfWater ;
+    brick:hasUnit unit:IN_H2O ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,25" ;
             bacnet:object-name "duct_stat_press_ai_10" ;
@@ -2122,7 +2030,7 @@ chamber:duct_stat_press_ai_trend_log_10 ref:hasExternalReference [ a ref:BACnetR
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:ea_dmpr_pos_10 a brick:Damper_Position_Sensor ;
-    brick:hasUnit unit:percent ;
+    brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,10" ;
             bacnet:object-name "ea_dmpr_pos_10" ;
@@ -2142,6 +2050,7 @@ chamber:ef_rntm_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:ef_ss_10 a brick:Fan_On_Off_Status ;
+    brick:hasUnit unit:UNITLESS ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "binaryOutput,6" ;
             bacnet:object-name "ef_ss_10" ;
@@ -2154,15 +2063,14 @@ chamber:ef_ss_trend_log_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:ef_vfd_min_spd_av_10 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:ef_vfd_min_spd_av_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,175" ;
             bacnet:object-name "ef_vfd_min_spd_av_10" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:ef_vfd_spd_10 a brick:Motor_Speed_Sensor ;
-    brick:hasUnit unit:percent ;
+    brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,9" ;
             bacnet:object-name "ef_vfd_spd_10" ;
@@ -2175,8 +2083,7 @@ chamber:ef_vfd_spd_trend_log_10 ref:hasExternalReference [ a ref:BACnetReference
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:eff_c_datsp_10 brick:hasUnit unit:cubicFeetPerMinute ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:eff_c_datsp_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,30" ;
             bacnet:object-name "eff_c_datsp_10" ;
             bacnet:object-type "analogValue" ;
@@ -2189,15 +2096,14 @@ chamber:eff_c_datsp_tn_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:eff_chws_temp_stpt_1 a brick:Chilled_Water_Supply_Temperature_Setpoint ;
-    brick:hasUnit unit:degreesFahrenheit ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,1" ;
             bacnet:object-name "eff_chws_temp_stpt_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:eff_dsp_setpoint_10 brick:hasUnit unit:inchesOfWater ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:eff_dsp_setpoint_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,174" ;
             bacnet:object-name "eff_dsp_setpoint_10" ;
             bacnet:object-type "analogValue" ;
@@ -2209,8 +2115,7 @@ chamber:eff_dsp_setpoint_tn_10 ref:hasExternalReference [ a ref:BACnetReference 
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:eff_h_datsp_10 brick:hasUnit unit:cubicFeetPerMinute ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:eff_h_datsp_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,31" ;
             bacnet:object-name "eff_h_datsp_10" ;
             bacnet:object-type "analogValue" ;
@@ -2223,7 +2128,7 @@ chamber:eff_h_datsp_tn_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:eff_sa_temp_10 a brick:Supply_Air_Temperature_Sensor ;
-    brick:hasUnit unit:cubicFeetPerMinute ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,32" ;
             bacnet:object-name "eff_sa_temp_10" ;
@@ -2236,43 +2141,37 @@ chamber:eff_sa_temp_tn_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:eff_sns_reading_4 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:eff_sns_reading_4 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,40" ;
             bacnet:object-name "eff_sns_reading_4" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:eff_sns_reading_5 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:eff_sns_reading_5 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,59" ;
             bacnet:object-name "eff_sns_reading_5" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:eff_sns_reading_6 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:eff_sns_reading_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,78" ;
             bacnet:object-name "eff_sns_reading_6" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:eff_sns_reading_7 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:eff_sns_reading_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,97" ;
             bacnet:object-name "eff_sns_reading_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:ei_weight_1 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:ei_weight_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,11" ;
             bacnet:object-name "ei_weight_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:enthalpy_9 brick:hasUnit unit:btusPerPoundDryAir ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:enthalpy_9 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,155" ;
             bacnet:object-name "enthalpy_9" ;
             bacnet:object-type "analogValue" ;
@@ -2284,8 +2183,7 @@ chamber:enthalpy_tn_9 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:enviro_windx_1 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:enviro_windx_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,29" ;
             bacnet:object-name "enviro_windx_1" ;
             bacnet:object-type "analogValue" ;
@@ -2333,8 +2231,7 @@ chamber:fault_act_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:fixed_chws_temp_stpt_1 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:fixed_chws_temp_stpt_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,2" ;
             bacnet:object-name "fixed_chws_temp_stpt_1" ;
             bacnet:object-type "analogValue" ;
@@ -2358,15 +2255,13 @@ chamber:forw_rev_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:fpm_10 brick:hasUnit unit:feetPerMinute ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:fpm_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,190" ;
             bacnet:object-name "fpm_10" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:gallons_b_11 brick:hasUnit unit:65535 ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:gallons_b_11 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,225" ;
             bacnet:object-name "gallons_b_11" ;
             bacnet:object-type "analogValue" ;
@@ -2438,15 +2333,13 @@ chamber:hc_vlv_dev_alarm_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:hc_vlv_fdbk_1 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:hc_vlv_fdbk_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,31" ;
             bacnet:object-name "hc_vlv_fdbk_1" ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:hc_vlv_fdbk_10 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:hc_vlv_fdbk_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,19" ;
             bacnet:object-name "hc_vlv_fdbk_10" ;
             bacnet:object-type "analogInput" ;
@@ -2464,15 +2357,13 @@ chamber:hc_vlv_fdbk_trend_log_10 ref:hasExternalReference [ a ref:BACnetReferenc
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:heat_request_1 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:heat_request_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,13" ;
             bacnet:object-name "heat_request_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:heat_sat_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:heat_sat_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,177" ;
             bacnet:object-name "heat_sat_10" ;
             bacnet:object-type "analogValue" ;
@@ -2526,8 +2417,7 @@ chamber:ht_req_tn_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:htg_avg_av_3 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:htg_avg_av_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,30" ;
             bacnet:object-name "htg_avg_av_3" ;
             bacnet:object-type "analogValue" ;
@@ -2563,43 +2453,37 @@ chamber:htg_on_tn_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:htg_pct_1 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:htg_pct_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,28" ;
             bacnet:object-name "htg_pct_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:htg_pct_10 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:htg_pct_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,192" ;
             bacnet:object-name "htg_pct_10" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:htg_pct_4 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:htg_pct_4 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,48" ;
             bacnet:object-name "htg_pct_4" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:htg_pct_5 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:htg_pct_5 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,67" ;
             bacnet:object-name "htg_pct_5" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:htg_pct_6 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:htg_pct_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,86" ;
             bacnet:object-name "htg_pct_6" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:htg_pct_7 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:htg_pct_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,105" ;
             bacnet:object-name "htg_pct_7" ;
             bacnet:object-type "analogValue" ;
@@ -2653,8 +2537,7 @@ chamber:hum_enable_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:humidity_9 brick:hasUnit unit:percentRelativeHumidity ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:humidity_9 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,157" ;
             bacnet:object-name "humidity_9" ;
             bacnet:object-type "analogValue" ;
@@ -2667,7 +2550,7 @@ chamber:humidity_tn_9 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:hw_valve_1 a brick:Valve_Position_Sensor ;
-    brick:hasUnit unit:percent ;
+    brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,2" ;
             bacnet:object-name "hw_valve_1" ;
@@ -2675,7 +2558,7 @@ chamber:hw_valve_1 a brick:Valve_Position_Sensor ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:hw_valve_10 a brick:Valve_Position_Sensor ;
-    brick:hasUnit unit:percent ;
+    brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,11" ;
             bacnet:object-name "hw_valve_10" ;
@@ -2730,15 +2613,13 @@ chamber:hwp2_ss_trend_log_2 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:hwv_3 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:hwv_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,9" ;
             bacnet:object-name "hwv_3" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:hwv_signal_3 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:hwv_signal_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,10" ;
             bacnet:object-name "hwv_signal_3" ;
             bacnet:object-type "analogValue" ;
@@ -2780,8 +2661,7 @@ chamber:indicator_output_reversible_valve_tn_8 ref:hasExternalReference [ a ref:
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:inst_demand_b_11 brick:hasUnit unit:btusPerHour ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:inst_demand_b_11 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,215" ;
             bacnet:object-name "inst_demand_b_11" ;
             bacnet:object-type "analogValue" ;
@@ -2847,8 +2727,7 @@ chamber:iosvlv_cmnd_trend_log_7 ref:hasExternalReference [ a ref:BACnetReference
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:item_count_1 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:item_count_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,12" ;
             bacnet:object-name "item_count_1" ;
             bacnet:object-type "analogValue" ;
@@ -2892,29 +2771,25 @@ chamber:job_number_history_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:kwh_7 brick:hasUnit unit:kilowattHours ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:kwh_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,129" ;
             bacnet:object-name "kwh_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:kwh_8 brick:hasUnit unit:kilowattHours ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:kwh_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,145" ;
             bacnet:object-name "kwh_8" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:kwh_total_7 brick:hasUnit unit:kilowattHours ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:kwh_total_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,121" ;
             bacnet:object-name "kwh_total_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:kwh_total_8 brick:hasUnit unit:kilowattHours ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:kwh_total_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,137" ;
             bacnet:object-name "kwh_total_8" ;
             bacnet:object-type "analogValue" ;
@@ -3004,8 +2879,7 @@ chamber:m042_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "loop" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m042_input_6 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m042_input_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,112" ;
             bacnet:object-name "m042_input_6" ;
             bacnet:object-type "analogValue" ;
@@ -3023,8 +2897,7 @@ chamber:m042_loop_in_control_trendlog_6 ref:hasExternalReference [ a ref:BACnetR
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m042_pidout_6 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m042_pidout_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,113" ;
             bacnet:object-name "m042_pidout_6" ;
             bacnet:object-type "analogValue" ;
@@ -3036,8 +2909,7 @@ chamber:m042_pidout_trend_log_6 ref:hasExternalReference [ a ref:BACnetReference
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m042_setpt_6 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m042_setpt_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,111" ;
             bacnet:object-name "m042_setpt_6" ;
             bacnet:object-type "analogValue" ;
@@ -3055,8 +2927,7 @@ chamber:m067_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "loop" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m067_input_6 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m067_input_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,115" ;
             bacnet:object-name "m067_input_6" ;
             bacnet:object-type "analogValue" ;
@@ -3074,8 +2945,7 @@ chamber:m067_loop_in_control_trendlog_6 ref:hasExternalReference [ a ref:BACnetR
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m067_pidout_6 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m067_pidout_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,116" ;
             bacnet:object-name "m067_pidout_6" ;
             bacnet:object-type "analogValue" ;
@@ -3087,8 +2957,7 @@ chamber:m067_pidout_trend_log_6 ref:hasExternalReference [ a ref:BACnetReference
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m067_setpt_6 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m067_setpt_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,114" ;
             bacnet:object-name "m067_setpt_6" ;
             bacnet:object-type "analogValue" ;
@@ -3106,8 +2975,7 @@ chamber:m074_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "loop" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m074_input_6 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m074_input_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,118" ;
             bacnet:object-name "m074_input_6" ;
             bacnet:object-type "analogValue" ;
@@ -3125,8 +2993,7 @@ chamber:m074_loop_in_control_trendlog_6 ref:hasExternalReference [ a ref:BACnetR
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m074_pidout_6 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m074_pidout_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,119" ;
             bacnet:object-name "m074_pidout_6" ;
             bacnet:object-type "analogValue" ;
@@ -3138,8 +3005,7 @@ chamber:m074_pidout_trend_log_6 ref:hasExternalReference [ a ref:BACnetReference
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m074_setpt_6 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m074_setpt_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,117" ;
             bacnet:object-name "m074_setpt_6" ;
             bacnet:object-type "analogValue" ;
@@ -3169,8 +3035,7 @@ chamber:m328_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "loop" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m328_input_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m328_input_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,194" ;
             bacnet:object-name "m328_input_10" ;
             bacnet:object-type "analogValue" ;
@@ -3188,8 +3053,7 @@ chamber:m328_loop_in_control_trendlog_10 ref:hasExternalReference [ a ref:BACnet
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m328_pidout_10 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m328_pidout_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,195" ;
             bacnet:object-name "m328_pidout_10" ;
             bacnet:object-type "analogValue" ;
@@ -3201,8 +3065,7 @@ chamber:m328_pidout_trend_log_10 ref:hasExternalReference [ a ref:BACnetReferenc
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m328_setpt_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m328_setpt_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,193" ;
             bacnet:object-name "m328_setpt_10" ;
             bacnet:object-type "analogValue" ;
@@ -3220,8 +3083,7 @@ chamber:m332_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "loop" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m332_input_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m332_input_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,197" ;
             bacnet:object-name "m332_input_10" ;
             bacnet:object-type "analogValue" ;
@@ -3239,8 +3101,7 @@ chamber:m332_loop_in_control_trendlog_10 ref:hasExternalReference [ a ref:BACnet
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m332_pidout_10 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m332_pidout_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,198" ;
             bacnet:object-name "m332_pidout_10" ;
             bacnet:object-type "analogValue" ;
@@ -3252,8 +3113,7 @@ chamber:m332_pidout_trend_log_10 ref:hasExternalReference [ a ref:BACnetReferenc
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m332_setpt_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m332_setpt_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,196" ;
             bacnet:object-name "m332_setpt_10" ;
             bacnet:object-type "analogValue" ;
@@ -3271,8 +3131,7 @@ chamber:m351_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "loop" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m351_input_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m351_input_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,200" ;
             bacnet:object-name "m351_input_10" ;
             bacnet:object-type "analogValue" ;
@@ -3290,8 +3149,7 @@ chamber:m351_loop_in_control_trendlog_10 ref:hasExternalReference [ a ref:BACnet
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m351_pidout_10 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m351_pidout_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,201" ;
             bacnet:object-name "m351_pidout_10" ;
             bacnet:object-type "analogValue" ;
@@ -3303,8 +3161,7 @@ chamber:m351_pidout_trend_log_10 ref:hasExternalReference [ a ref:BACnetReferenc
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m351_setpt_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m351_setpt_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,199" ;
             bacnet:object-name "m351_setpt_10" ;
             bacnet:object-type "analogValue" ;
@@ -3322,8 +3179,7 @@ chamber:m353_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "loop" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m353_input_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m353_input_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,203" ;
             bacnet:object-name "m353_input_10" ;
             bacnet:object-type "analogValue" ;
@@ -3341,8 +3197,7 @@ chamber:m353_loop_in_control_trendlog_10 ref:hasExternalReference [ a ref:BACnet
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m353_pidout_10 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m353_pidout_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,204" ;
             bacnet:object-name "m353_pidout_10" ;
             bacnet:object-type "analogValue" ;
@@ -3354,8 +3209,7 @@ chamber:m353_pidout_trend_log_10 ref:hasExternalReference [ a ref:BACnetReferenc
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m353_setpt_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m353_setpt_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,202" ;
             bacnet:object-name "m353_setpt_10" ;
             bacnet:object-type "analogValue" ;
@@ -3373,8 +3227,7 @@ chamber:m388_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "loop" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m388_input_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m388_input_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,206" ;
             bacnet:object-name "m388_input_10" ;
             bacnet:object-type "analogValue" ;
@@ -3392,8 +3245,7 @@ chamber:m388_loop_in_control_trendlog_10 ref:hasExternalReference [ a ref:BACnet
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m388_pidout_10 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m388_pidout_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,207" ;
             bacnet:object-name "m388_pidout_10" ;
             bacnet:object-type "analogValue" ;
@@ -3405,8 +3257,7 @@ chamber:m388_pidout_trend_log_10 ref:hasExternalReference [ a ref:BACnetReferenc
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m388_setpt_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m388_setpt_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,205" ;
             bacnet:object-name "m388_setpt_10" ;
             bacnet:object-type "analogValue" ;
@@ -3424,8 +3275,7 @@ chamber:m397_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "loop" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m397_input_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m397_input_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,209" ;
             bacnet:object-name "m397_input_10" ;
             bacnet:object-type "analogValue" ;
@@ -3443,8 +3293,7 @@ chamber:m397_loop_in_control_trendlog_10 ref:hasExternalReference [ a ref:BACnet
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m397_pidout_10 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m397_pidout_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,210" ;
             bacnet:object-name "m397_pidout_10" ;
             bacnet:object-type "analogValue" ;
@@ -3456,8 +3305,7 @@ chamber:m397_pidout_trend_log_10 ref:hasExternalReference [ a ref:BACnetReferenc
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:m397_setpt_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:m397_setpt_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,208" ;
             bacnet:object-name "m397_setpt_10" ;
             bacnet:object-type "analogValue" ;
@@ -3602,7 +3450,7 @@ chamber:m866_setpt_trend_log_1 ref:hasExternalReference [ a ref:BACnetReference 
             bacnet:objectOf chamber:dev-2400001 ] .
 
 chamber:ma_temp_10 a brick:Mixed_Air_Temperature_Sensor ;
-    brick:hasUnit unit:degreesFahrenheit ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,20" ;
             bacnet:object-name "ma_temp_10" ;
@@ -3846,8 +3694,7 @@ chamber:messages ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400001,
                 chamber:dev-2400002 ] .
 
-chamber:min_oa_stpt_10 brick:hasUnit unit:cubicFeetPerMinute ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:min_oa_stpt_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,179" ;
             bacnet:object-name "min_oa_stpt_10" ;
             bacnet:object-type "analogValue" ;
@@ -4382,7 +4229,7 @@ chamber:oa_cfm_tn_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:oa_dmpr_pos_10 a brick:Damper_Position_Sensor ;
-    brick:hasUnit unit:percent ;
+    brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,12" ;
             bacnet:object-name "oa_dmpr_pos_10" ;
@@ -4396,7 +4243,7 @@ chamber:oa_dmpr_pos_trend_log_10 ref:hasExternalReference [ a ref:BACnetReferenc
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:oa_flow_10 a brick:Outside_Air_Flow_Sensor ;
-    brick:hasUnit unit:cubicFeetPerMinute ;
+    brick:hasUnit unit:FT3-PER-MIN ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,21" ;
             bacnet:object-name "oa_flow_10" ;
@@ -4410,7 +4257,7 @@ chamber:oa_flow_trend_log_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:oa_humidity_9 a brick:Outside_Air_Humidity_Sensor ;
-    brick:hasUnit unit:percentRelativeHumidity ;
+    brick:hasUnit unit:PERCENT_RH ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,13" ;
             bacnet:object-name "oa_humidity_9" ;
@@ -4442,7 +4289,7 @@ chamber:oa_signal_tn_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:oa_temperature_9 a brick:Intake_Air_Temperature_Sensor ;
-    brick:hasUnit unit:degreesFahrenheit ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,14" ;
             bacnet:object-name "oa_temperature_9" ;
@@ -4650,7 +4497,7 @@ chamber:off_stpt_alarm_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
 chamber:oh_airflow_10 a brick:Supply_Air_Flow_Sensor ;
-    brick:hasUnit unit:cubicFeetPerMinute ;
+    brick:hasUnit unit:FT3-PER-MIN ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,22" ;
             bacnet:object-name "oh_airflow_10" ;
@@ -4663,8 +4510,7 @@ chamber:oh_airflow_trend_log_10 ref:hasExternalReference [ a ref:BACnetReference
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:oh_cfm_10 brick:hasUnit unit:cubicFeetPerMinute ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:oh_cfm_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,181" ;
             bacnet:object-name "oh_cfm_10" ;
             bacnet:object-type "analogValue" ;
@@ -4676,8 +4522,7 @@ chamber:oh_cfm_input_select_10 ref:hasExternalReference [ a ref:BACnetReference 
             bacnet:object-type "multiStateValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:oh_fpm_10 brick:hasUnit unit:feetPerMinute ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:oh_fpm_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,183" ;
             bacnet:object-name "oh_fpm_10" ;
             bacnet:object-type "analogValue" ;
@@ -4701,15 +4546,13 @@ chamber:optimal_start_inhibit_10 ref:hasExternalReference [ a ref:BACnetReferenc
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:out_freq_7 brick:hasUnit unit:hertz ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:out_freq_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,130" ;
             bacnet:object-name "out_freq_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:out_freq_8 brick:hasUnit unit:hertz ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:out_freq_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,146" ;
             bacnet:object-name "out_freq_8" ;
             bacnet:object-type "analogValue" ;
@@ -4727,22 +4570,20 @@ chamber:out_freq_tn_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:out_volts_7 brick:hasUnit unit:volts ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:out_volts_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,131" ;
             bacnet:object-name "out_volts_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:out_volts_8 brick:hasUnit unit:volts ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:out_volts_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,147" ;
             bacnet:object-name "out_volts_8" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:overhead_sa_temp_10 a brick:Supply_Air_Temperature_Sensor ;
-    brick:hasUnit unit:degreesFahrenheit ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,23" ;
             bacnet:object-name "overhead_sa_temp_10" ;
@@ -4755,57 +4596,49 @@ chamber:overhead_sa_temp_trend_log_10 ref:hasExternalReference [ a ref:BACnetRef
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:panel_surface_temp_4 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:panel_surface_temp_4 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,14" ;
             bacnet:object-name "panel_surface_temp_4" ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:panel_surface_temp_5 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:panel_surface_temp_5 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,15" ;
             bacnet:object-name "panel_surface_temp_5" ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:panel_surface_temp_6 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:panel_surface_temp_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,16" ;
             bacnet:object-name "panel_surface_temp_6" ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:panel_surface_temp_7 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:panel_surface_temp_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,17" ;
             bacnet:object-name "panel_surface_temp_7" ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:panel_surface_temp_av_4 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:panel_surface_temp_av_4 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,42" ;
             bacnet:object-name "panel_surface_temp_av_4" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:panel_surface_temp_av_5 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:panel_surface_temp_av_5 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,61" ;
             bacnet:object-name "panel_surface_temp_av_5" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:panel_surface_temp_av_6 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:panel_surface_temp_av_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,80" ;
             bacnet:object-name "panel_surface_temp_av_6" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:panel_surface_temp_av_7 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:panel_surface_temp_av_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,99" ;
             bacnet:object-name "panel_surface_temp_av_7" ;
             bacnet:object-type "analogValue" ;
@@ -4847,8 +4680,8 @@ chamber:pchwr_sens_issue_low_1 ref:hasExternalReference [ a ref:BACnetReference 
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:pchwr_temp_1 a brick:Chilled_Water_Return_Temperature_Sensor ;
-    brick:hasUnit unit:degreesFahrenheit ;
+chamber:pchwr_temp_1 a brick:Entering_Chilled_Water_Temperature_Sensor ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,1" ;
             bacnet:object-name "pchwr_temp_1" ;
@@ -4873,8 +4706,8 @@ chamber:pchws_sens_issue_low_1 ref:hasExternalReference [ a ref:BACnetReference 
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:pchws_temp_1 a brick:Chilled_Water_Supply_Temperature_Sensor ;
-    brick:hasUnit unit:degreesFahrenheit ;
+chamber:pchws_temp_1 a brick:Leaving_Chilled_Water_Temperature_Sensor ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,2" ;
             bacnet:object-name "pchws_temp_1" ;
@@ -4887,15 +4720,13 @@ chamber:pchws_temp_trend_log_1 ref:hasExternalReference [ a ref:BACnetReference 
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:pcl_request_3 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:pcl_request_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,11" ;
             bacnet:object-name "pcl_request_3" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:peak_mtd_b_11 brick:hasUnit unit:btusPerHour ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:peak_mtd_b_11 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,216" ;
             bacnet:object-name "peak_mtd_b_11" ;
             bacnet:object-type "analogValue" ;
@@ -4907,29 +4738,25 @@ chamber:peak_mtd_tn_11 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:peak_prev_day_b_11 brick:hasUnit unit:btusPerHour ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:peak_prev_day_b_11 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,219" ;
             bacnet:object-name "peak_prev_day_b_11" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:peak_prev_month_b_11 brick:hasUnit unit:btusPerHour ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:peak_prev_month_b_11 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,220" ;
             bacnet:object-name "peak_prev_month_b_11" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:peak_prev_year_b_11 brick:hasUnit unit:btusPerHour ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:peak_prev_year_b_11 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,221" ;
             bacnet:object-name "peak_prev_year_b_11" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:peak_today_b_11 brick:hasUnit unit:btusPerHour ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:peak_today_b_11 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,217" ;
             bacnet:object-name "peak_today_b_11" ;
             bacnet:object-type "analogValue" ;
@@ -4941,8 +4768,7 @@ chamber:peak_today_tn_11 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:peak_ytd_b_11 brick:hasUnit unit:btusPerHour ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:peak_ytd_b_11 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,218" ;
             bacnet:object-name "peak_ytd_b_11" ;
             bacnet:object-type "analogValue" ;
@@ -4960,8 +4786,7 @@ chamber:phase_current_master_tn_8 ref:hasExternalReference [ a ref:BACnetReferen
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:pht_request_3 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:pht_request_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,12" ;
             bacnet:object-name "pht_request_3" ;
             bacnet:object-type "analogValue" ;
@@ -4973,22 +4798,19 @@ chamber:phwp1_ss_trend_log_2 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:power_7 brick:hasUnit unit:kilowatts ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:power_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,132" ;
             bacnet:object-name "power_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:power_8 brick:hasUnit unit:kilowatts ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:power_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,148" ;
             bacnet:object-name "power_8" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:press_stpt_6 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:press_stpt_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,109" ;
             bacnet:object-name "press_stpt_6" ;
             bacnet:object-type "analogValue" ;
@@ -5268,92 +5090,79 @@ chamber:pst_lo_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:pstp_max_4 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:pstp_max_4 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,43" ;
             bacnet:object-name "pstp_max_4" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:pstp_max_5 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:pstp_max_5 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,62" ;
             bacnet:object-name "pstp_max_5" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:pstp_max_6 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:pstp_max_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,81" ;
             bacnet:object-name "pstp_max_6" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:pstp_max_7 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:pstp_max_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,100" ;
             bacnet:object-name "pstp_max_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:pstp_min_4 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:pstp_min_4 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,44" ;
             bacnet:object-name "pstp_min_4" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:pstp_min_5 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:pstp_min_5 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,63" ;
             bacnet:object-name "pstp_min_5" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:pstp_min_6 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:pstp_min_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,82" ;
             bacnet:object-name "pstp_min_6" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:pstp_min_7 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:pstp_min_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,101" ;
             bacnet:object-name "pstp_min_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:pstp_user_4 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:pstp_user_4 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,45" ;
             bacnet:object-name "pstp_user_4" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:pstp_user_5 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:pstp_user_5 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,64" ;
             bacnet:object-name "pstp_user_5" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:pstp_user_6 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:pstp_user_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,83" ;
             bacnet:object-name "pstp_user_6" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:pstp_user_7 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:pstp_user_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,102" ;
             bacnet:object-name "pstp_user_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:pt_avg_av_3 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:pt_avg_av_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,93" ;
             bacnet:object-name "pt_avg_av_3" ;
             bacnet:object-type "analogValue" ;
@@ -5365,29 +5174,25 @@ chamber:pt_avg_tn_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:ptsp_4 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:ptsp_4 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,38" ;
             bacnet:object-name "ptsp_4" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:ptsp_5 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:ptsp_5 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,53" ;
             bacnet:object-name "ptsp_5" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:ptsp_6 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:ptsp_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,65" ;
             bacnet:object-name "ptsp_6" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:ptsp_7 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:ptsp_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,73" ;
             bacnet:object-name "ptsp_7" ;
             bacnet:object-type "analogValue" ;
@@ -5424,7 +5229,7 @@ chamber:pump_method_selector_3 ref:hasExternalReference [ a ref:BACnetReference 
             bacnet:objectOf chamber:dev-2400001 ] .
 
 chamber:ra_dmpr_pos_10 a brick:Damper_Position_Sensor ;
-    brick:hasUnit unit:percent ;
+    brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,13" ;
             bacnet:object-name "ra_dmpr_pos_10" ;
@@ -5438,7 +5243,7 @@ chamber:ra_dmpr_pos_trend_log_10 ref:hasExternalReference [ a ref:BACnetReferenc
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:ra_temp_1 a brick:Return_Air_Temperature_Sensor ;
-    brick:hasUnit unit:degreesFahrenheit ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,2" ;
             bacnet:object-name "ra_temp_1" ;
@@ -5446,7 +5251,7 @@ chamber:ra_temp_1 a brick:Return_Air_Temperature_Sensor ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:ra_temp_10 a brick:Return_Air_Temperature_Sensor ;
-    brick:hasUnit unit:degreesFahrenheit ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,24" ;
             bacnet:object-name "ra_temp_10" ;
@@ -5519,8 +5324,7 @@ chamber:reset_alarms_tn_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:return_temp_b_11 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:return_temp_b_11 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,222" ;
             bacnet:object-name "return_temp_b_11" ;
             bacnet:object-type "analogValue" ;
@@ -5621,15 +5425,13 @@ chamber:run_stop_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:run_time_7 brick:hasUnit unit:hours ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:run_time_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,133" ;
             bacnet:object-name "run_time_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:run_time_8 brick:hasUnit unit:hours ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:run_time_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,149" ;
             bacnet:object-name "run_time_8" ;
             bacnet:object-type "analogValue" ;
@@ -5765,8 +5567,7 @@ chamber:rwp_spd_trend_log_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:rws_setpoint_av_3 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:rws_setpoint_av_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,74" ;
             bacnet:object-name "rws_setpoint_av_3" ;
             bacnet:object-type "analogValue" ;
@@ -5779,7 +5580,7 @@ chamber:rws_setpoint_tn_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
 chamber:sa_temp_1 a brick:Supply_Air_Temperature_Sensor ;
-    brick:hasUnit unit:degreesFahrenheit ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,4" ;
             bacnet:object-name "sa_temp_1" ;
@@ -5798,15 +5599,13 @@ chamber:sa_temp_trend_log_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:saby_out_1 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:saby_out_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,22" ;
             bacnet:object-name "saby_out_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:saby_out_10 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:saby_out_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,184" ;
             bacnet:object-name "saby_out_10" ;
             bacnet:object-type "analogValue" ;
@@ -5849,7 +5648,7 @@ chamber:sat_lo_uf_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:sat_setpoint_av_1 a brick:Supply_Air_Temperature_Setpoint ;
-    brick:hasUnit unit:degreesFahrenheit ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,23" ;
             bacnet:object-name "sat_setpoint_av_1" ;
@@ -5976,8 +5775,8 @@ chamber:schwr_sens_issue_low_1 ref:hasExternalReference [ a ref:BACnetReference 
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:schwr_temp_1 a brick:Chilled_Water_Return_Temperature_Sensor ;
-    brick:hasUnit unit:degreesFahrenheit ;
+chamber:schwr_temp_1 a brick:Entering_Chilled_Water_Temperature_Sensor ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,6" ;
             bacnet:object-name "schwr_temp_1" ;
@@ -6002,8 +5801,8 @@ chamber:schws_sens_issue_low_1 ref:hasExternalReference [ a ref:BACnetReference 
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:schws_temp_1 a brick:Chilled_Water_Supply_Temperature_Sensor ;
-    brick:hasUnit unit:degreesFahrenheit ;
+chamber:schws_temp_1 a brick:Leaving_Chilled_Water_Temperature_Sensor ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,7" ;
             bacnet:object-name "schws_temp_1" ;
@@ -6070,8 +5869,7 @@ chamber:setpoint_adjust_tn_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:setpoint_cooling_8 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:setpoint_cooling_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,109" ;
             bacnet:object-name "setpoint_cooling_8" ;
             bacnet:object-type "analogValue" ;
@@ -6089,8 +5887,7 @@ chamber:setpoint_cooling_tn_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:setpoint_freezing_8 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:setpoint_freezing_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,111" ;
             bacnet:object-name "setpoint_freezing_8" ;
             bacnet:object-type "analogValue" ;
@@ -6108,8 +5905,7 @@ chamber:setpoint_freezing_tn_8 ref:hasExternalReference [ a ref:BACnetReference 
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:sf_amps_10 brick:hasUnit unit:amperes ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:sf_amps_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,26" ;
             bacnet:object-name "sf_amps_10" ;
             bacnet:object-type "analogInput" ;
@@ -6188,6 +5984,7 @@ chamber:sf_status_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:sf_status_10 a brick:Fan_On_Off_Status ;
+    brick:hasUnit unit:UNITLESS ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "binaryValue,130" ;
             bacnet:object-name "sf_status_10" ;
@@ -6212,15 +6009,14 @@ chamber:sf_sts_trend_log_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:sf_vfd_min_10 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:sf_vfd_min_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,185" ;
             bacnet:object-name "sf_vfd_min_10" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:sf_vfd_spd_10 a brick:Motor_Speed_Sensor ;
-    brick:hasUnit unit:percent ;
+    brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,14" ;
             bacnet:object-name "sf_vfd_spd_10" ;
@@ -6233,50 +6029,43 @@ chamber:sf_vfd_spd_trend_log_10 ref:hasExternalReference [ a ref:BACnetReference
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:space_temp_stpt_4 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:space_temp_stpt_4 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,41" ;
             bacnet:object-name "space_temp_stpt_4" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:space_temp_stpt_5 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:space_temp_stpt_5 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,46" ;
             bacnet:object-name "space_temp_stpt_5" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:space_temp_stpt_6 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:space_temp_stpt_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,54" ;
             bacnet:object-name "space_temp_stpt_6" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:space_temp_stpt_7 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:space_temp_stpt_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,68" ;
             bacnet:object-name "space_temp_stpt_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:speed_7 brick:hasUnit unit:revolutionsPerMinute ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:speed_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,134" ;
             bacnet:object-name "speed_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:speed_8 brick:hasUnit unit:revolutionsPerMinute ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:speed_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,150" ;
             bacnet:object-name "speed_8" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:spot_cc_temp_6 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:spot_cc_temp_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,11" ;
             bacnet:object-name "spot_cc_temp_6" ;
             bacnet:object-type "analogInput" ;
@@ -6288,8 +6077,7 @@ chamber:spot_cc_temp_trend_log_6 ref:hasExternalReference [ a ref:BACnetReferenc
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:spot_clg_dh_pos_6 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:spot_clg_dh_pos_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,3" ;
             bacnet:object-name "spot_clg_dh_pos_6" ;
             bacnet:object-type "analogOutput" ;
@@ -6301,8 +6089,7 @@ chamber:spot_clg_dh_pos_trend_log_6 ref:hasExternalReference [ a ref:BACnetRefer
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:spot_clg_dmpr_pos_ao_6 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:spot_clg_dmpr_pos_ao_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,4" ;
             bacnet:object-name "spot_clg_dmpr_pos_ao_6" ;
             bacnet:object-type "analogOutput" ;
@@ -6315,7 +6102,7 @@ chamber:spot_clg_dmpr_pos_ao_trend_log_6 ref:hasExternalReference [ a ref:BACnet
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:spot_clg_sa_temp_6 a brick:Supply_Air_Temperature_Sensor ;
-    brick:hasUnit unit:degreesFahrenheit ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,9" ;
             bacnet:object-name "spot_clg_sa_temp_6" ;
@@ -6328,8 +6115,7 @@ chamber:spot_clg_sa_temp_trend_log_6 ref:hasExternalReference [ a ref:BACnetRefe
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:spot_clg_vlv_fdbk_6 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:spot_clg_vlv_fdbk_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,10" ;
             bacnet:object-name "spot_clg_vlv_fdbk_6" ;
             bacnet:object-type "analogInput" ;
@@ -6341,8 +6127,7 @@ chamber:spot_clg_vlv_fdbk_trend_log_6 ref:hasExternalReference [ a ref:BACnetRef
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:spot_clg_vlv_pos_6 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:spot_clg_vlv_pos_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,5" ;
             bacnet:object-name "spot_clg_vlv_pos_6" ;
             bacnet:object-type "analogOutput" ;
@@ -6390,8 +6175,7 @@ chamber:st_stpt_tn_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:stat_press_10 brick:hasUnit unit:inchesOfWater ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:stat_press_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,172" ;
             bacnet:object-name "stat_press_10" ;
             bacnet:object-type "analogValue" ;
@@ -6403,8 +6187,7 @@ chamber:static_press_tn_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:steam_ratio_stpt_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:steam_ratio_stpt_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,186" ;
             bacnet:object-name "steam_ratio_stpt_10" ;
             bacnet:object-type "analogValue" ;
@@ -6416,36 +6199,31 @@ chamber:steam_ratio_trend_log_10 ref:hasExternalReference [ a ref:BACnetReferenc
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:stpt_avg_av_3 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:stpt_avg_av_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,34" ;
             bacnet:object-name "stpt_avg_av_3" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:stpt_avg_av_4 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:stpt_avg_av_4 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,35" ;
             bacnet:object-name "stpt_avg_av_4" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:stpt_avg_av_5 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:stpt_avg_av_5 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,49" ;
             bacnet:object-name "stpt_avg_av_5" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:stpt_avg_av_6 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:stpt_avg_av_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,55" ;
             bacnet:object-name "stpt_avg_av_6" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:stpt_avg_av_7 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:stpt_avg_av_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,69" ;
             bacnet:object-name "stpt_avg_av_7" ;
             bacnet:object-type "analogValue" ;
@@ -6482,7 +6260,7 @@ chamber:stpt_avg_tn_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
 chamber:supply_damper_pos_10 a brick:Damper_Position_Sensor ;
-    brick:hasUnit unit:percent ;
+    brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,16" ;
             bacnet:object-name "supply_damper_pos_10" ;
@@ -6501,8 +6279,7 @@ chamber:supply_fan_bacnet_pid_tn_10 ref:hasExternalReference [ a ref:BACnetRefer
             bacnet:object-type "loop" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:supply_fan_bacnet_pid_tn_input_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:supply_fan_bacnet_pid_tn_input_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,212" ;
             bacnet:object-name "supply_fan_bacnet_pid_tn_input_10" ;
             bacnet:object-type "analogValue" ;
@@ -6520,8 +6297,7 @@ chamber:supply_fan_bacnet_pid_tn_loop_in_control_trendlog_ ref:hasExternalRefere
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:supply_fan_bacnet_pid_tn_pidout_10 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:supply_fan_bacnet_pid_tn_pidout_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,213" ;
             bacnet:object-name "supply_fan_bacnet_pid_tn_pidout_10" ;
             bacnet:object-type "analogValue" ;
@@ -6533,8 +6309,7 @@ chamber:supply_fan_bacnet_pid_tn_pidout_trend_log_10 ref:hasExternalReference [ 
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:supply_fan_bacnet_pid_tn_setpt_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:supply_fan_bacnet_pid_tn_setpt_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,211" ;
             bacnet:object-name "supply_fan_bacnet_pid_tn_setpt_10" ;
             bacnet:object-type "analogValue" ;
@@ -6546,8 +6321,7 @@ chamber:supply_fan_bacnet_pid_tn_setpt_trend_log_10 ref:hasExternalReference [ a
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:supply_temp_b_11 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:supply_temp_b_11 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,223" ;
             bacnet:object-name "supply_temp_b_11" ;
             bacnet:object-type "analogValue" ;
@@ -6590,8 +6364,8 @@ chamber:system_error_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:temp_stpt_6 a brick:Zone_Air_Temperature_Setpoint ;
-    brick:hasUnit unit:noUnits ;
+chamber:temp_stpt_6 a brick:Target_Zone_Air_Temperature_Setpoint ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,110" ;
             bacnet:object-name "temp_stpt_6" ;
@@ -6624,8 +6398,7 @@ chamber:temp_stpt_tn_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:temperature_9 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:temperature_9 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,159" ;
             bacnet:object-name "temperature_9" ;
             bacnet:object-type "analogValue" ;
@@ -6649,22 +6422,19 @@ chamber:temperature_tn_9 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:torque_7 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:torque_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,135" ;
             bacnet:object-name "torque_7" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:torque_8 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:torque_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,151" ;
             bacnet:object-name "torque_8" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:total_weight_1 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:total_weight_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,26" ;
             bacnet:object-name "total_weight_1" ;
             bacnet:object-type "analogValue" ;
@@ -6677,7 +6447,7 @@ chamber:total_weight_tn_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:uf_airflow_10 a brick:Supply_Air_Flow_Sensor ;
-    brick:hasUnit unit:cubicFeetPerMinute ;
+    brick:hasUnit unit:FT3-PER-MIN ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,27" ;
             bacnet:object-name "uf_airflow_10" ;
@@ -6690,8 +6460,7 @@ chamber:uf_airflow_trend_log_10 ref:hasExternalReference [ a ref:BACnetReference
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:uf_cfm_10 brick:hasUnit unit:cubicFeetPerMinute ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:uf_cfm_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,187" ;
             bacnet:object-name "uf_cfm_10" ;
             bacnet:object-type "analogValue" ;
@@ -6703,8 +6472,7 @@ chamber:uf_cfm_input_select_10 ref:hasExternalReference [ a ref:BACnetReference 
             bacnet:object-type "multiStateValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:uf_fpm_10 brick:hasUnit unit:feetPerMinute ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:uf_fpm_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,189" ;
             bacnet:object-name "uf_fpm_10" ;
             bacnet:object-type "analogValue" ;
@@ -6717,7 +6485,7 @@ chamber:uf_signal_tn_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:underfloor_sa_temp_10 a brick:Underfloor_Air_Temperature_Sensor ;
-    brick:hasUnit unit:degreesFahrenheit ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,28" ;
             bacnet:object-name "underfloor_sa_temp_10" ;
@@ -6730,8 +6498,7 @@ chamber:underfloor_sa_temp_trend_log_10 ref:hasExternalReference [ a ref:BACnetR
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:vav_cfm_6 brick:hasUnit unit:cubicFeetPerMinute ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:vav_cfm_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,72" ;
             bacnet:object-name "vav_cfm_6" ;
             bacnet:object-type "analogValue" ;
@@ -6744,7 +6511,7 @@ chamber:vav_cfm_tn_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:vav_dmpr_pos_6 a brick:Damper_Position_Sensor ;
-    brick:hasUnit unit:percent ;
+    brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,6" ;
             bacnet:object-name "vav_dmpr_pos_6" ;
@@ -6757,8 +6524,7 @@ chamber:vav_dmpr_pos_trend_log_6 ref:hasExternalReference [ a ref:BACnetReferenc
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:vav_dp_airflow_6 brick:hasUnit unit:inchesOfWater ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:vav_dp_airflow_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,12" ;
             bacnet:object-name "vav_dp_airflow_6" ;
             bacnet:object-type "analogInput" ;
@@ -6770,15 +6536,13 @@ chamber:vav_dp_airflow_trend_log_6 ref:hasExternalReference [ a ref:BACnetRefere
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:vav_fpm_6 brick:hasUnit unit:feetPerMinute ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:vav_fpm_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,74" ;
             bacnet:object-name "vav_fpm_6" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:vav_signal_6 brick:hasUnit unit:inchesOfWater ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:vav_signal_6 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,73" ;
             bacnet:object-name "vav_signal_6" ;
             bacnet:object-type "analogValue" ;
@@ -6796,8 +6560,7 @@ chamber:vfd_alarm_8 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:volume_b_11 brick:hasUnit unit:usGallonsPerMinute ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:volume_b_11 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,224" ;
             bacnet:object-name "volume_b_11" ;
             bacnet:object-type "analogValue" ;
@@ -6809,8 +6572,7 @@ chamber:volume_tn_11 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:wetbulb_9 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:wetbulb_9 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,160" ;
             bacnet:object-name "wetbulb_9" ;
             bacnet:object-type "analogValue" ;
@@ -6864,8 +6626,7 @@ chamber:whs_temp_trend_log_2 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400001 ] .
 
-chamber:z_pid_av_3 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:z_pid_av_3 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,75" ;
             bacnet:object-name "z_pid_av_3" ;
             bacnet:object-type "analogValue" ;
@@ -6889,8 +6650,7 @@ chamber:zco2_hi_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:zn_ei_time_sat_1 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:zn_ei_time_sat_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,25" ;
             bacnet:object-name "zn_ei_time_sat_1" ;
             bacnet:object-type "analogValue" ;
@@ -6902,8 +6662,7 @@ chamber:zn_ei_time_sat_tn_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "trendLog" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:zn_enviro_indx_1 brick:hasUnit unit:percent ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:zn_enviro_indx_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,27" ;
             bacnet:object-name "zn_enviro_indx_1" ;
             bacnet:object-type "analogValue" ;
@@ -6916,7 +6675,7 @@ chamber:zn_enviro_indx_tn_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:zone_co2_10 a brick:CO2_Level_Sensor ;
-    brick:hasUnit unit:partsPerMillion ;
+    brick:hasUnit unit:PPM ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,29" ;
             bacnet:object-name "zone_co2_10" ;
@@ -6978,7 +6737,7 @@ chamber:zone_lo_2_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:zone_rh_av_10 a brick:Zone_Air_Humidity_Sensor ;
-    brick:hasUnit unit:noUnits ;
+    brick:hasUnit unit:PERCENT_RH ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,70" ;
             bacnet:object-name "zone_rh_av_10" ;
@@ -6986,15 +6745,14 @@ chamber:zone_rh_av_10 a brick:Zone_Air_Humidity_Sensor ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
 chamber:zone_temp_10 a brick:Zone_Air_Temperature_Sensor ;
-    brick:hasUnit unit:degreesFahrenheit ;
+    brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,30" ;
             bacnet:object-name "zone_temp_10" ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:zone_temp_av_10 brick:hasUnit unit:noUnits ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:zone_temp_av_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,71" ;
             bacnet:object-name "zone_temp_av_10" ;
             bacnet:object-type "analogValue" ;
@@ -7018,15 +6776,13 @@ chamber:zs_comm_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:zs_oah_display_1 brick:hasUnit unit:percentRelativeHumidity ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:zs_oah_display_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,14" ;
             bacnet:object-name "zs_oah_display_1" ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002 ] .
 
-chamber:zs_oat_display_1 brick:hasUnit unit:degreesFahrenheit ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:zs_oat_display_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,15" ;
             bacnet:object-name "zs_oat_display_1" ;
             bacnet:object-type "analogValue" ;

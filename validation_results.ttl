@@ -4,52 +4,11 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rec: <https://w3id.org/rec#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 [] a sh:ValidationReport ;
     sh:conforms false ;
     sh:result [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#wurster_hall> ;
-            sh:resultMessage "http://berkeley.edu/climatechamber#wurster_hall has type {?class} which was deprecated in version {?depver}. For now, it has been updated to also be of type {?newClass}." ;
-            sh:resultSeverity sh:Warning ;
-            sh:sourceConstraint _:n3819bf433960480aaae1f56bcc71be86b3688 ;
-            sh:sourceConstraintComponent sh:SPARQLConstraintComponent ;
-            sh:sourceShape bsh:DeprecationRuleForInstances ;
-            sh:value <http://berkeley.edu/climatechamber#wurster_hall> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#CH_1> ;
-            sh:resultMessage "Value does not have class brick:Point" ;
-            sh:resultPath brick:hasPoint ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasPointShape ;
-            sh:value <http://berkeley.edu/climatechamber#eff_chws_temp_stpt_1> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#CH_1> ;
-            sh:resultMessage "Node chamber:RT_PCHW does not conform to one or more shapes in [ sh:class brick:Point ]" ;
-            sh:resultPath brick:hasPoint ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7734 ;
-            sh:value <http://berkeley.edu/climatechamber#RT_PCHW> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#CH_1> ;
-            sh:resultMessage "Value does not have class brick:Point" ;
-            sh:resultPath brick:hasPoint ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasPointShape ;
-            sh:value <http://berkeley.edu/climatechamber#RT_PCHW> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#CH_1> ;
-            sh:resultMessage "Node chamber:eff_chws_temp_stpt_1 does not conform to one or more shapes in [ sh:class brick:Point ]" ;
-            sh:resultPath brick:hasPoint ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7734 ;
-            sh:value <http://berkeley.edu/climatechamber#eff_chws_temp_stpt_1> ],
-        [ a sh:ValidationResult ;
             sh:focusNode brick:Velocity_Pressure ;
             sh:resultMessage "Value does not have class qudt:QuantityKind" ;
             sh:resultPath brick:hasQUDTReference ;
@@ -58,61 +17,34 @@
             sh:sourceShape bsh:hasQUDTReferenceShape ;
             sh:value qudtqk:DynamicPressure ],
         [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#ra_dmpr_pos_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
+            sh:focusNode <http://berkeley.edu/climatechamber#HW_L> ;
+            sh:resultMessage "Less than 1 values on chamber:HW_L->rec:includes" ;
+            sh:resultPath rec:includes ;
             sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:percent ],
+            sh:sourceConstraintComponent sh:MinCountConstraintComponent ;
+            sh:sourceShape _:n6750d47e706c403984f80d8db0d9d641b7602 ],
         [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#CH_1> ;
-            sh:resultMessage "Value does not have class brick:Point" ;
-            sh:resultPath rec:hasPoint ;
+            sh:focusNode <http://berkeley.edu/climatechamber#SCHW_L> ;
+            sh:resultMessage "Less than 1 values on chamber:SCHW_L->rec:includes" ;
+            sh:resultPath rec:includes ;
             sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b38 ;
-            sh:value <http://berkeley.edu/climatechamber#eff_chws_temp_stpt_1> ],
+            sh:sourceConstraintComponent sh:MinCountConstraintComponent ;
+            sh:sourceShape _:n6750d47e706c403984f80d8db0d9d641b7602 ],
         [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#CHW_pump_1> ;
-            sh:resultMessage "A piece of Equipment can feed a Equipment or Location/Space." ;
-            sh:resultPath brick:feeds ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7756 ;
-            sh:value <http://berkeley.edu/climatechamber#CHW_valve_1> ],
+            sh:focusNode <http://berkeley.edu/climatechamber#wurster_hall> ;
+            sh:resultMessage "http://berkeley.edu/climatechamber#wurster_hall has type https://brickschema.org/schema/Brick#Location which was deprecated in version 1.4.0. For now, it has been updated to also be of type https://w3id.org/rec#Architecture." ;
+            sh:resultSeverity sh:Warning ;
+            sh:sourceConstraint _:n6750d47e706c403984f80d8db0d9d641b3688 ;
+            sh:sourceConstraintComponent sh:SPARQLConstraintComponent ;
+            sh:sourceShape bsh:DeprecationRuleForInstances ;
+            sh:value <http://berkeley.edu/climatechamber#wurster_hall> ],
         [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#CH_1> ;
-            sh:resultMessage "Node chamber:eff_chws_temp_stpt_1 does not conform to one or more shapes in [ sh:class brick:Point ]" ;
-            sh:resultPath brick:hasPoint ;
+            sh:focusNode <http://berkeley.edu/climatechamber#SCHW_L> ;
+            sh:resultMessage "Less than 1 values on chamber:SCHW_L->rec:includes" ;
+            sh:resultPath rec:includes ;
             sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7740 ;
-            sh:value <http://berkeley.edu/climatechamber#eff_chws_temp_stpt_1> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#VFD_A_supply> ;
-            sh:resultMessage "Node chamber:Start_A-SF does not conform to one or more shapes in [ sh:class brick:Point ]" ;
-            sh:resultPath brick:hasPoint ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7740 ;
-            sh:value <http://berkeley.edu/climatechamber#Start_A-SF> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#H_1> ;
-            sh:resultMessage "Node chamber:UF_diffuser does not conform to one or more shapes in [ sh:class brick:HVAC_Equipment ] , [ sh:class brick:Valve ] , [ sh:class rec:Space ]" ;
-            sh:resultPath brick:feeds ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7704 ;
-            sh:value <http://berkeley.edu/climatechamber#UF_diffuser> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#schwr_temp_1> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:degreesFahrenheit ],
+            sh:sourceConstraintComponent sh:MinCountConstraintComponent ;
+            sh:sourceShape _:n6750d47e706c403984f80d8db0d9d641b6786 ],
         [ a sh:ValidationResult ;
             sh:focusNode brick:Differential_Static_Pressure ;
             sh:resultMessage "Value does not have class qudt:QuantityKind" ;
@@ -123,164 +55,20 @@
             sh:value qudtqk:StaticPressure ],
         [ a sh:ValidationResult ;
             sh:focusNode <http://berkeley.edu/climatechamber#CH_1> ;
-            sh:resultMessage "Value does not have class brick:Point" ;
-            sh:resultPath rec:hasPoint ;
+            sh:resultMessage "Node chamber:PCHW_L does not conform to one or more shapes in [ sh:class brick:HVAC_Equipment ] , [ sh:class brick:Valve ] , [ sh:class rec:Space ]" ;
+            sh:resultPath brick:feeds ;
             sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b38 ;
-            sh:value <http://berkeley.edu/climatechamber#RT_PCHW> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#pchws_temp_1> ;
-            sh:resultMessage "http://berkeley.edu/climatechamber#pchws_temp_1 has type {?class} which was deprecated in version {?depver}. For now, it has been updated to also be of type {?newClass}." ;
-            sh:resultSeverity sh:Warning ;
-            sh:sourceConstraint _:n3819bf433960480aaae1f56bcc71be86b3688 ;
-            sh:sourceConstraintComponent sh:SPARQLConstraintComponent ;
-            sh:sourceShape bsh:DeprecationRuleForInstances ;
-            sh:value <http://berkeley.edu/climatechamber#pchws_temp_1> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#zone> ;
-            sh:resultMessage "http://berkeley.edu/climatechamber#zone has type {?class} which was deprecated in version {?depver}. For now, it has been updated to also be of type {?newClass}." ;
-            sh:resultSeverity sh:Warning ;
-            sh:sourceConstraint _:n3819bf433960480aaae1f56bcc71be86b3688 ;
-            sh:sourceConstraintComponent sh:SPARQLConstraintComponent ;
-            sh:sourceShape bsh:DeprecationRuleForInstances ;
-            sh:value <http://berkeley.edu/climatechamber#zone> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#schws_temp_1> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:degreesFahrenheit ],
+            sh:sourceConstraintComponent sh:OrConstraintComponent ;
+            sh:sourceShape _:n6750d47e706c403984f80d8db0d9d641b7704 ;
+            sh:value <http://berkeley.edu/climatechamber#PCHW_L> ],
         [ a sh:ValidationResult ;
             sh:focusNode <http://berkeley.edu/climatechamber#WH_1> ;
             sh:resultMessage "A piece of Equipment can feed a Equipment or Location/Space." ;
             sh:resultPath brick:feeds ;
             sh:resultSeverity sh:Violation ;
             sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7756 ;
-            sh:value <http://berkeley.edu/climatechamber#HW_pump_1> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#VFD_A_supply> ;
-            sh:resultMessage "Value does not have class brick:Point" ;
-            sh:resultPath brick:hasPoint ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasPointShape ;
-            sh:value <http://berkeley.edu/climatechamber#Start_A-SF> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#hw_valve_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:percent ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#RT_HW> ;
-            sh:resultMessage "http://berkeley.edu/climatechamber#RT_HW has type {?class} which was deprecated in version {?depver}. For now, it has been updated to also be of type {?newClass}." ;
-            sh:resultSeverity sh:Warning ;
-            sh:sourceConstraint _:n3819bf433960480aaae1f56bcc71be86b3688 ;
-            sh:sourceConstraintComponent sh:SPARQLConstraintComponent ;
-            sh:sourceShape bsh:DeprecationRuleForInstances ;
-            sh:value <http://berkeley.edu/climatechamber#RT_HW> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#ef_vfd_spd_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:percent ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#CHW_pump_1> ;
-            sh:resultMessage "Node chamber:CHW_valve_1 does not conform to one or more shapes in [ sh:class brick:HVAC_Equipment ] , [ sh:class brick:Valve ] , [ sh:class rec:Space ]" ;
-            sh:resultPath brick:feeds ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7704 ;
-            sh:value <http://berkeley.edu/climatechamber#CHW_valve_1> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#HWR_valve_A> ;
-            sh:resultMessage "Node chamber:WH_1 does not conform to one or more shapes in [ sh:class brick:HVAC_Equipment ] , [ sh:class brick:Valve ] , [ sh:class rec:Space ]" ;
-            sh:resultPath brick:feeds ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7704 ;
-            sh:value <http://berkeley.edu/climatechamber#WH_1> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#Start_HW_pump_1> ;
-            sh:resultMessage "Node chamber:HW_pump_1 does not conform to one or more shapes in [ sh:class brick:Equipment ] , [ sh:class brick:Location ]" ;
-            sh:resultPath brick:isPointOf ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape bsh:isPointOfShape ;
-            sh:value <http://berkeley.edu/climatechamber#HW_pump_1> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#overhead_sa_temp_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:degreesFahrenheit ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#VFD_A_supply> ;
-            sh:resultMessage "Value does not have class brick:Point" ;
-            sh:resultPath rec:hasPoint ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b38 ;
-            sh:value <http://berkeley.edu/climatechamber#Start_A-SF> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#H_1> ;
-            sh:resultMessage "A piece of Equipment can feed a Equipment or Location/Space." ;
-            sh:resultPath brick:feeds ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7756 ;
-            sh:value <http://berkeley.edu/climatechamber#UF_diffuser> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#ra_temp_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:degreesFahrenheit ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#WH_1> ;
-            sh:resultMessage "Node chamber:HWST_stp does not conform to one or more shapes in [ sh:class brick:Point ]" ;
-            sh:resultPath brick:hasPoint ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7740 ;
-            sh:value <http://berkeley.edu/climatechamber#HWST_stp> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#T_RWR> ;
-            sh:resultMessage "http://berkeley.edu/climatechamber#T_RWR has type {?class} which was deprecated in version {?depver}. For now, it has been updated to also be of type {?newClass}." ;
-            sh:resultSeverity sh:Warning ;
-            sh:sourceConstraint _:n3819bf433960480aaae1f56bcc71be86b3688 ;
-            sh:sourceConstraintComponent sh:SPARQLConstraintComponent ;
-            sh:sourceShape bsh:DeprecationRuleForInstances ;
-            sh:value <http://berkeley.edu/climatechamber#T_RWR> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#fan_A_supply> ;
-            sh:resultMessage "Node chamber:VFD_A_supply does not conform to one or more shapes in [ sh:class brick:HVAC_Equipment ] , [ sh:class brick:Valve ]" ;
-            sh:resultPath brick:hasPart ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7711 ;
-            sh:value <http://berkeley.edu/climatechamber#VFD_A_supply> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#chamber_room> ;
-            sh:resultMessage "http://berkeley.edu/climatechamber#chamber_room has type {?class} which was deprecated in version {?depver}. For now, it has been updated to also be of type {?newClass}." ;
-            sh:resultSeverity sh:Warning ;
-            sh:sourceConstraint _:n3819bf433960480aaae1f56bcc71be86b3688 ;
-            sh:sourceConstraintComponent sh:SPARQLConstraintComponent ;
-            sh:sourceShape bsh:DeprecationRuleForInstances ;
-            sh:value <http://berkeley.edu/climatechamber#chamber_room> ],
+            sh:sourceShape _:n6750d47e706c403984f80d8db0d9d641b7756 ;
+            sh:value <http://berkeley.edu/climatechamber#HW_L> ],
         [ a sh:ValidationResult ;
             sh:focusNode brick:Static_Pressure ;
             sh:resultMessage "Value does not have class qudt:QuantityKind" ;
@@ -290,189 +78,35 @@
             sh:sourceShape bsh:hasQUDTReferenceShape ;
             sh:value qudtqk:StaticPressure ],
         [ a sh:ValidationResult ;
-            sh:focusNode brick:Atmospheric_Pressure ;
-            sh:resultMessage "Value does not have class qudt:QuantityKind" ;
-            sh:resultPath brick:hasQUDTReference ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasQUDTReferenceShape ;
-            sh:value qudtqk:AtmosphericPressure ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#CH_1> ;
-            sh:resultMessage "Value does not have class brick:Point" ;
-            sh:resultPath brick:hasPoint ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasPointShape ;
-            sh:value <http://berkeley.edu/climatechamber#ST_PCHW> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#oa_dmpr_pos_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:percent ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#oa_flow_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:cubicFeetPerMinute ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#chw_valve_1> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:percent ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#CHW_pump_2> ;
-            sh:resultMessage "A piece of Equipment can feed a Equipment or Location/Space." ;
-            sh:resultPath brick:feeds ;
+            sh:focusNode <http://berkeley.edu/climatechamber#fan_exhaust> ;
+            sh:resultMessage "Node chamber:VFD_exhaust does not conform to one or more shapes in [ sh:class brick:HVAC_Equipment ] , [ sh:class brick:Valve ]" ;
+            sh:resultPath brick:hasPart ;
             sh:resultSeverity sh:Violation ;
             sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7756 ;
-            sh:value <http://berkeley.edu/climatechamber#CHW_valve_2> ],
+            sh:sourceShape _:n6750d47e706c403984f80d8db0d9d641b7711 ;
+            sh:value <http://berkeley.edu/climatechamber#VFD_exhaust> ],
         [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#temp_stpt_6> ;
-            sh:resultMessage "http://berkeley.edu/climatechamber#temp_stpt_6 has type {?class} which was deprecated in version {?depver}. For now, it has been updated to also be of type {?newClass}." ;
+            sh:focusNode <http://berkeley.edu/climatechamber#PCHW_L> ;
+            sh:resultMessage "Less than 1 values on chamber:PCHW_L->rec:includes" ;
+            sh:resultPath rec:includes ;
+            sh:resultSeverity sh:Violation ;
+            sh:sourceConstraintComponent sh:MinCountConstraintComponent ;
+            sh:sourceShape _:n6750d47e706c403984f80d8db0d9d641b7602 ],
+        [ a sh:ValidationResult ;
+            sh:focusNode <http://berkeley.edu/climatechamber#HW_L> ;
+            sh:resultMessage "Less than 1 values on chamber:HW_L->rec:includes" ;
+            sh:resultPath rec:includes ;
+            sh:resultSeverity sh:Violation ;
+            sh:sourceConstraintComponent sh:MinCountConstraintComponent ;
+            sh:sourceShape _:n6750d47e706c403984f80d8db0d9d641b6786 ],
+        [ a sh:ValidationResult ;
+            sh:focusNode <http://berkeley.edu/climatechamber#UCB> ;
+            sh:resultMessage "http://berkeley.edu/climatechamber#UCB has type https://brickschema.org/schema/Brick#Location which was deprecated in version 1.4.0. For now, it has been updated to also be of type https://w3id.org/rec#Architecture." ;
             sh:resultSeverity sh:Warning ;
-            sh:sourceConstraint _:n3819bf433960480aaae1f56bcc71be86b3688 ;
+            sh:sourceConstraint _:n6750d47e706c403984f80d8db0d9d641b3688 ;
             sh:sourceConstraintComponent sh:SPARQLConstraintComponent ;
             sh:sourceShape bsh:DeprecationRuleForInstances ;
-            sh:value <http://berkeley.edu/climatechamber#temp_stpt_6> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#oa_humidity_9> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:percentRelativeHumidity ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#CHW_pump_2> ;
-            sh:resultMessage "Node chamber:CHW_valve_2 does not conform to one or more shapes in [ sh:class brick:HVAC_Equipment ] , [ sh:class brick:Valve ] , [ sh:class rec:Space ]" ;
-            sh:resultPath brick:feeds ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7704 ;
-            sh:value <http://berkeley.edu/climatechamber#CHW_valve_2> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#zone_co2_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:partsPerMillion ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#oh_airflow_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:cubicFeetPerMinute ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#ST_HW> ;
-            sh:resultMessage "http://berkeley.edu/climatechamber#ST_HW has type {?class} which was deprecated in version {?depver}. For now, it has been updated to also be of type {?newClass}." ;
-            sh:resultSeverity sh:Warning ;
-            sh:sourceConstraint _:n3819bf433960480aaae1f56bcc71be86b3688 ;
-            sh:sourceConstraintComponent sh:SPARQLConstraintComponent ;
-            sh:sourceShape bsh:DeprecationRuleForInstances ;
-            sh:value <http://berkeley.edu/climatechamber#ST_HW> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#uf_airflow_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:cubicFeetPerMinute ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#sat_setpoint_av_1> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:degreesFahrenheit ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#sf_vfd_spd_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:percent ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#temp_stpt_6> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:noUnits ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#vav_dmpr_pos_6> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:percent ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#supply_damper_pos_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:percent ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#chamber_cc_temp_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:degreesFahrenheit ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#VFD_A_supply> ;
-            sh:resultMessage "Node chamber:Start_A-SF does not conform to one or more shapes in [ sh:class brick:Point ]" ;
-            sh:resultPath brick:hasPoint ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7734 ;
-            sh:value <http://berkeley.edu/climatechamber#Start_A-SF> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#WH_1> ;
-            sh:resultMessage "Value does not have class brick:Point" ;
-            sh:resultPath brick:hasPoint ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasPointShape ;
-            sh:value <http://berkeley.edu/climatechamber#HWST_stp> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#ma_temp_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:degreesFahrenheit ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#RP> ;
-            sh:resultMessage "Node chamber:WH_1 does not conform to one or more shapes in [ sh:class brick:HVAC_Equipment ] , [ sh:class brick:Valve ] , [ sh:class rec:Space ]" ;
-            sh:resultPath brick:feeds ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7704 ;
-            sh:value <http://berkeley.edu/climatechamber#WH_1> ],
+            sh:value <http://berkeley.edu/climatechamber#UCB> ],
         [ a sh:ValidationResult ;
             sh:focusNode brick:Differential_Dynamic_Pressure ;
             sh:resultMessage "Value does not have class qudt:QuantityKind" ;
@@ -482,294 +116,107 @@
             sh:sourceShape bsh:hasQUDTReferenceShape ;
             sh:value qudtqk:DynamicPressure ],
         [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#UCB> ;
-            sh:resultMessage "http://berkeley.edu/climatechamber#UCB has type {?class} which was deprecated in version {?depver}. For now, it has been updated to also be of type {?newClass}." ;
-            sh:resultSeverity sh:Warning ;
-            sh:sourceConstraint _:n3819bf433960480aaae1f56bcc71be86b3688 ;
-            sh:sourceConstraintComponent sh:SPARQLConstraintComponent ;
-            sh:sourceShape bsh:DeprecationRuleForInstances ;
-            sh:value <http://berkeley.edu/climatechamber#UCB> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#WH_1> ;
-            sh:resultMessage "Value does not have class brick:Point" ;
-            sh:resultPath rec:hasPoint ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b38 ;
-            sh:value <http://berkeley.edu/climatechamber#HWST_stp> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#CH_1> ;
-            sh:resultMessage "Value does not have class brick:Point" ;
-            sh:resultPath rec:hasPoint ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b38 ;
-            sh:value <http://berkeley.edu/climatechamber#ST_PCHW> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#underfloor_sa_temp_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:degreesFahrenheit ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#schws_temp_1> ;
-            sh:resultMessage "http://berkeley.edu/climatechamber#schws_temp_1 has type {?class} which was deprecated in version {?depver}. For now, it has been updated to also be of type {?newClass}." ;
-            sh:resultSeverity sh:Warning ;
-            sh:sourceConstraint _:n3819bf433960480aaae1f56bcc71be86b3688 ;
-            sh:sourceConstraintComponent sh:SPARQLConstraintComponent ;
-            sh:sourceShape bsh:DeprecationRuleForInstances ;
-            sh:value <http://berkeley.edu/climatechamber#schws_temp_1> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#oa_temperature_9> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:degreesFahrenheit ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#chw_valve_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:percent ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#ea_dmpr_pos_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:percent ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#CH_1> ;
-            sh:resultMessage "Node chamber:RT_PCHW does not conform to one or more shapes in [ sh:class brick:Point ]" ;
-            sh:resultPath brick:hasPoint ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7740 ;
-            sh:value <http://berkeley.edu/climatechamber#RT_PCHW> ],
-        [ a sh:ValidationResult ;
             sh:focusNode <http://berkeley.edu/climatechamber#zone> ;
-            sh:resultMessage "Locations can be fed only by other Equipment." ;
-            sh:resultPath brick:isFedBy ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape [ sh:class brick:Equipment ;
-                    sh:message "Locations can be fed only by other Equipment." ;
-                    sh:path brick:isFedBy ] ;
-            sh:value <http://berkeley.edu/climatechamber#UF_diffuser> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#CH_1> ;
-            sh:resultMessage "Node chamber:ST_PCHW does not conform to one or more shapes in [ sh:class brick:Point ]" ;
-            sh:resultPath brick:hasPoint ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7734 ;
-            sh:value <http://berkeley.edu/climatechamber#ST_PCHW> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#ahu> ;
-            sh:resultMessage "A piece of Equipment's parts should be always other Equipment." ;
-            sh:resultPath brick:hasPart ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape [ sh:class brick:Equipment ;
-                    sh:message "A piece of Equipment's parts should be always other Equipment." ;
-                    sh:path brick:hasPart ] ;
-            sh:value <http://berkeley.edu/climatechamber#UF_diffuser> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#zone_rh_av_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:noUnits ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#pchwr_temp_1> ;
-            sh:resultMessage "http://berkeley.edu/climatechamber#pchwr_temp_1 has type {?class} which was deprecated in version {?depver}. For now, it has been updated to also be of type {?newClass}." ;
+            sh:resultMessage "http://berkeley.edu/climatechamber#zone has type https://brickschema.org/schema/Brick#Location which was deprecated in version 1.4.0. For now, it has been updated to also be of type https://w3id.org/rec#Architecture." ;
             sh:resultSeverity sh:Warning ;
-            sh:sourceConstraint _:n3819bf433960480aaae1f56bcc71be86b3688 ;
+            sh:sourceConstraint _:n6750d47e706c403984f80d8db0d9d641b3688 ;
             sh:sourceConstraintComponent sh:SPARQLConstraintComponent ;
             sh:sourceShape bsh:DeprecationRuleForInstances ;
-            sh:value <http://berkeley.edu/climatechamber#pchwr_temp_1> ],
+            sh:value <http://berkeley.edu/climatechamber#zone> ],
         [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#spot_clg_sa_temp_6> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:degreesFahrenheit ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#ahu> ;
-            sh:resultMessage "Node chamber:UF_diffuser does not conform to one or more shapes in [ sh:class brick:HVAC_Equipment ] , [ sh:class brick:Valve ]" ;
+            sh:focusNode <http://berkeley.edu/climatechamber#fan_A_supply> ;
+            sh:resultMessage "Node chamber:VFD_A_supply does not conform to one or more shapes in [ sh:class brick:HVAC_Equipment ] , [ sh:class brick:Valve ]" ;
             sh:resultPath brick:hasPart ;
             sh:resultSeverity sh:Violation ;
             sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7711 ;
-            sh:value <http://berkeley.edu/climatechamber#UF_diffuser> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#fan_exhaust> ;
-            sh:resultMessage "Node chamber:VFD_exhaust does not conform to one or more shapes in [ sh:class brick:HVAC_Equipment ] , [ sh:class brick:Valve ]" ;
-            sh:resultPath brick:hasPart ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7711 ;
-            sh:value <http://berkeley.edu/climatechamber#VFD_exhaust> ],
+            sh:sourceShape _:n6750d47e706c403984f80d8db0d9d641b7711 ;
+            sh:value <http://berkeley.edu/climatechamber#VFD_A_supply> ],
         [ a sh:ValidationResult ;
             sh:focusNode <http://berkeley.edu/climatechamber#CH_1> ;
-            sh:resultMessage "Node chamber:ST_PCHW does not conform to one or more shapes in [ sh:class brick:Point ]" ;
-            sh:resultPath brick:hasPoint ;
+            sh:resultMessage "A piece of Equipment can feed a Equipment or Location/Space." ;
+            sh:resultPath brick:feeds ;
             sh:resultSeverity sh:Violation ;
             sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7740 ;
-            sh:value <http://berkeley.edu/climatechamber#ST_PCHW> ],
+            sh:sourceShape _:n6750d47e706c403984f80d8db0d9d641b7756 ;
+            sh:value <http://berkeley.edu/climatechamber#PCHW_L> ],
         [ a sh:ValidationResult ;
             sh:focusNode <http://berkeley.edu/climatechamber#WH_1> ;
-            sh:resultMessage "Node chamber:HWST_stp does not conform to one or more shapes in [ sh:class brick:Point ]" ;
-            sh:resultPath brick:hasPoint ;
+            sh:resultMessage "Node chamber:HW_L does not conform to one or more shapes in [ sh:class brick:HVAC_Equipment ] , [ sh:class brick:Valve ] , [ sh:class rec:Space ]" ;
+            sh:resultPath brick:feeds ;
             sh:resultSeverity sh:Violation ;
             sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape _:n3819bf433960480aaae1f56bcc71be86b7734 ;
-            sh:value <http://berkeley.edu/climatechamber#HWST_stp> ],
+            sh:sourceShape _:n6750d47e706c403984f80d8db0d9d641b7704 ;
+            sh:value <http://berkeley.edu/climatechamber#HW_L> ],
         [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#pchws_temp_1> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
+            sh:focusNode brick:Atmospheric_Pressure ;
+            sh:resultMessage "Value does not have class qudt:QuantityKind" ;
+            sh:resultPath brick:hasQUDTReference ;
             sh:resultSeverity sh:Violation ;
             sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:degreesFahrenheit ],
+            sh:sourceShape bsh:hasQUDTReferenceShape ;
+            sh:value qudtqk:AtmosphericPressure ],
         [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#sa_temp_1> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
+            sh:focusNode <http://berkeley.edu/climatechamber#PCHW_L> ;
+            sh:resultMessage "Less than 1 values on chamber:PCHW_L->rec:includes" ;
+            sh:resultPath rec:includes ;
             sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:degreesFahrenheit ],
+            sh:sourceConstraintComponent sh:MinCountConstraintComponent ;
+            sh:sourceShape _:n6750d47e706c403984f80d8db0d9d641b6786 ],
         [ a sh:ValidationResult ;
             sh:focusNode <http://berkeley.edu/climatechamber#chamber_room> ;
-            sh:resultMessage "A Location's parts should be always be Locations/Spaces." ;
-            sh:resultPath brick:isPartOf ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:OrConstraintComponent ;
-            sh:sourceShape [ sh:message "A Location's parts should be always be Locations/Spaces." ;
-                    sh:or ( [ sh:class brick:Location ] [ sh:class rec:Space ] ) ;
-                    sh:path brick:isPartOf ] ;
-            sh:value <http://berkeley.edu/climatechamber#building> ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#eff_sa_temp_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:cubicFeetPerMinute ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#ra_temp_1> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:degreesFahrenheit ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#zone_temp_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:degreesFahrenheit ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#hw_valve_1> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:percent ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#duct_stat_press_ai_10> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:inchesOfWater ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#pchwr_temp_1> ;
-            sh:resultMessage "Value does not have class qudt:Unit" ;
-            sh:resultPath brick:hasUnit ;
-            sh:resultSeverity sh:Violation ;
-            sh:sourceConstraintComponent sh:ClassConstraintComponent ;
-            sh:sourceShape bsh:hasUnitShape ;
-            sh:value unit:degreesFahrenheit ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <http://berkeley.edu/climatechamber#schwr_temp_1> ;
-            sh:resultMessage "http://berkeley.edu/climatechamber#schwr_temp_1 has type {?class} which was deprecated in version {?depver}. For now, it has been updated to also be of type {?newClass}." ;
+            sh:resultMessage "http://berkeley.edu/climatechamber#chamber_room has type https://brickschema.org/schema/Brick#Space which was deprecated in version 1.4.0. For now, it has been updated to also be of type https://w3id.org/rec#Space." ;
             sh:resultSeverity sh:Warning ;
-            sh:sourceConstraint _:n3819bf433960480aaae1f56bcc71be86b3688 ;
+            sh:sourceConstraint _:n6750d47e706c403984f80d8db0d9d641b3688 ;
             sh:sourceConstraintComponent sh:SPARQLConstraintComponent ;
             sh:sourceShape bsh:DeprecationRuleForInstances ;
-            sh:value <http://berkeley.edu/climatechamber#schwr_temp_1> ] .
+            sh:value <http://berkeley.edu/climatechamber#chamber_room> ] .
 
-_:N043b1a3008044c6e9843a8dff952cc0c sh:class brick:Point .
-
-_:N1a01fdf3c1d74f99b586b223a66f05f2 rdf:first [ sh:class brick:HVAC_Equipment ] ;
-    rdf:rest ( [ sh:class brick:Valve ] [ sh:class rec:Space ] ) .
-
-_:N31455edf73b0474dad43741d5d011fe8 sh:class brick:HVAC_Equipment .
-
-_:N3ec14345dfff43fa80c5e157f72e4b52 rdf:first [ sh:class rec:Space ] ;
-    rdf:rest () .
-
-_:N46e97f42fe65411e8f122e45c3ecdcd3 rdf:first [ sh:class brick:Location ] ;
-    rdf:rest _:N3ec14345dfff43fa80c5e157f72e4b52 .
-
-_:N7399c05e37c34efe99312820587ba650 rdf:first _:N31455edf73b0474dad43741d5d011fe8 ;
+_:N0b435724f13647b183ee82cdfa2aaa20 rdf:first [ sh:class brick:HVAC_Equipment ] ;
     rdf:rest ( [ sh:class brick:Valve ] ) .
 
-_:N94b2ef4343cd4a339dcd4e8c8c92651d sh:class brick:Equipment .
+_:N0ca0a8ba90fb4804988d32e867e23af3 sh:class rec:Space .
 
-_:Na8fbe919873c4474a4bdb2f1b6e215d3 rdf:first _:N043b1a3008044c6e9843a8dff952cc0c ;
-    rdf:rest () .
+_:N14db8a89d94e4cb6957b1cbac830beec sh:class brick:Equipment .
 
-_:Ncbf9620de3a241ba9b86f2b09fa73f77 rdf:first [ sh:class brick:Point ] ;
-    rdf:rest () .
+_:N2c36120b42dd437984e4839d9a2009fc sh:class brick:Equipment .
 
-_:Ne7c791eb6acc4546ac7c34507e4d58b9 rdf:first _:N94b2ef4343cd4a339dcd4e8c8c92651d ;
-    rdf:rest _:N46e97f42fe65411e8f122e45c3ecdcd3 .
+_:N2c6758a5a2bc4ce9b1076c32949f445a rdf:first _:N2c36120b42dd437984e4839d9a2009fc ;
+    rdf:rest ( [ sh:class brick:Collection ] ) .
 
-_:n3819bf433960480aaae1f56bcc71be86b7711 sh:or _:N7399c05e37c34efe99312820587ba650 ;
+_:N498c7964f0c44749ae1ea0ee8b2480e7 rdf:first [ sh:class brick:Location ] ;
+    rdf:rest ( _:N0ca0a8ba90fb4804988d32e867e23af3 ) .
+
+_:N501ad2622e9b489f8ed840ba7b1eb7a9 rdf:first [ sh:class brick:HVAC_Equipment ] ;
+    rdf:rest ( [ sh:class brick:Valve ] [ sh:class rec:Space ] ) .
+
+_:N5b8f71fc14904c27867e23f8211b857f rdf:first _:N14db8a89d94e4cb6957b1cbac830beec ;
+    rdf:rest _:N498c7964f0c44749ae1ea0ee8b2480e7 .
+
+_:n6750d47e706c403984f80d8db0d9d641b7704 sh:or _:N501ad2622e9b489f8ed840ba7b1eb7a9 ;
+    sh:path brick:feeds .
+
+_:n6750d47e706c403984f80d8db0d9d641b7711 sh:or _:N0b435724f13647b183ee82cdfa2aaa20 ;
     sh:path brick:hasPart .
 
-_:n3819bf433960480aaae1f56bcc71be86b7756 sh:message "A piece of Equipment can feed a Equipment or Location/Space." ;
-    sh:or _:Ne7c791eb6acc4546ac7c34507e4d58b9 ;
+_:n6750d47e706c403984f80d8db0d9d641b7756 sh:message "A piece of Equipment can feed a Equipment or Location/Space." ;
+    sh:or _:N5b8f71fc14904c27867e23f8211b857f ;
     sh:path brick:feeds .
 
-_:n3819bf433960480aaae1f56bcc71be86b38 a sh:PropertyShape ;
-    sh:class brick:Point ;
-    sh:name "has point" ;
+_:n6750d47e706c403984f80d8db0d9d641b6786 a sh:PropertyShape ;
+    sh:class brick:Equipment ;
+    sh:minCount 1 ;
+    sh:name "includes" ;
     sh:nodeKind sh:IRI ;
-    sh:path rec:hasPoint .
+    sh:path rec:includes .
 
-_:n3819bf433960480aaae1f56bcc71be86b7704 sh:or _:N1a01fdf3c1d74f99b586b223a66f05f2 ;
-    sh:path brick:feeds .
+_:n6750d47e706c403984f80d8db0d9d641b7602 a sh:PropertyShape ;
+    sh:minCount 1 ;
+    sh:name "includes" ;
+    sh:nodeKind sh:IRI ;
+    sh:or _:N2c6758a5a2bc4ce9b1076c32949f445a ;
+    sh:path rec:includes .
 
-_:n3819bf433960480aaae1f56bcc71be86b7734 sh:or _:Ncbf9620de3a241ba9b86f2b09fa73f77 ;
-    sh:path brick:hasPoint .
-
-_:n3819bf433960480aaae1f56bcc71be86b7740 sh:or _:Na8fbe919873c4474a4bdb2f1b6e215d3 ;
-    sh:path brick:hasPoint .
-
-_:n3819bf433960480aaae1f56bcc71be86b3688 a sh:SPARQLConstraint ;
+_:n6750d47e706c403984f80d8db0d9d641b3688 a sh:SPARQLConstraint ;
     sh:message "{$this} has type {?class} which was deprecated in version {?depver}. For now, it has been updated to also be of type {?newClass}." ;
     sh:prefixes <https://brickschema.org/schema/1.4/Brick> ;
     sh:select """SELECT $this ?class ?newClass ?depver WHERE {

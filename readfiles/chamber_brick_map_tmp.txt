@@ -5,7 +5,7 @@ bacnet = http://data.ashrae.org/bacnet/2020#
 ref = https://brickschema.org/schema/Brick/ref#
 
 chamber:$objectName rdf:type brick:$pointType
-chamber:$objectName brick:hasUnit unit:$units
+chamber:$objectName brick:hasUnit unit:$pointUnit
 
 chamber:$objectName ref:hasExternalReference _:bnode_$objectName
 _:bnode_$objectName rdf:type ref:BACnetReference
