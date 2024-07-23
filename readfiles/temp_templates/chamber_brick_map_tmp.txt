@@ -5,15 +5,16 @@ bacnet = http://data.ashrae.org/bacnet/2020#
 ref = https://brickschema.org/schema/Brick/ref#
 
 chamber:$8 rdf:type brick:$9
-chamber:$8 brick:hasUnit unit:$12
+chamber:$8 brick:hasUnit unit:$13
+chamber:$11 brick:hasPoint chamber:$8
 
 chamber:$8 ref:hasExternalReference _:bnode_$8
 _:bnode_$8 rdf:type ref:BACnetReference
 _:bnode_$8 bacnet:objectOf chamber:dev-$1
 
-_:bnode_$8 bacnet:object-identifier "$13,$14"
+_:bnode_$8 bacnet:object-identifier "$14,$15"
 _:bnode_$8 bacnet:object-name "$8"
-_:bnode_$8 bacnet:object-type "$13"
+_:bnode_$8 bacnet:object-type "$14"
 
 chamber:dev-$1 rdf:type bacnet:BACnetDevice
 chamber:dev-$1 bacnet:device-instance "$1"

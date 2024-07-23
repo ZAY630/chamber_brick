@@ -6,6 +6,7 @@ ref = https://brickschema.org/schema/Brick/ref#
 
 chamber:$objectName rdf:type brick:$pointType
 chamber:$objectName brick:hasUnit unit:$pointUnit
+chamber:$mainPart brick:hasPoint chamber:$objectName
 
 chamber:$objectName ref:hasExternalReference _:bnode_$objectName
 _:bnode_$objectName rdf:type ref:BACnetReference
