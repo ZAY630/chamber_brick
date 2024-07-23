@@ -3746,14 +3746,6 @@ chamber:CHW_L a brick:Chilled_Water_Loop ;
     brick:feeds chamber:PCHW_L,
         chamber:SCHW_L .
 
-chamber:CHW_valve_A a brick:Chilled_Water_Valve .
-
-chamber:CHW_valve_SC a brick:Chilled_Water_Valve ;
-    brick:hasPoint chamber:spot_clg_vlv_pos_6 .
-
-chamber:HW_valve_A a brick:Hot_Water_Valve ;
-    brick:hasPoint chamber:hw_valve_10 .
-
 chamber:Meter_C a brick:Meter .
 
 chamber:RCHWS_valve a brick:Chilled_Water_Valve ;
@@ -3782,6 +3774,8 @@ chamber:VFD_supply a brick:Fan_VFD ;
 chamber:damper_exahust brick:feeds chamber:fan_exahust .
 
 chamber:sf_enable_10 a brick:Fan_Command .
+
+chamber:spot_clg_sa_temp_6 a brick:Supply_Air_Temperature_Sensor .
 
 brick:Ablutions_Room a owl:Class,
         sh:NodeShape ;
@@ -32195,6 +32189,48 @@ brick:Return_Fan a owl:Class,
         tag:Fan,
         tag:Return .
 
+brick:Return_Heating_Valve a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Return Heating Valve" ;
+    rdfs:subClassOf brick:Heating_Valve ;
+    skos:definition "A valve installed on the return side of a heat exchanger"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Heat ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Return ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Valve ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Heat ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Return ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Valve ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Equipment,
+        tag:Heat,
+        tag:Return,
+        tag:Valve .
+
 brick:Return_Hot_Water a brick:Substance ;
     rdfs:label "Return Hot Water" ;
     owl:deprecated true ;
@@ -40450,24 +40486,22 @@ rec:substance a owl:AnnotationProperty ;
         [ a rdfs:Datatype ;
             owl:oneOf ( "ACElec" "Air" "BlowdownWater" "ChilledWater" "ColdDomesticWater" "Condensate" "CondenserWater" "DCElec" "Diesel" "DriveElec" "Ethernet" "ExhaustAir" "Freight" "FuelOil" "Gasoline" "GreaseExhaustAir" "HotDomesticWater" "HotWater" "IrrigationWater" "Light" "MakeupWater" "NaturalGas" "NonPotableDomesticWater" "OutsideAir" "People" "Propane" "RecircHotDomesticWater" "Refrig" "ReturnAir" "SprinklerWater" "Steam" "StormDrainage" "SupplyAir" "TransferAir" "WasteVentDrainage" "Water" ) ] .
 
-chamber:CHWR_valve_A a brick:Chilled_Water_Valve ;
-    brick:feeds chamber:CH_1 ;
-    brick:hasPoint chamber:chw_valve_1 .
-
-chamber:CHWR_valve_SC a brick:Chilled_Water_Valve .
-
 chamber:CHW_valve a brick:Chilled_Water_Valve ;
     brick:hasPoint chamber:chw_valve_10 .
 
+chamber:CHW_valve_A a brick:Chilled_Water_Valve ;
+    brick:feeds chamber:CH_1 ;
+    brick:hasPoint chamber:chw_valve_1 .
+
 chamber:CHW_valve_S2 a brick:Chilled_Water_Valve .
+
+chamber:CHW_valve_SC a brick:Chilled_Water_Valve ;
+    brick:hasPoint chamber:spot_clg_vlv_pos_6 .
 
 chamber:CHW_valve_mix a brick:Chilled_Water_Valve ;
     brick:hasPoint chamber:mix_vlv_pos_1 .
 
 chamber:Enable_WH a brick:On_Off_Status .
-
-chamber:HWR_valve_A a brick:Hot_Water_Valve ;
-    brick:hasPoint chamber:hw_valve_1 .
 
 chamber:HWST_stp a brick:Leaving_Hot_Water_Temperature_Setpoint .
 
@@ -40477,8 +40511,12 @@ chamber:HW_L a brick:Hot_Water_Loop ;
         chamber:HW_pump_2,
         chamber:HW_valve_S1 .
 
-chamber:HW_valve a brick:Return_Heating_Valve ;
+chamber:HW_valve a brick:Hot_Water_Valve ;
     brick:hasPoint chamber:Pos_HWR_valve .
+
+chamber:HW_valve_A a brick:Hot_Water_Valve ;
+    brick:hasPoint chamber:hw_valve_1,
+        chamber:hw_valve_10 .
 
 chamber:HW_valve_S1 a brick:Hot_Water_Valve .
 
@@ -40498,7 +40536,7 @@ chamber:RCHWR_valve a brick:Chilled_Water_Valve ;
     brick:feeds chamber:CH_1 ;
     brick:hasPoint chamber:Pos_RCHWR_valve .
 
-chamber:RHWR_valve a brick:Return_Heating_Valve ;
+chamber:RHWR_valve a brick:Hot_Water_Valve ;
     brick:hasPoint chamber:Pos_RHWR_valve .
 
 chamber:RH_SA a brick:Supply_Air_Humidity_Sensor .
@@ -40549,6 +40587,9 @@ chamber:chwp1_ss_1 a brick:Pump_On_Off_Status .
 chamber:chwp2_ss_1 a brick:Pump_On_Off_Status .
 
 chamber:chwp3_ss_1 a brick:Pump_On_Off_Status .
+
+chamber:damper_SC_VAV a brick:Damper ;
+    brick:hasPoint chamber:vav_dmpr_pos_6 .
 
 chamber:damper_SC_supply a brick:Damper ;
     brick:feeds chamber:CHW_SC_coil,
@@ -40629,8 +40670,6 @@ chamber:sf_vfd_spd_10 a brick:Motor_Speed_Sensor .
 chamber:spot_cc_temp_6 a brick:Preheat_Supply_Air_Temperature_Sensor .
 
 chamber:spot_clg_dmpr_pos_ao_6 a brick:Damper_Position_Sensor .
-
-chamber:spot_clg_sa_temp_6 a brick:Supply_Air_Temperature_Sensor .
 
 chamber:spot_clg_vlv_pos_6 a brick:Valve_Position_Sensor .
 
@@ -50046,7 +50085,7 @@ chamber:CH_1 a brick:Chiller ;
 
 chamber:HW_A_coil a brick:Hot_Water_Coil ;
     brick:feeds chamber:A_diffuser ;
-    brick:hasPart chamber:HWR_valve_A .
+    brick:hasPart chamber:HW_valve_A .
 
 chamber:HW_pump_1 a brick:Hot_Water_Pump ;
     brick:feeds chamber:HW_A_coil,
@@ -50090,13 +50129,8 @@ chamber:UF_diffuser a brick:Underfloor_Air_Plenum ;
         chamber:underfloor_sa_temp_10 .
 
 chamber:VAV a brick:Variable_Air_Volume_Box ;
-    brick:feeds chamber:damper_SC_VAV ;
     brick:hasPart chamber:damper_SC_VAV ;
-    brick:hasPoint chamber:spot_clg_sa_temp_6,
-        chamber:vav_cfm_6 .
-
-chamber:damper_SC_VAV a brick:Damper ;
-    brick:hasPoint chamber:vav_dmpr_pos_6 .
+    brick:hasPoint chamber:vav_cfm_6 .
 
 chamber:damper_exhaust a brick:Exhaust_Damper ;
     brick:hasPoint chamber:ea_dmpr_pos_10 .
@@ -58084,48 +58118,6 @@ brick:Return_Air_Temperature_Sensor a owl:Class,
     brick:hasQuantity brick:Temperature ;
     brick:hasSubstance brick:Return_Air .
 
-brick:Return_Heating_Valve a owl:Class,
-        sh:NodeShape ;
-    rdfs:label "Return Heating Valve" ;
-    rdfs:subClassOf brick:Heating_Valve ;
-    skos:definition "A valve installed on the return side of a heat exchanger"@en ;
-    sh:rule [ a sh:TripleRule ;
-            sh:object tag:Equipment ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Heat ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Return ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Valve ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Equipment ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Heat ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Return ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Valve ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ] ;
-    brick:hasAssociatedTag tag:Equipment,
-        tag:Heat,
-        tag:Return,
-        tag:Valve .
-
 brick:Return_Water_Temperature_Sensor a owl:Class ;
     rdfs:label "Return Water Temperature Sensor" ;
     rdfs:subClassOf brick:Water_Temperature_Sensor ;
@@ -66030,11 +66022,11 @@ tag:Zenith a brick:Tag ;
 
 chamber:CHW_A_coil a brick:Chilled_Water_Coil ;
     brick:feeds chamber:A_diffuser ;
-    brick:hasPart chamber:CHWR_valve_A .
+    brick:hasPart chamber:CHW_valve_A .
 
 chamber:CHW_SC_coil a brick:Chilled_Water_Coil ;
     brick:feeds chamber:VAV ;
-    brick:hasPart chamber:CHWR_valve_SC .
+    brick:hasPart chamber:CHW_valve_SC .
 
 chamber:CHW_coil a brick:Chilled_Water_Coil ;
     brick:feeds chamber:HW_coil ;
@@ -70427,49 +70419,6 @@ brick:Heating_Supply_Air_Flow_Setpoint a owl:Class,
         tag:Supply ;
     brick:hasQuantity qudtqk:VolumeFlowRate .
 
-brick:Hot_Water_Valve a owl:Class,
-        sh:NodeShape ;
-    rdfs:label "Hot Water Valve" ;
-    rdfs:subClassOf brick:Heating_Valve,
-        brick:Water_Valve ;
-    skos:definition "A valve regulating the flow of hot water"@en ;
-    sh:rule [ a sh:TripleRule ;
-            sh:object tag:Equipment ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Hot ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Valve ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Water ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Equipment ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Hot ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Valve ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Water ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ] ;
-    brick:hasAssociatedTag tag:Equipment,
-        tag:Hot,
-        tag:Valve,
-        tag:Water .
-
 brick:Integral_Time_Parameter a owl:Class,
         sh:NodeShape ;
     rdfs:label "Integral Time Parameter" ;
@@ -72450,6 +72399,49 @@ brick:Chilled_Water_Temperature_Sensor a owl:Class,
     brick:hasQuantity brick:Temperature ;
     brick:hasSubstance brick:Chilled_Water .
 
+brick:Chilled_Water_Valve a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Chilled Water Valve" ;
+    rdfs:subClassOf brick:HVAC_Valve,
+        brick:Water_Valve ;
+    skos:definition "A valve that modulates the flow of chilled water"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Chilled ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Valve ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Water ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Chilled ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Valve ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Water ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Chilled,
+        tag:Equipment,
+        tag:Valve,
+        tag:Water .
+
 brick:Fan_Coil_Unit a owl:Class,
         sh:NodeShape ;
     rdfs:label "Fan Coil Unit" ;
@@ -72595,6 +72587,49 @@ brick:Heating_Ventilation_Air_Conditioning_System a owl:Class,
         tag:Heat,
         tag:System,
         tag:Ventilation .
+
+brick:Hot_Water_Valve a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Hot Water Valve" ;
+    rdfs:subClassOf brick:Heating_Valve,
+        brick:Water_Valve ;
+    skos:definition "A valve regulating the flow of hot water"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Hot ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Valve ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Water ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Hot ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Valve ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Water ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Equipment,
+        tag:Hot,
+        tag:Valve,
+        tag:Water .
 
 brick:Leaving_Chilled_Water a brick:Substance ;
     rdfs:label "Leaving Chilled Water" ;
@@ -73412,49 +73447,6 @@ brick:CO2_Concentration a brick:Quantity ;
         brick:Air_Quality ;
     skos:definition "The concentration of carbon dioxide in a medium" ;
     skos:narrower brick:Differential_CO2_Concentration .
-
-brick:Chilled_Water_Valve a owl:Class,
-        sh:NodeShape ;
-    rdfs:label "Chilled Water Valve" ;
-    rdfs:subClassOf brick:HVAC_Valve,
-        brick:Water_Valve ;
-    skos:definition "A valve that modulates the flow of chilled water"@en ;
-    sh:rule [ a sh:TripleRule ;
-            sh:object tag:Chilled ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Equipment ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Valve ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Water ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Chilled ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Equipment ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Valve ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ],
-        [ a sh:TripleRule ;
-            sh:object tag:Water ;
-            sh:predicate brick:hasTag ;
-            sh:subject sh:this ] ;
-    brick:hasAssociatedTag tag:Chilled,
-        tag:Equipment,
-        tag:Valve,
-        tag:Water .
 
 brick:Condenser_Water a brick:Substance ;
     rdfs:label "Condenser Water" ;

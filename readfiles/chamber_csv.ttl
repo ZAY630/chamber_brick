@@ -6885,7 +6885,7 @@ chamber:uf_airflow_10 a brick:Supply_Air_Flow_Sensor ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:underfloor_sa_temp_10 a brick:Underfloor_Air_Temperature_Sensor ;
+chamber:underfloor_sa_temp_10 a brick:Supply_Air_Temperature_Sensor ;
     brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogInput,28" ;

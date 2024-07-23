@@ -67,12 +67,12 @@ def make():
     g.add((CHB["HW_valve_A"], A, BRICK["Hot_Water_Valve"]))
     g.add((CHB["RHWS_valve"], A, BRICK["Hot_Water_Valve"]))
     g.add((CHB["HW_pump_2"], A, BRICK["Hot_Water_Pump"]))
-    g.add((CHB["HW_valve"], A, BRICK["Return_Heating_Valve"]))
+    g.add((CHB["HW_valve"], A, BRICK["Hot_Water_Valve"]))
 
     # Radient System
     g.add((CHB["RW_pump"], A, BRICK["Water_Pump"]))
     g.add((CHB["RP"], A, BRICK["Radiant_Ceiling_Panel"]))
-    g.add((CHB["RHWR_valve"], A, BRICK["Return_Heating_Valve"]))
+    g.add((CHB["RHWR_valve"], A, BRICK["Hot_Water_Valve"]))
     g.add((CHB["RCHWR_valve"], A, BRICK["Chilled_Water_Valve"]))
 
     # Spot cooling
@@ -80,15 +80,15 @@ def make():
     g.add((CHB["CHW_SC_coil"], A, BRICK["Chilled_Water_Coil"]))
     g.add((CHB["VAV"], A, BRICK["Variable_Air_Volume_Box"]))
     g.add((CHB["damper_SC_VAV"], A, BRICK["Damper"]))
-    g.add((CHB["CHWR_valve_SC"], A, BRICK["Chilled_Water_Valve"]))
+    g.add((CHB["CHW_valve_SC"], A, BRICK["Chilled_Water_Valve"]))
 
     # Annular system
     g.add((CHB["AHU_A"], A, BRICK["Air_Handling_Unit"]))
     g.add((CHB["fan_A_supply"], A, BRICK["Supply_Fan"]))
     g.add((CHB["CHW_A_coil"], A, BRICK["Chilled_Water_Coil"]))
-    g.add((CHB["CHWR_valve_A"], A, BRICK["Chilled_Water_Valve"]))
+    g.add((CHB["CHW_valve_A"], A, BRICK["Chilled_Water_Valve"]))
     g.add((CHB["HW_A_coil"], A, BRICK["Hot_Water_Coil"]))
-    g.add((CHB["HWR_valve_A"], A, BRICK["Hot_Water_Valve"]))
+    g.add((CHB["HW_valve_A"], A, BRICK["Hot_Water_Valve"]))
     g.add((CHB["A_diffuser"], A, BRICK["Terminal_Unit"]))
 
     ######################################
@@ -251,9 +251,8 @@ def make():
     # Spot cooling
     g.add((CHB["damper_SC_supply"], BRICK.feeds, CHB["CHW_SC_coil"]))
     g.add((CHB["CHW_SC_coil"], BRICK.feeds, CHB["VAV"]))
-    g.add((CHB["CHW_SC_coil"], BRICK.hasPart, CHB["CHWR_valve_SC"]))
+    g.add((CHB["CHW_SC_coil"], BRICK.hasPart, CHB["CHW_valve_SC"]))
     g.add((CHB["VAV"], BRICK.hasPart, CHB["damper_SC_VAV"]))
-    g.add((CHB["VAV"], BRICK.feeds, CHB["damper_SC_VAV"]))
     g.add((CHB["damper_SC_supply"], BRICK.feeds, CHB["Zone"]))
     g.add((CHB["AHU_C"], BRICK.hasPart, CHB["damper_SC_supply"]))
     g.add((CHB["AHU_C"], BRICK.hasPart, CHB["CHW_SC_coil"]))
@@ -265,10 +264,10 @@ def make():
     g.add((CHB["AHU_A"], BRICK.hasPart, CHB["HW_A_coil"]))
     g.add((CHB["AHU_A"], BRICK.hasPart, CHB["A_diffuser"]))
     g.add((CHB["fan_A_supply"], BRICK.feeds, CHB["CHW_A_coil"]))
-    g.add((CHB["CHW_A_coil"], BRICK.hasPart, CHB["CHWR_valve_A"]))
-    g.add((CHB["CHWR_valve_A"], BRICK.feeds, CHB["CH_1"]))
+    g.add((CHB["CHW_A_coil"], BRICK.hasPart, CHB["CHW_valve_A"]))
+    g.add((CHB["CHW_valve_A"], BRICK.feeds, CHB["CH_1"]))
     g.add((CHB["CHW_A_coil"], BRICK.feeds, CHB["A_diffuser"]))
-    g.add((CHB["HW_A_coil"], BRICK.hasPart, CHB["HWR_valve_A"]))
+    g.add((CHB["HW_A_coil"], BRICK.hasPart, CHB["HW_valve_A"]))
     g.add((CHB["HW_A_coil"], BRICK.feeds, CHB["A_diffuser"]))
 
     # Radiant system
@@ -321,7 +320,6 @@ def make():
     # Spot cooling sensor
     g.add((CHB["damper_SC_supply"], BRICK.hasPoint, CHB["spot_clg_dmpr_pos_ao_6"]))
     g.add((CHB["AHU_C"], BRICK.hasPoint, CHB["spot_cc_temp_6"]))
-    g.add((CHB["VAV"], BRICK.hasPoint, CHB["spot_clg_sa_temp_6"]))
     g.add((CHB["VAV"], BRICK.hasPoint, CHB["vav_cfm_6"]))
     g.add((CHB["damper_SC_VAV"], BRICK.hasPoint, CHB["vav_dmpr_pos_6"]))
 
@@ -329,10 +327,10 @@ def make():
     g.add((CHB["fan_A_supply"], BRICK.hasPoint, CHB["sf_enable_1"]))
     g.add((CHB["fan_A_supply"], BRICK.hasPoint, CHB["sf_status_1"]))
     g.add((CHB["AHU_A"], BRICK.hasPoint, CHB["ra_temp_1"]))
-    g.add((CHB["CHWR_valve_A"], BRICK.hasPoint, CHB["chw_valve_1"]))
+    g.add((CHB["CHW_valve_A"], BRICK.hasPoint, CHB["chw_valve_1"]))
     g.add((CHB["AHU_A"], BRICK.hasPoint, CHB["ann_cc_temp_1"]))
     g.add((CHB["AHU_A"], BRICK.hasPoint, CHB["sa_temp_1"]))
-    g.add((CHB["HWR_valve_A"], BRICK.hasPoint, CHB["hw_valve_1"]))
+    g.add((CHB["HW_valve_A"], BRICK.hasPoint, CHB["hw_valve_1"]))
 
     # Radiant system
     g.add((CHB["RW_pump"], BRICK.hasPoint, CHB["Start_RW_pump"]))
