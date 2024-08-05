@@ -409,4 +409,4 @@ if __name__ == "__main__":
     write_prop((addr, obj_type, obj_inst, prop_id, old_value))
     print(f"Confirm that it switched to old value, {read_prop(read_args)}")
 
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
