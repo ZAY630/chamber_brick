@@ -6781,7 +6781,7 @@ chamber:schws_temp_1 a brick:Leaving_Chilled_Water_Temperature_Sensor ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-2400001.0 ] .
 
-chamber:sf_enable_1 a brick:Fan_Command ;
+chamber:sf_enable_1 a brick:Run_Enable_Command ;
     brick:hasUnit unit:UNITLESS ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "binaryOutput,1" ;
@@ -6789,7 +6789,7 @@ chamber:sf_enable_1 a brick:Fan_Command ;
             bacnet:object-type "binaryOutput" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:sf_enable_10 a brick:Fan_Command ;
+chamber:sf_enable_10 a brick:Run_Enable_Command ;
     brick:hasUnit unit:UNITLESS ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "binaryOutput,8" ;
@@ -6893,7 +6893,8 @@ chamber:underfloor_sa_temp_10 a brick:Supply_Air_Temperature_Sensor ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:vav_cfm_6 ref:hasExternalReference [ a ref:BACnetReference ;
+chamber:vav_cfm_6 brick:hasUnit unit:FT3-PER-MIN ;
+    ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogValue,72" ;
             bacnet:object-name "vav_cfm_6" ;
             bacnet:object-type "analogValue" ;

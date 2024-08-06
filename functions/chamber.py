@@ -103,7 +103,7 @@ def make():
     g.add((CHB["ma_temp_10"], A, BRICK["Mixed_Air_Temperature_Sensor"]))
     g.add((CHB["sf_vfd_spd_10"], A, BRICK["Motor_Speed_Sensor"]))
     g.add((CHB["sf_status_10"], A, BRICK["Fan_On_Off_Status"]))
-    g.add((CHB["sf_enable_10"], A, BRICK["Fan_Command"]))
+    g.add((CHB["sf_enable_10"], A, BRICK["Run_Enable_Command"]))
     g.add((CHB["supply_damper_pos_10"], A, BRICK["Damper_Position_Sensor"]))
     g.add((CHB["chamber_cc_temp_10"], A, BRICK["Preheat_Supply_Air_Temperature_Sensor"]))
     g.add((CHB["eff_sa_temp_10"], A, BRICK["Supply_Air_Temperature_Sensor"]))
@@ -160,7 +160,7 @@ def make():
     g.add((CHB["vav_dmpr_pos_6"], A, BRICK["Damper_Position_Sensor"]))
 
     # Annular system sensor
-    g.add((CHB["sf_enable_1"], A, BRICK["Fan_Command"]))
+    g.add((CHB["sf_enable_1"], A, BRICK["Run_Enable_Command"]))
     g.add((CHB["Speed_A_SF"], A, BRICK["Motor_Speed_Sensor"]))
     g.add((CHB["sf_status_1"], A, BRICK["Fan_On_Off_Status"]))
     g.add((CHB["ra_temp_1"], A, BRICK["Return_Air_Temperature_Sensor"]))
@@ -289,6 +289,7 @@ def make():
     g.add((CHB["AHU_C"], BRICK.hasPoint, CHB["ma_temp_10"]))
     g.add((CHB["VFD_supply"], BRICK.hasPoint, CHB["sf_vfd_spd_10"]))
     g.add((CHB["fan_supply"], BRICK.hasPoint, CHB["sf_status_10"]))
+    g.add((CHB["fan_supply"], BRICK.hasPoint, CHB["sf_enable_10"]))
     g.add((CHB["damper_supply"], BRICK.hasPoint, CHB["supply_damper_pos_10"]))
     g.add((CHB["AHU_C"], BRICK.hasPoint, CHB["chamber_cc_temp_10"]))
     g.add((CHB["AHU_C"], BRICK.hasPoint, CHB["eff_sa_temp_10"]))
