@@ -39,6 +39,8 @@ chamber:AHU_C brick:hasPoint chamber:chamber_cc_temp_10,
         chamber:press_stpt_6,
         chamber:ra_dmpr_pos_10,
         chamber:ra_temp_10,
+        chamber:run_enable_8,
+        chamber:run_stop_8,
         chamber:sf_enable_10,
         chamber:sf_status_10,
         chamber:sf_vfd_spd_10,
@@ -5135,12 +5137,6 @@ chamber:run_enable_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:run_enable_8 ref:hasExternalReference [ a ref:BACnetReference ;
-            bacnet:object-identifier "binaryValue,108" ;
-            bacnet:object-name "run_enable_8" ;
-            bacnet:object-type "binaryValue" ;
-            bacnet:objectOf chamber:dev-2400002.0 ] .
-
 chamber:run_setup_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "multiStateValue,1" ;
             bacnet:object-name "run_setup_1" ;
@@ -5157,12 +5153,6 @@ chamber:run_setup_2 ref:hasExternalReference [ a ref:BACnetReference ;
 chamber:run_stop_7 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "binaryValue,79" ;
             bacnet:object-name "run_stop_7" ;
-            bacnet:object-type "binaryValue" ;
-            bacnet:objectOf chamber:dev-2400002.0 ] .
-
-chamber:run_stop_8 ref:hasExternalReference [ a ref:BACnetReference ;
-            bacnet:object-identifier "binaryValue,107" ;
-            bacnet:object-name "run_stop_8" ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
@@ -6525,7 +6515,7 @@ chamber:ea_dmpr_pos_10 a brick:Damper_Position_Sensor ;
             bacnet:object-type "analogOutput" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:ef_ss_10 a brick:Fan_On_Off_Status ;
+chamber:ef_ss_10 a brick:Start_Stop_Command ;
     brick:hasUnit unit:UNITLESS ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "binaryOutput,6" ;
@@ -6533,7 +6523,7 @@ chamber:ef_ss_10 a brick:Fan_On_Off_Status ;
             bacnet:object-type "binaryOutput" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:ef_vfd_spd_10 a brick:Motor_Speed_Sensor ;
+chamber:ef_vfd_spd_10 a brick:Fan_Speed_Command ;
     brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,9" ;
@@ -6749,6 +6739,22 @@ chamber:return_temp_b_11 a brick:Entering_Chilled_Water_Temperature_Sensor ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
+chamber:run_enable_8 a brick:Enable_Status ;
+    brick:hasUnit unit:UNITLESS ;
+    ref:hasExternalReference [ a ref:BACnetReference ;
+            bacnet:object-identifier "binaryValue,108" ;
+            bacnet:object-name "run_enable_8" ;
+            bacnet:object-type "binaryValue" ;
+            bacnet:objectOf chamber:dev-2400002.0 ] .
+
+chamber:run_stop_8 a brick:Run_Status ;
+    brick:hasUnit unit:UNITLESS ;
+    ref:hasExternalReference [ a ref:BACnetReference ;
+            bacnet:object-identifier "binaryValue,107" ;
+            bacnet:object-name "run_stop_8" ;
+            bacnet:object-type "binaryValue" ;
+            bacnet:objectOf chamber:dev-2400002.0 ] .
+
 chamber:sa_temp_1 a brick:Supply_Air_Temperature_Sensor ;
     brick:hasUnit unit:DEG_F ;
     ref:hasExternalReference [ a ref:BACnetReference ;
@@ -6813,7 +6819,7 @@ chamber:sf_status_10 a brick:Fan_On_Off_Status ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:sf_vfd_spd_10 a brick:Motor_Speed_Sensor ;
+chamber:sf_vfd_spd_10 a brick:Fan_Speed_Command ;
     brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,14" ;

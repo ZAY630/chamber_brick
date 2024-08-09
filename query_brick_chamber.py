@@ -106,6 +106,103 @@ fan_enable_cmd.get_point_value(BACpypesAPP)
 fan_status.get_point_value(BACpypesAPP)
 
 # %%
+brick_point = 'brick:Fan_Speed_Command'
+equipment_type = 'brick:Fan_VFD'
+additional_filter = """
+?ahu a brick:Air_Handling_Unit . 
+?ahu brick:hasPoint ?point .
+?fan a brick:Supply_Fan .
+?fan brick:hasPart ?equipment
+"""
+
+
+query = g.query(
+    f""" SELECT * WHERE {{
+        VALUES ?t_type {{ {brick_point} }} 
+        VALUES ?equipment_type {{ {equipment_type} }}
+             ?equipment rdf:type/rdfs:subClassOf?   ?equipment_type .
+             ?equipment brick:hasPoint              ?point .
+             ?point     rdf:type/rdfs:subClassOf?   ?t_type .
+             ?point     brick:hasUnit               ?point_unit .
+
+             ?point     ref:hasExternalReference    ?ref.
+             ?ref       bacnet:object-name          ?obj_name .
+             ?ref       bacnet:object-identifier    ?obj_identifier .
+             ?ref       bacnet:objectOf             ?obj_device .
+             ?obj_device bacnet:hasPort             ?ref_port .
+             ?ref_port  ref:storedAt                ?bacnet_address .
+             {additional_filter}
+        }}"""
+)
+
+df_result = pd.DataFrame(query, columns=[str(s) for s in query.vars])
+
+if not df_result.empty:
+    vfd_speed_dict = df_result.to_dict('records')
+else:
+    vfd_speed_dict = {}
+
+vfd_speed_dict = [result for result in vfd_speed_dict if result['ahu'].split('#')[-1] != 'AHU_A']
+
+print("returned", len(vfd_speed_dict), "queries")
+
+# %%
+# Speed command: %
+vfd_speed_dict = vfd_speed_dict[0]
+vfd_speed_cmd = BACnet_Point(**vfd_speed_dict) if bool(vfd_speed_dict) else vfd_speed_dict
+vfd_speed_cmd.get_point_value(BACpypesAPP)
+
+vfd_speed_cmd.write_point_value(BACpypesAPP, 50, 13)
+vfd_speed_cmd.get_point_value(BACpypesAPP)
+fan_status.get_point_value(BACpypesAPP)
+
+# %%
+brick_point = 'brick:Power_Sensor'
+equipment_type = 'brick:Fan_VFD'
+additional_filter = """
+?ahu a brick:Air_Handling_Unit . 
+?ahu brick:hasPoint ?point .
+?fan a brick:Supply_Fan .
+?fan brick:hasPart ?equipment
+"""
+
+
+query = g.query(
+    f""" SELECT * WHERE {{
+        VALUES ?t_type {{ {brick_point} }} 
+        VALUES ?equipment_type {{ {equipment_type} }}
+             ?equipment rdf:type/rdfs:subClassOf?   ?equipment_type .
+             ?equipment brick:hasPoint              ?point .
+             ?point     rdf:type/rdfs:subClassOf?   ?t_type .
+             ?point     brick:hasUnit               ?point_unit .
+
+             ?point     ref:hasExternalReference    ?ref.
+             ?ref       bacnet:object-name          ?obj_name .
+             ?ref       bacnet:object-identifier    ?obj_identifier .
+             ?ref       bacnet:objectOf             ?obj_device .
+             ?obj_device bacnet:hasPort             ?ref_port .
+             ?ref_port  ref:storedAt                ?bacnet_address .
+             {additional_filter}
+        }}"""
+)
+
+df_result = pd.DataFrame(query, columns=[str(s) for s in query.vars])
+
+if not df_result.empty:
+    vfd_power_dict = df_result.to_dict('records')
+else:
+    vfd_power_dict = {}
+
+vfd_power_dict = [result for result in vfd_power_dict if result['ahu'].split('#')[-1] != 'AHU_A']
+
+print("returned", len(vfd_power_dict), "queries")
+
+# %%
+vfd_power_dict = vfd_power_dict[0]
+vfd_power = BACnet_Point(**vfd_speed_dict) if bool(vfd_speed_dict) else vfd_speed_dict
+vfd_power.get_point_value(BACpypesAPP)
+
+# %%
 brick_point = 'brick:Damper_Position_Sensor'
 equipment_type = 'brick:Damper'
 additional_filter = """
