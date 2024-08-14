@@ -9,8 +9,9 @@ g = brickschema.Graph()
 g.load_file('chamber_shacl_expanded.ttl')
 
 # %%
-# bacnet_ini_file = './readfiles/BACnet_init_controller.ini'
-# access_bacnet = BACpypesAPP.Init(bacnet_ini_file)
+bacnet_ini_file = '..\\bacpypes\\BACnet_connect.ini'
+access_bacnet = BACpypesAPP.Init(bacnet_ini_file)
+
 
 # %%
 brick_point = 'brick:Fan_On_Off_Status'
@@ -101,7 +102,7 @@ fan_enable_dict = fan_enable_dict[0]
 fan_enable_cmd = BACnet_Point(**fan_enable_dict) if bool(fan_enable_dict) else fan_enable_dict
 fan_enable_cmd.get_point_value(BACpypesAPP)
 
-fan_enable_cmd.write_point_value(BACpypesAPP, "Enabled", 13)
+fan_enable_cmd.write_point_value(BACpypesAPP, "active", 13)
 fan_enable_cmd.get_point_value(BACpypesAPP)
 fan_status.get_point_value(BACpypesAPP)
 
@@ -199,7 +200,7 @@ print("returned", len(vfd_power_dict), "queries")
 
 # %%
 vfd_power_dict = vfd_power_dict[0]
-vfd_power = BACnet_Point(**vfd_speed_dict) if bool(vfd_speed_dict) else vfd_speed_dict
+vfd_power = BACnet_Point(**vfd_power_dict) if bool(vfd_power_dict) else vfd_power_dict
 vfd_power.get_point_value(BACpypesAPP)
 
 # %%
