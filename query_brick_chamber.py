@@ -3,17 +3,169 @@ import brickschema
 import pandas as pd
 from functions.bacnet_point import BACnet_Point
 import functions.readWriteProperty as BACpypesAPP
+import yaml
+import rdflib
 
 # %%
 g = brickschema.Graph()
 g.load_file('chamber_shacl_expanded.ttl')
 
 # %%
-bacnet_ini_file = '..\\bacpypes\\BACnet_connect.ini'
-access_bacnet = BACpypesAPP.Init(bacnet_ini_file)
+# bacnet_ini_file = '..\\bacpypes\\BACnet_connect.ini'
+# access_bacnet = BACpypesAPP.Init(bacnet_ini_file)
+
+# %%
+def query_water_loop(loop):
+    """
+    return relavent water loop
+    """
+    if loop == "cooling":
+        query = g.query(
+            f"""SELECT ?plant ?water_loop ?coil ?ahu WHERE {{
+                VALUES ?t_type {{ {brick_point} }} 
+                VALUES ?equipment_type {{ {equipment_type} }}
+                    ?plant                  rdf:type/rdfs:subClassOf?   brick:Chiller .
+                    ?plant                  brick:feeds+                ?water_loop .
+                    ?water_loop             a brick:Chilled_Water_Loop .
+                    ?water_loop             brick:feeds                 ?coil .
+                    ?coil                   a brick:Chilled_Water_Coil .
+                    ?coil                   brick:feeds+                ?terminal .
+                    ?terminal               rdf:type/rdfs:subClassOf?   brick:Terminal_Unit .
+                    ?terminal               brick:isPartOf              ?ahu .
+                    ?ahu                    a brick:Air_Handling_Unit .
+                    ?ahu                    brick:hasPart               ?equipment .
+                    ?equipment              rdf:type/rdfs:subClassOf?   ?equipment_type .
+                    ?equipment              brick:hasPoint              ?point .
+                    ?point                  rdf:type/rdfs:subClassOf?   ?t_type .                  
+                }}"""
+        )
+
+    df_result = pd.DataFrame(query, columns=[str(s) for s in query.vars])
+
+    if not df_result.empty:
+        result_dict = df_result.to_dict('records')
+    else:
+        result_dict = {}
+
+    return result_dict
+    
+
+
+def query_specific(brick_point, equipment_type, additional_filter):
+    """
+    return specific queries on a brick point
+    """
+    query = g.query(
+        f""" SELECT * WHERE {{
+            VALUES ?t_type {{ {brick_point} }} 
+            VALUES ?equipment_type {{ {equipment_type} }}
+                ?equipment rdf:type/rdfs:subClassOf?   ?equipment_type .
+                ?equipment brick:hasPoint              ?point .
+                ?point     rdf:type/rdfs:subClassOf?   ?t_type .
+                ?point     brick:hasUnit               ?point_unit .
+
+                ?point     ref:hasExternalReference    ?ref.
+                ?ref       bacnet:object-name          ?obj_name .
+                ?ref       bacnet:object-identifier    ?obj_identifier .
+                ?ref       bacnet:objectOf             ?obj_device .
+                ?obj_device bacnet:hasPort             ?ref_port .
+                ?ref_port  ref:storedAt                ?bacnet_address .
+                {additional_filter}
+            }}"""
+    )
+
+    df_result = pd.DataFrame(query, columns=[str(s) for s in query.vars])
+
+    if not df_result.empty:
+        result_dict = df_result.to_dict('records')
+    else:
+        result_dict = {}
+
+    return result_dict
+
+
+
+def query_specific_path(equipment, end_use_type):
+    """
+    return all endusers for selected equipment
+    """
+
+    query = f""" SELECT * WHERE {{
+    VALUES ?enduser_type {{ { end_use_type } }}
+    VALUES ?t_type {{ {brick_point} }} 
+    VALUES ?equipment_type {{ {equipment_type} }}
+
+        ?equipment  brick:hasPart                 ?enduser .
+        ?enduser    rdf:type/rdfs:subClassOf*     ?enduser_type .
+        ?enduser    brick:hasPoint                ?point .
+        ?point      rdf:type/rdfs:subClassOf?     ?t_type .
+        ?point      brick:hasUnit                 ?point_unit .
+
+        ?point      ref:hasExternalReference      ?ref.
+        ?ref        bacnet:object-name            ?obj_name .
+        ?ref        bacnet:object-identifier      ?obj_identifier .
+        ?ref        bacnet:objectOf               ?obj_device .
+        ?obj_device bacnet:hasPort                ?ref_port .
+        ?ref_port   ref:storedAt                  ?bacnet_address .
+
+    }}"""
+
+    q_result = g.query(query, initBindings={"equipment": equipment})
+    df_result = pd.DataFrame(q_result, columns=[str(s) for s in q_result.vars])
+
+    # get unique equipment
+    df_result = df_result.drop_duplicates(['enduser'])
+
+    if not df_result.empty:
+        result_dict = df_result.to_dict('records')
+    else:
+        result_dict = {}
+
+    return result_dict
+
+    
+
+def write_yaml_config(query_results, filepath):
+    """
+    Write/Save updated yaml configuration file
+    """
+    results_dict = {}
+    
+    for idx, result in enumerate(query_results):
+        result_dict = {'attributes': 
+                       {'plant': str(result['plant']), 
+                       'water_loop': str(result['water_loop']), 
+                       'coil': str(result['coil']), 
+                       'ahu': str(result['ahu'])}
+                       }  
+        result_dict['selected'] = False 
+        results_dict[f"return_query_{idx+1}"] = result_dict
+    
+    # Write the results to the YAML file
+    with open(filepath, 'w') as file:
+        yaml.dump(results_dict, file)
+
+
+
+def load_yaml_config(filepath):
+    """
+    Load configuration file
+    """
+    with open(filepath, 'r') as file:
+        updated_dict = yaml.safe_load(file)
+    
+    selected_results = []
+    
+    for key, query in updated_dict.items():
+        if query['selected']:
+            selected_results.append(query)
+    
+    return selected_results
 
 
 # %%
+water_loop = "cooling"
+yaml_path = './readfiles/config.yaml'
 brick_point = 'brick:Fan_On_Off_Status'
 equipment_type = 'brick:Supply_Fan'
 additional_filter = """
@@ -21,274 +173,23 @@ additional_filter = """
 ?ahu brick:hasPoint ?point .
 """
 
-
-query = g.query(
-    f""" SELECT * WHERE {{
-        VALUES ?t_type {{ {brick_point} }} 
-        VALUES ?equipment_type {{ {equipment_type} }}
-             ?equipment rdf:type/rdfs:subClassOf?   ?equipment_type .
-             ?equipment brick:hasPoint              ?point .
-             ?point     rdf:type/rdfs:subClassOf?   ?t_type .
-             ?point     brick:hasUnit               ?point_unit .
-
-             ?point     ref:hasExternalReference    ?ref.
-             ?ref       bacnet:object-name          ?obj_name .
-             ?ref       bacnet:object-identifier    ?obj_identifier .
-             ?ref       bacnet:objectOf             ?obj_device .
-             ?obj_device bacnet:hasPort             ?ref_port .
-             ?ref_port  ref:storedAt                ?bacnet_address .
-             {additional_filter}
-        }}"""
-)
-
-df_result = pd.DataFrame(query, columns=[str(s) for s in query.vars])
-
-if not df_result.empty:
-    fan_status_dict = df_result.to_dict('records')
-else:
-    fan_status_dict = {}
-
-fan_status_dict = [result for result in fan_status_dict if result['ahu'].split('#')[-1] != 'AHU_A']
-
-print("returned", len(fan_status_dict), "queries")
+results = query_specific(brick_point, equipment_type, additional_filter)
+if len(results) == 0:
+    print("empty return, check query")
+elif len(results) > 1:
+    print("multiple returns, update config.yaml file")
+    results = query_water_loop(water_loop)
+    write_yaml_config(results, yaml_path)
 
 # %%
-fan_status_dict = fan_status_dict[0]
-fan_status = BACnet_Point(**fan_status_dict) if bool(fan_status_dict) else fan_status_dict
-fan_status.get_point_value(BACpypesAPP)
+config = load_yaml_config(yaml_path)
+for idx, query in enumerate(config):
+    plant = rdflib.URIRef(query['attributes']['plant'])
+    ahu = rdflib.URIRef(query['attributes']['ahu'])
+    coil = rdflib.URIRef(query['attributes']['coil'])
+    water_loop = rdflib.URIRef(query['attributes']['water_loop'])
+
+query_specific_path(ahu, equipment_type)
+
 
 # %%
-brick_point = 'brick:Run_Enable_Command'
-equipment_type = 'brick:Supply_Fan'
-additional_filter = """
-?ahu a brick:Air_Handling_Unit . 
-?ahu brick:hasPoint ?point .
-"""
-
-
-query = g.query(
-    f""" SELECT * WHERE {{
-        VALUES ?t_type {{ {brick_point} }} 
-        VALUES ?equipment_type {{ {equipment_type} }}
-             ?equipment rdf:type/rdfs:subClassOf?   ?equipment_type .
-             ?equipment brick:hasPoint              ?point .
-             ?point     rdf:type/rdfs:subClassOf?   ?t_type .
-             ?point     brick:hasUnit               ?point_unit .
-
-             ?point     ref:hasExternalReference    ?ref.
-             ?ref       bacnet:object-name          ?obj_name .
-             ?ref       bacnet:object-identifier    ?obj_identifier .
-             ?ref       bacnet:objectOf             ?obj_device .
-             ?obj_device bacnet:hasPort             ?ref_port .
-             ?ref_port  ref:storedAt                ?bacnet_address .
-             {additional_filter}
-        }}"""
-)
-
-df_result = pd.DataFrame(query, columns=[str(s) for s in query.vars])
-
-if not df_result.empty:
-    fan_enable_dict = df_result.to_dict('records')
-else:
-    fan_enable_dict = {}
-
-fan_enable_dict = [result for result in fan_enable_dict if result['ahu'].split('#')[-1] != 'AHU_A']
-
-print("returned", len(fan_enable_dict), "queries")
-
-# %%
-# Enable command: Enabled/Disabled
-fan_enable_dict = fan_enable_dict[0]
-fan_enable_cmd = BACnet_Point(**fan_enable_dict) if bool(fan_enable_dict) else fan_enable_dict
-fan_enable_cmd.get_point_value(BACpypesAPP)
-
-fan_enable_cmd.write_point_value(BACpypesAPP, "active", 13)
-fan_enable_cmd.get_point_value(BACpypesAPP)
-fan_status.get_point_value(BACpypesAPP)
-
-# %%
-brick_point = 'brick:Fan_Speed_Command'
-equipment_type = 'brick:Fan_VFD'
-additional_filter = """
-?ahu a brick:Air_Handling_Unit . 
-?ahu brick:hasPoint ?point .
-?fan a brick:Supply_Fan .
-?fan brick:hasPart ?equipment
-"""
-
-
-query = g.query(
-    f""" SELECT * WHERE {{
-        VALUES ?t_type {{ {brick_point} }} 
-        VALUES ?equipment_type {{ {equipment_type} }}
-             ?equipment rdf:type/rdfs:subClassOf?   ?equipment_type .
-             ?equipment brick:hasPoint              ?point .
-             ?point     rdf:type/rdfs:subClassOf?   ?t_type .
-             ?point     brick:hasUnit               ?point_unit .
-
-             ?point     ref:hasExternalReference    ?ref.
-             ?ref       bacnet:object-name          ?obj_name .
-             ?ref       bacnet:object-identifier    ?obj_identifier .
-             ?ref       bacnet:objectOf             ?obj_device .
-             ?obj_device bacnet:hasPort             ?ref_port .
-             ?ref_port  ref:storedAt                ?bacnet_address .
-             {additional_filter}
-        }}"""
-)
-
-df_result = pd.DataFrame(query, columns=[str(s) for s in query.vars])
-
-if not df_result.empty:
-    vfd_speed_dict = df_result.to_dict('records')
-else:
-    vfd_speed_dict = {}
-
-vfd_speed_dict = [result for result in vfd_speed_dict if result['ahu'].split('#')[-1] != 'AHU_A']
-
-print("returned", len(vfd_speed_dict), "queries")
-
-# %%
-# Speed command: %
-vfd_speed_dict = vfd_speed_dict[0]
-vfd_speed_cmd = BACnet_Point(**vfd_speed_dict) if bool(vfd_speed_dict) else vfd_speed_dict
-vfd_speed_cmd.get_point_value(BACpypesAPP)
-
-vfd_speed_cmd.write_point_value(BACpypesAPP, 50, 13)
-vfd_speed_cmd.get_point_value(BACpypesAPP)
-fan_status.get_point_value(BACpypesAPP)
-
-# %%
-brick_point = 'brick:Power_Sensor'
-equipment_type = 'brick:Fan_VFD'
-additional_filter = """
-?ahu a brick:Air_Handling_Unit . 
-?ahu brick:hasPoint ?point .
-?fan a brick:Supply_Fan .
-?fan brick:hasPart ?equipment
-"""
-
-
-query = g.query(
-    f""" SELECT * WHERE {{
-        VALUES ?t_type {{ {brick_point} }} 
-        VALUES ?equipment_type {{ {equipment_type} }}
-             ?equipment rdf:type/rdfs:subClassOf?   ?equipment_type .
-             ?equipment brick:hasPoint              ?point .
-             ?point     rdf:type/rdfs:subClassOf?   ?t_type .
-             ?point     brick:hasUnit               ?point_unit .
-
-             ?point     ref:hasExternalReference    ?ref.
-             ?ref       bacnet:object-name          ?obj_name .
-             ?ref       bacnet:object-identifier    ?obj_identifier .
-             ?ref       bacnet:objectOf             ?obj_device .
-             ?obj_device bacnet:hasPort             ?ref_port .
-             ?ref_port  ref:storedAt                ?bacnet_address .
-             {additional_filter}
-        }}"""
-)
-
-df_result = pd.DataFrame(query, columns=[str(s) for s in query.vars])
-
-if not df_result.empty:
-    vfd_power_dict = df_result.to_dict('records')
-else:
-    vfd_power_dict = {}
-
-vfd_power_dict = [result for result in vfd_power_dict if result['ahu'].split('#')[-1] != 'AHU_A']
-
-print("returned", len(vfd_power_dict), "queries")
-
-# %%
-vfd_power_dict = vfd_power_dict[0]
-vfd_power = BACnet_Point(**vfd_power_dict) if bool(vfd_power_dict) else vfd_power_dict
-vfd_power.get_point_value(BACpypesAPP)
-
-# %%
-brick_point = 'brick:Damper_Position_Sensor'
-equipment_type = 'brick:Damper'
-additional_filter = """
-?ahu a brick:Air_Handling_Unit . 
-?ahu brick:hasPart ?vav .
-?vav a brick:VAV .
-?vav brick:hasPart ?equipment .
-"""
-
-
-query = g.query(
-    f""" SELECT * WHERE {{
-        VALUES ?t_type {{ {brick_point} }} 
-        VALUES ?equipment_type {{ {equipment_type} }}
-             ?equipment rdf:type/rdfs:subClassOf?   ?equipment_type .
-             ?equipment brick:hasPoint              ?point .
-             ?point     rdf:type/rdfs:subClassOf?   ?t_type .
-             ?point     brick:hasUnit               ?point_unit .
-
-             ?point     ref:hasExternalReference    ?ref.
-             ?ref       bacnet:object-name          ?obj_name .
-             ?ref       bacnet:object-identifier    ?obj_identifier .
-             ?ref       bacnet:objectOf             ?obj_device .
-             ?obj_device bacnet:hasPort             ?ref_port .
-             ?ref_port  ref:storedAt                ?bacnet_address .
-             {additional_filter}
-        }}"""
-)
-
-df_result = pd.DataFrame(query, columns=[str(s) for s in query.vars])
-
-if not df_result.empty:
-    vav_damper_dict = df_result.to_dict('records')
-else:
-    vav_damper_dict = {}
-
-print("returned", len(vav_damper_dict), "queries")
-
-# %%
-# damper command: 0 ~ 100
-vav_damper_dict = vav_damper_dict[0]
-vav_damper_command = BACnet_Point(**vav_damper_dict) if bool(vav_damper_dict) else vav_damper_dict
-vav_damper_command.get_point_value(BACpypesAPP)
-
-vav_damper_command.write_point_value(BACpypesAPP, 100, 13)
-vav_damper_command.get_point_value(BACpypesAPP)
-
-# %%
-brick_point = 'brick:Supply_Air_Flow_Sensor'
-equipment_type = 'brick:VAV'
-additional_filter = """
-"""
-
-
-query = g.query(
-    f""" SELECT * WHERE {{
-        VALUES ?t_type {{ {brick_point} }} 
-        VALUES ?equipment_type {{ {equipment_type} }}
-             ?equipment rdf:type/rdfs:subClassOf?   ?equipment_type .
-             ?equipment brick:hasPoint              ?point .
-             ?point     rdf:type/rdfs:subClassOf?   ?t_type .
-             ?point     brick:hasUnit               ?point_unit .
-
-             ?point     ref:hasExternalReference    ?ref.
-             ?ref       bacnet:object-name          ?obj_name .
-             ?ref       bacnet:object-identifier    ?obj_identifier .
-             ?ref       bacnet:objectOf             ?obj_device .
-             ?obj_device bacnet:hasPort             ?ref_port .
-             ?ref_port  ref:storedAt                ?bacnet_address .
-             {additional_filter}
-        }}"""
-)
-
-df_result = pd.DataFrame(query, columns=[str(s) for s in query.vars])
-
-if not df_result.empty:
-    vav_afr_dict = df_result.to_dict('records')
-else:
-    vav_afr_dict = {}
-
-print("returned", len(vav_afr_dict), "queries")
-
-# %%
-vav_afr_dict = vav_afr_dict[0]
-vav_afr = BACnet_Point(**vav_afr_dict) if bool(vav_afr_dict) else vav_afr_dict
-vav_afr.get_point_value(BACpypesAPP)
-
-

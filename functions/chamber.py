@@ -211,6 +211,7 @@ def make():
     g.add((CHB["damper_supply"], BRICK.feeds, CHB["CHW_coil"]))
     g.add((CHB["CHW_coil"], BRICK.hasPart, CHB["CHW_valve"]))
     g.add((CHB["CHW_coil"], BRICK.feeds, CHB["HW_coil"]))
+    g.add((CHB["HW_coil"], BRICK.feeds, CHB["AHU_C"]))
     g.add((CHB["HW_coil"], BRICK.hasPart, CHB["HW_valve"]))
     g.add((CHB["HW_coil"], BRICK.feeds, CHB["H_1"]))
     g.add((CHB["H_1"], BRICK.feeds, CHB["OH_diffuser"]))

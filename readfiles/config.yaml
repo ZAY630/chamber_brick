@@ -1,0 +1,21 @@
+return_query_1:
+  attributes:
+    ahu: http://berkeley.edu/climatechamber#AHU_A
+    coil: http://berkeley.edu/climatechamber#CHW_A_coil
+    plant: http://berkeley.edu/climatechamber#CH_1
+    water_loop: http://berkeley.edu/climatechamber#SCHW_L
+  selected: true
+return_query_2:
+  attributes:
+    ahu: http://berkeley.edu/climatechamber#AHU_C
+    coil: http://berkeley.edu/climatechamber#CHW_coil
+    plant: http://berkeley.edu/climatechamber#CH_1
+    water_loop: http://berkeley.edu/climatechamber#SCHW_L
+  selected: false
+return_query_3:
+  attributes:
+    ahu: http://berkeley.edu/climatechamber#AHU_C
+    coil: http://berkeley.edu/climatechamber#CHW_SC_coil
+    plant: http://berkeley.edu/climatechamber#CH_1
+    water_loop: http://berkeley.edu/climatechamber#SCHW_L
+  selected: false
