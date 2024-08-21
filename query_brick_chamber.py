@@ -5,14 +5,11 @@ from functions.bacnet_point import BACnet_Point
 import functions.readWriteProperty as BACpypesAPP
 import yaml
 import rdflib
+import os
 
 # %%
 g = brickschema.Graph()
 g.load_file('chamber_shacl_expanded.ttl')
-
-# %%
-# bacnet_ini_file = '..\\bacpypes\\BACnet_connect.ini'
-# access_bacnet = BACpypesAPP.Init(bacnet_ini_file)
 
 # %%
 def query_water_loop(loop):
@@ -51,7 +48,7 @@ def query_water_loop(loop):
     
 
 
-def query_specific(brick_point, equipment_type, additional_filter):
+def make_query(brick_point, equipment_type, additional_filter):
     """
     return specific queries on a brick point
     """
@@ -85,19 +82,18 @@ def query_specific(brick_point, equipment_type, additional_filter):
 
 
 
-def query_specific_path(equipment, end_use_type):
+def query_end_user(ahu, end_use_type):
     """
     return all endusers for selected equipment
     """
 
     query = f""" SELECT * WHERE {{
-    VALUES ?enduser_type {{ { end_use_type } }}
+    VALUES ?equipment_type {{ { end_use_type } }}
     VALUES ?t_type {{ {brick_point} }} 
-    VALUES ?equipment_type {{ {equipment_type} }}
 
-        ?equipment  brick:hasPart                 ?enduser .
-        ?enduser    rdf:type/rdfs:subClassOf*     ?enduser_type .
-        ?enduser    brick:hasPoint                ?point .
+        ?ahu        brick:hasPart                 ?enduser .
+        ?equipment  rdf:type/rdfs:subClassOf*     ?equipment_type .
+        ?equipment  brick:hasPoint                ?point .
         ?point      rdf:type/rdfs:subClassOf?     ?t_type .
         ?point      brick:hasUnit                 ?point_unit .
 
@@ -110,7 +106,7 @@ def query_specific_path(equipment, end_use_type):
 
     }}"""
 
-    q_result = g.query(query, initBindings={"equipment": equipment})
+    q_result = g.query(query, initBindings={"equipment": ahu})
     df_result = pd.DataFrame(q_result, columns=[str(s) for s in q_result.vars])
 
     # get unique equipment
@@ -125,26 +121,59 @@ def query_specific_path(equipment, end_use_type):
 
     
 
-def write_yaml_config(query_results, filepath):
+def write_yaml_config(results_dict, filepath):
     """
     Write/Save updated yaml configuration file
+    """
+    
+    # Write the results to the YAML file
+    if os.path.exists(filepath):
+        with open(filepath, 'r') as file:
+            existing_config = yaml.safe_load(file)
+        
+        existing_config.update(results_dict)
+        with open(filepath, 'w') as file:
+            yaml.dump(existing_config, file)
+    else:
+        with open(filepath, 'w') as file:
+            yaml.dump(results_dict, file)
+
+
+def get_path_dict(query_results):
+    """
+    Write/Save queried path results
     """
     results_dict = {}
     
     for idx, result in enumerate(query_results):
-        result_dict = {'attributes': 
+        result_dict = {'path': 
                        {'plant': str(result['plant']), 
                        'water_loop': str(result['water_loop']), 
                        'coil': str(result['coil']), 
                        'ahu': str(result['ahu'])}
                        }  
         result_dict['selected'] = False 
-        results_dict[f"return_query_{idx+1}"] = result_dict
+        results_dict[f"path_{idx+1}"] = result_dict
     
-    # Write the results to the YAML file
-    with open(filepath, 'w') as file:
-        yaml.dump(results_dict, file)
+    return results_dict
 
+def get_end_user_dict(query_results):
+    """
+    Write/Save queried end user results
+    """
+    results_dict = {}
+    
+    for idx, result in enumerate(query_results):
+        result_dict = {'attributes': 
+                       {'equipment': str(result['equipment']), 
+                        'equipment_type': str(result['equipment_type']),
+                        't_type': str(result['t_type']),
+                        'obj_name': str(result['obj_name'])}
+                       }  
+        result_dict['selected'] = False 
+        results_dict[f"end_user_{idx+1}"] = result_dict
+    
+    return results_dict
 
 
 def load_yaml_config(filepath):
@@ -166,30 +195,45 @@ def load_yaml_config(filepath):
 # %%
 water_loop = "cooling"
 yaml_path = './readfiles/config.yaml'
-brick_point = 'brick:Fan_On_Off_Status'
-equipment_type = 'brick:Supply_Fan'
+brick_point = 'brick:Damper_Position_Sensor'
+equipment_type = 'brick:Damper'
 additional_filter = """
 ?ahu a brick:Air_Handling_Unit . 
-?ahu brick:hasPoint ?point .
+?ahu brick:hasPart ?vav .
+?vav a brick:VAV .
+?vav brick:hasPart ?equipment .
 """
 
-results = query_specific(brick_point, equipment_type, additional_filter)
+results = make_query(brick_point, equipment_type, additional_filter)
 if len(results) == 0:
     print("empty return, check query")
 elif len(results) > 1:
     print("multiple returns, update config.yaml file")
     results = query_water_loop(water_loop)
-    write_yaml_config(results, yaml_path)
+    results_dict = get_path_dict(results)
+    write_yaml_config(results_dict, yaml_path)
+
+    config = load_yaml_config(yaml_path)
+    for idx, query in enumerate(config):
+        plant = rdflib.URIRef(query['path']['plant'])
+        ahu = rdflib.URIRef(query['path']['ahu'])
+        coil = rdflib.URIRef(query['path']['coil'])
+        water_loop = rdflib.URIRef(query['path']['water_loop'])
+        
+        end_user_results = query_end_user(ahu, equipment_type)
+        end_user_dict = get_end_user_dict(end_user_results)
+        write_yaml_config(end_user_dict, yaml_path)
+        
+else:
+    print("query returned, check config.yaml")
+    end_user_dict = get_end_user_dict(results)
+    write_yaml_config(end_user_dict, yaml_path)
+
 
 # %%
+end_user_selected = []
 config = load_yaml_config(yaml_path)
 for idx, query in enumerate(config):
-    plant = rdflib.URIRef(query['attributes']['plant'])
-    ahu = rdflib.URIRef(query['attributes']['ahu'])
-    coil = rdflib.URIRef(query['attributes']['coil'])
-    water_loop = rdflib.URIRef(query['attributes']['water_loop'])
-
-query_specific_path(ahu, equipment_type)
-
-
+    if 'attributes' in query.keys():
+        end_user_selected.append(end_user_results[idx])
 # %%
