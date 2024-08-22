@@ -193,8 +193,8 @@ def make():
     g.add((CHB["chamber_room"], BRICK.hasPart, CHB["Zone"]))
 
     # Air ventilation
-    g.add((CHB["AHU_C"], BRICK.hasPart, CHB["OH_diffuser"]))
-    g.add((CHB["AHU_C"], BRICK.hasPart, CHB["UF_diffuser"]))
+    g.add((CHB["AHU_C"], BRICK.feeds, CHB["OH_diffuser"]))
+    g.add((CHB["AHU_C"], BRICK.feeds, CHB["UF_diffuser"]))
     g.add((CHB["AHU_C"], BRICK.hasPart, CHB["damper_exhaust"]))
     g.add((CHB["AHU_C"], BRICK.hasPart, CHB["damper_return"]))
     g.add((CHB["AHU_C"], BRICK.hasPart, CHB["fan_exhaust"]))
@@ -211,7 +211,6 @@ def make():
     g.add((CHB["damper_supply"], BRICK.feeds, CHB["CHW_coil"]))
     g.add((CHB["CHW_coil"], BRICK.hasPart, CHB["CHW_valve"]))
     g.add((CHB["CHW_coil"], BRICK.feeds, CHB["HW_coil"]))
-    g.add((CHB["HW_coil"], BRICK.feeds, CHB["AHU_C"]))
     g.add((CHB["HW_coil"], BRICK.hasPart, CHB["HW_valve"]))
     g.add((CHB["HW_coil"], BRICK.feeds, CHB["H_1"]))
     g.add((CHB["H_1"], BRICK.feeds, CHB["OH_diffuser"]))
@@ -265,13 +264,13 @@ def make():
     g.add((CHB["damper_SC_supply"], BRICK.feeds, CHB["Zone"]))
     g.add((CHB["AHU_C"], BRICK.hasPart, CHB["damper_SC_supply"]))
     g.add((CHB["AHU_C"], BRICK.hasPart, CHB["CHW_SC_coil"]))
-    g.add((CHB["AHU_C"], BRICK.hasPart, CHB["VAV"]))
+    g.add((CHB["AHU_C"], BRICK.feeds, CHB["VAV"]))
 
     # Annular system
     g.add((CHB["AHU_A"], BRICK.hasPart, CHB["fan_A_supply"]))
     g.add((CHB["AHU_A"], BRICK.hasPart, CHB["CHW_A_coil"]))
     g.add((CHB["AHU_A"], BRICK.hasPart, CHB["HW_A_coil"]))
-    g.add((CHB["AHU_A"], BRICK.hasPart, CHB["A_diffuser"]))
+    g.add((CHB["AHU_A"], BRICK.feeds, CHB["A_diffuser"]))
     g.add((CHB["fan_A_supply"], BRICK.feeds, CHB["CHW_A_coil"]))
     g.add((CHB["CHW_A_coil"], BRICK.hasPart, CHB["CHW_valve_A"]))
     g.add((CHB["CHW_valve_A"], BRICK.feeds, CHB["CH_1"]))
