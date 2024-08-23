@@ -1,28 +1,21 @@
 ahu_path_1:
-  bacnet_name: sf_enable_10
+  check:fan_status: sf_status_10
   path:
     ahu: http://berkeley.edu/climatechamber#AHU_C
     coil: http://berkeley.edu/climatechamber#CHW_SC_coil
     equipment: http://berkeley.edu/climatechamber#fan_supply
     plant: http://berkeley.edu/climatechamber#CH_1
     water_loop: http://berkeley.edu/climatechamber#SCHW_L
+  run:fan_enable: sf_enable_10
   selected: true
   terminal_path_1:
     attributes:
-      equipment: http://berkeley.edu/climatechamber#VAV
-      equipment_type: https://brickschema.org/schema/Brick#VAV
-      t_type: https://brickschema.org/schema/Brick#Supply_Air_Flow_Sensor
-    bacnet_name: vav_cfm_6
+      equipment: http://berkeley.edu/climatechamber#OH_diffuser
+      equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+    check:diffuser_airflow: oh_airflow_10
+    check:diffuser_airtemp: overhead_sa_temp_10
     selected: true
 ahu_path_2:
-  path:
-    ahu: http://berkeley.edu/climatechamber#AHU_C
-    coil: http://berkeley.edu/climatechamber#CHW_coil
-    equipment: http://berkeley.edu/climatechamber#fan_supply
-    plant: http://berkeley.edu/climatechamber#CH_1
-    water_loop: http://berkeley.edu/climatechamber#SCHW_L
-  selected: false
-ahu_path_3:
   path:
     ahu: http://berkeley.edu/climatechamber#AHU_A
     coil: http://berkeley.edu/climatechamber#CHW_A_coil

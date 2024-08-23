@@ -3,7 +3,6 @@ import brickschema
 import pandas as pd
 import yaml
 import rdflib
-import os
 
 # %%
 g = brickschema.Graph()
@@ -14,29 +13,38 @@ def query_ahu_user(loop, brick_point, equipment_type):
     """
     return ahu
     """
+    queries = []
     if loop == "cooling":
-        query = g.query(
-            f"""SELECT ?plant ?water_loop ?coil ?ahu ?equipment WHERE {{
-                VALUES ?t_type {{ {brick_point} }} 
-                VALUES ?equipment_type {{ {equipment_type} }}
-                    ?plant                  rdf:type/rdfs:subClassOf?   brick:Chiller .
-                    ?plant                  brick:feeds+                ?water_loop .
-                    ?water_loop             a brick:Chilled_Water_Loop .
-                    ?water_loop             brick:feeds                 ?coil .
-                    ?coil                   a brick:Chilled_Water_Coil .
-                    ?ahu                    brick:hasPart               ?coil .
-                    ?ahu                    a brick:Air_Handling_Unit .
-                    ?ahu                    brick:hasPart               ?equipment .
-                    ?equipment              rdf:type/rdfs:subClassOf?   ?equipment_type .
-                    ?equipment              brick:hasPoint              ?point .
-                    ?point                  rdf:type/rdfs:subClassOf?   ?t_type .                  
-                }}"""
-        )
+        for point in brick_point:
+            query = g.query(
+                f"""SELECT ?plant ?water_loop ?coil ?ahu ?equipment ?t_type WHERE {{
+                    VALUES ?t_type {{ {point} }} 
+                    VALUES ?equipment_type {{ {equipment_type} }}
+                        ?plant                  rdf:type/rdfs:subClassOf?   brick:Chiller .
+                        ?plant                  brick:feeds+                ?water_loop .
+                        ?water_loop             a brick:Chilled_Water_Loop .
+                        ?water_loop             brick:feeds                 ?coil .
+                        ?coil                   a brick:Chilled_Water_Coil .
+                        ?ahu                    brick:hasPart               ?coil .
+                        ?ahu                    a brick:Air_Handling_Unit .
+                        ?ahu                    brick:hasPart               ?equipment .
+                        ?equipment              rdf:type/rdfs:subClassOf?   ?equipment_type .
+                        ?equipment              brick:hasPoint              ?point .
+                        ?point                  rdf:type/rdfs:subClassOf?   ?t_type .                  
+                    }}"""
+            )
+            queries = queries + list(query)
 
-    df_result = pd.DataFrame(query, columns=[str(s) for s in query.vars])
+    df_result = pd.DataFrame(queries, columns=[str(s) for s in query.vars])
 
-    if not df_result.empty:
-        result_dict = df_result.to_dict('records')
+    value_counts = df_result['equipment'].value_counts()
+
+    to_remove = value_counts[value_counts < len(seq_name)].index
+    df_filtered = df_result[~df_result['equipment'].isin(to_remove)]
+    df_filtered = df_filtered.drop_duplicates('equipment')
+
+    if not df_filtered.empty:
+        result_dict = df_filtered.to_dict('records')
         ahus_dict = {}
     
         for idx, result in enumerate(result_dict):
@@ -60,27 +68,33 @@ def query_bacnet_user(brick_point, equipment):
     """
     return bacnet information for control
     """
+    q_results = []
+    for point in brick_point:
 
-    query = f""" SELECT * WHERE {{
-            VALUES ?t_type {{ {brick_point} }} 
+        query = f""" SELECT * WHERE {{
+                VALUES ?t_type {{ {point} }} 
 
-                ?equipment brick:hasPoint              ?point .
-                ?point     rdf:type/rdfs:subClassOf?   ?t_type .
-                ?point     brick:hasUnit               ?point_unit .
+                    ?equipment brick:hasPoint              ?point .
+                    ?point     rdf:type/rdfs:subClassOf?   ?t_type .
+                    ?point     brick:hasUnit               ?point_unit .
 
-                ?point     ref:hasExternalReference    ?ref.
-                ?ref       bacnet:object-name          ?obj_name .
-                ?ref       bacnet:object-identifier    ?obj_identifier .
-                ?ref       bacnet:objectOf             ?obj_device .
-                ?obj_device bacnet:hasPort             ?ref_port .
-                ?ref_port  ref:storedAt                ?bacnet_address .
-            }}"""
+                    ?point     ref:hasExternalReference    ?ref.
+                    ?ref       bacnet:object-name          ?obj_name .
+                    ?ref       bacnet:object-identifier    ?obj_identifier .
+                    ?ref       bacnet:objectOf             ?obj_device .
+                    ?obj_device bacnet:hasPort             ?ref_port .
+                    ?ref_port  ref:storedAt                ?bacnet_address .
+                }}"""
 
-    q_result = g.query(query, initBindings={"equipment": equipment})
-    df_result = pd.DataFrame(q_result, columns=[str(s) for s in q_result.vars])
+        q_result = g.query(query, initBindings={"equipment": equipment})
 
+        q_results = q_results + list(q_result)
+        
+
+    df_result = pd.DataFrame(q_results, columns=[str(s) for s in q_result.vars])
+    
     if not df_result.empty:
-        result_dict = df_result.to_dict('records')[0]
+        result_dict = df_result.to_dict('records')
     else:
         result_dict = {}
 
@@ -92,41 +106,47 @@ def query_terminal_user(ahu, terminal_use_type, brick_point):
     """
     return all terminal units for selected equipment
     """
+    q_results = []
 
-    query = f""" SELECT ?equipment ?equipment_type ?t_type WHERE {{
-    VALUES ?equipment_type {{ { terminal_use_type } }}
-    VALUES ?t_type {{ {brick_point} }} 
+    for point in brick_point:
 
-        ?ahu        brick:feeds                   ?equipment .
-        ?equipment  rdf:type/rdfs:subClassOf*     ?equipment_type .
-        ?equipment  brick:hasPoint                ?point .
-        ?point      rdf:type/rdfs:subClassOf?     ?t_type .
-        ?point      brick:hasUnit                 ?point_unit .
+        query = f""" SELECT ?equipment ?equipment_type ?t_type WHERE {{
+        VALUES ?equipment_type {{ { terminal_use_type } }}
+        VALUES ?t_type {{ {point} }} 
 
-        ?point      ref:hasExternalReference      ?ref.
-        ?ref        bacnet:object-name            ?obj_name .
-        ?ref        bacnet:object-identifier      ?obj_identifier .
-        ?ref        bacnet:objectOf               ?obj_device .
-        ?obj_device bacnet:hasPort                ?ref_port .
-        ?ref_port   ref:storedAt                  ?bacnet_address .
+            ?ahu        brick:feeds                   ?equipment .
+            ?equipment  rdf:type/rdfs:subClassOf*     ?equipment_type .
+            ?equipment  brick:hasPoint                ?point .
+            ?point      rdf:type/rdfs:subClassOf?     ?t_type .
+            ?point      brick:hasUnit                 ?point_unit .
 
-    }}"""
+            ?point      ref:hasExternalReference      ?ref.
+            ?ref        bacnet:object-name            ?obj_name .
+            ?ref        bacnet:object-identifier      ?obj_identifier .
+            ?ref        bacnet:objectOf               ?obj_device .
+            ?obj_device bacnet:hasPort                ?ref_port .
+            ?ref_port   ref:storedAt                  ?bacnet_address .
 
-    q_result = g.query(query, initBindings={"ahu": ahu})
-    df_result = pd.DataFrame(q_result, columns=[str(s) for s in q_result.vars])
+        }}"""
 
-    # get unique equipment
-    df_result = df_result.drop_duplicates(['equipment'])
+        q_result = g.query(query, initBindings={"ahu": ahu})
+        q_results = q_results + list(q_result)
+    
+    df_result = pd.DataFrame(q_results, columns=[str(s) for s in q_result.vars])
+    value_counts = df_result['equipment'].value_counts()
 
-    if not df_result.empty:
-        result_dict = df_result.to_dict('records')
+    to_remove = value_counts[value_counts < len(seq_name)].index
+    df_filtered = df_result[~df_result['equipment'].isin(to_remove)]
+    df_filtered = df_filtered.drop_duplicates('equipment')
+
+    if not df_filtered.empty:
+        result_dict = df_filtered.to_dict('records')
         terminals_dict = {}
     
         for idx, result in enumerate(result_dict):
             terminal_dict = {'attributes': 
                             {'equipment': str(result['equipment']), 
-                            'equipment_type': str(result['equipment_type']),
-                            't_type': str(result['t_type'])}
+                            'equipment_type': str(result['equipment_type'])}
                         }  
             terminal_dict['selected'] = False 
             terminals_dict[f"terminal_path_{idx+1}"] = terminal_dict
@@ -173,14 +193,19 @@ def update_yaml_config(section, new_content, filepath):
 control_soo = {}
 yaml_path = './readfiles/config.yaml'
 water_loop = "cooling"
-brick_point = 'brick:Run_Enable_Command'
+
+seq_name = ['run:fan_enable', 'check:fan_status']
+brick_point = ['brick:Run_Enable_Command', 'brick:Fan_On_Off_Status']
 equipment_type = 'brick:Supply_Fan'
 ahu_dict = query_ahu_user(water_loop, brick_point, equipment_type)
-write_yaml_config(ahu_dict, yaml_path)
+if ahu_dict == {}:
+    print("no air handling units found, please modify query")
+else:
+    write_yaml_config(ahu_dict, yaml_path)
 
 # %%
 ahu_path_keys = []
-bacnet_update = []
+bacnet_update_ahu = []
 selected = {}
 config = load_yaml_config(yaml_path)
 for key, value in config.items():
@@ -196,50 +221,61 @@ for key, value in config.items():
                               'equipment':str(equipment)}})
 
         bacnet_return = query_bacnet_user(brick_point, equipment)
-        obj_name = str(rdflib.URIRef(bacnet_return['obj_name']))
-        fan_soo = {brick_point: bacnet_return} 
-        control_soo[f"{str(equipment)}"] = fan_soo
-        bacnet_update.append(obj_name)
+        bacnet = {}
+        for idx in range(len(seq_name)):
+            obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
+            fan_soo = {brick_point[idx]: bacnet_return[idx]} 
+            control_soo[seq_name[idx]] = fan_soo
+            bacnet.update({seq_name[idx]:obj_name})
+        bacnet_update_ahu.append(bacnet)
         ahu_path_keys.append(key)
 
 # %%
 for idx in range(len(ahu_path_keys)):
-    update_yaml_config([ahu_path_keys[idx]], {'bacnet_name': bacnet_update[idx]}, yaml_path)
+    update_yaml_config([ahu_path_keys[idx]], bacnet_update_ahu[idx], yaml_path)
 
 # %%
-brick_point = 'brick:Supply_Air_Flow_Sensor'
-terminal_use_type = 'brick:VAV'
-
+brick_point = ['brick:Supply_Air_Flow_Sensor', 'brick:Supply_Air_Temperature_Sensor']
+terminal_use_type = 'brick:Terminal_Unit'
+seq_name = ['check:diffuser_airflow', 'check:diffuser_airtemp']
 for idx, ahu in selected.items():
     terminal_dict = query_terminal_user(rdflib.URIRef(ahu['ahu']), terminal_use_type, brick_point)
-    update_yaml_config([idx], terminal_dict, yaml_path)
+    if terminal_dict == {}:
+        print("no downstream terminal found")
+    else:
+        update_yaml_config([idx], terminal_dict, yaml_path)
 
 # %%
-bacnet_update = []
+bacnet_update_ahu = []
 terminal_path_keys = []
 config = load_yaml_config(yaml_path)
 for key, value in config.items():
     if value['selected']:
+        bacnet_update_terminal = []
         for terminal_key, terminal_value in value.items():
-            if 'terminal' in terminal_key:
+            if ('terminal' in terminal_key):
+                if terminal_value['selected']:
+                    equipment = rdflib.URIRef(terminal_value['attributes']['equipment'])
 
-                equipment = rdflib.URIRef(terminal_value['attributes']['equipment'])
-                t_type = rdflib.URIRef(terminal_value['attributes']['t_type'])
+                    selected[key].update({terminal_key: {'terminal':terminal_value, 
+                                                        'equipment':str(equipment)}})
 
-                selected[key].update({terminal_key: {'terminal':terminal_value, 
-                                                     'equipment':str(equipment)}})
+                    terminal_path_keys.append(terminal_key)
+                    bacnet_return = query_bacnet_user(brick_point, equipment)
+                    bacnet = {}
+                    for idx in range(len(seq_name)):
+                        obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
+                        fan_soo = {brick_point[idx]: bacnet_return[idx]} 
+                        control_soo[seq_name[idx]] = fan_soo
+                        bacnet.update({seq_name[idx]:obj_name})
 
-                terminal_path_keys.append(terminal_key)
-                bacnet_return = query_bacnet_user(brick_point, equipment)
-                obj_name = str(rdflib.URIRef(bacnet_return['obj_name']))
-                terminal_soo = {brick_point: bacnet_return} 
-                control_soo[f"{str(equipment)}"] = terminal_soo
-                bacnet_update.append(obj_name)
+                    bacnet_update_terminal.append(bacnet)
+        bacnet_update_ahu.append(bacnet_update_terminal)
 
 
 # %%
 for idx in range(len(ahu_path_keys)):
-    for idx in range(len(terminal_path_keys)):
-        update_yaml_config([ahu_path_keys[idx], terminal_path_keys[idx]], {'bacnet_name': bacnet_update[idx]}, yaml_path)
+    for jdx in range(len(terminal_path_keys)):
+        update_yaml_config([ahu_path_keys[idx], terminal_path_keys[jdx]], bacnet_update_ahu[idx][jdx], yaml_path)
 
 # %%
