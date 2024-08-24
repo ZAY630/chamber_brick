@@ -2,7 +2,7 @@ ahu_path_1:
   check:fan_status: sf_status_10
   path:
     ahu: http://berkeley.edu/climatechamber#AHU_C
-    coil: http://berkeley.edu/climatechamber#CHW_SC_coil
+    coil: http://berkeley.edu/climatechamber#CHW_coil
     equipment: http://berkeley.edu/climatechamber#fan_supply
     plant: http://berkeley.edu/climatechamber#CH_1
     water_loop: http://berkeley.edu/climatechamber#SCHW_L

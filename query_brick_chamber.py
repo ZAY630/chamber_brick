@@ -190,6 +190,7 @@ def update_yaml_config(section, new_content, filepath):
     write_yaml_config(config, filepath)
     
 # %%
+
 control_soo = {}
 yaml_path = './readfiles/config.yaml'
 water_loop = "cooling"
@@ -201,9 +202,11 @@ ahu_dict = query_ahu_user(water_loop, brick_point, equipment_type)
 if ahu_dict == {}:
     print("no air handling units found, please modify query")
 else:
+    print("query returned, check config.yaml file")
     write_yaml_config(ahu_dict, yaml_path)
 
 # %%
+import pdb; pdb.set_trace()
 ahu_path_keys = []
 bacnet_update_ahu = []
 selected = {}
@@ -218,7 +221,7 @@ for key, value in config.items():
         equipment = rdflib.URIRef(value['path']['equipment'])
 
         selected.update({key:{'ahu':str(ahu),
-                              'equipment':str(equipment)}})
+                            'equipment':str(equipment)}})
 
         bacnet_return = query_bacnet_user(brick_point, equipment)
         bacnet = {}
@@ -243,9 +246,11 @@ for idx, ahu in selected.items():
     if terminal_dict == {}:
         print("no downstream terminal found")
     else:
+        print("query returned, check config.yaml file")
         update_yaml_config([idx], terminal_dict, yaml_path)
 
 # %%
+import pdb; pdb.set_trace()
 bacnet_update_ahu = []
 terminal_path_keys = []
 config = load_yaml_config(yaml_path)
@@ -279,3 +284,5 @@ for idx in range(len(ahu_path_keys)):
         update_yaml_config([ahu_path_keys[idx], terminal_path_keys[jdx]], bacnet_update_ahu[idx][jdx], yaml_path)
 
 # %%
+if __name__ == "__main__":
+    print("running queries ......")
