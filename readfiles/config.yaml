@@ -1,25 +1,32 @@
 ahu_path_1:
-  check:fan_status: sf_status_10
   path:
-    ahu: http://berkeley.edu/climatechamber#AHU_C
-    coil: http://berkeley.edu/climatechamber#CHW_coil
-    equipment: http://berkeley.edu/climatechamber#fan_supply
     plant: http://berkeley.edu/climatechamber#CH_1
     water_loop: http://berkeley.edu/climatechamber#SCHW_L
-  run:fan_enable: sf_enable_10
+    coil: http://berkeley.edu/climatechamber#CHW_coil
+    ahu: http://berkeley.edu/climatechamber#AHU_C
+    equipment: http://berkeley.edu/climatechamber#fan_supply
   selected: true
+  operation:
+    check:fan_status: sf_status_10
+  equipment_path_1:
+    attributes:
+      equipment: http://berkeley.edu/climatechamber#VFD_supply
+      equipment_type: https://brickschema.org/schema/Brick#Fan_VFD
+    selected: true
+    operation:
+      write:fan_speed: sf_vfd_spd_10
   terminal_path_1:
     attributes:
       equipment: http://berkeley.edu/climatechamber#OH_diffuser
       equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
-    check:diffuser_airflow: oh_airflow_10
-    check:diffuser_airtemp: overhead_sa_temp_10
     selected: true
+    operation:
+      check:diffuser_airtemp: overhead_sa_temp_10
 ahu_path_2:
   path:
-    ahu: http://berkeley.edu/climatechamber#AHU_A
-    coil: http://berkeley.edu/climatechamber#CHW_A_coil
-    equipment: http://berkeley.edu/climatechamber#fan_A_supply
     plant: http://berkeley.edu/climatechamber#CH_1
     water_loop: http://berkeley.edu/climatechamber#SCHW_L
+    coil: http://berkeley.edu/climatechamber#CHW_A_coil
+    ahu: http://berkeley.edu/climatechamber#AHU_A
+    equipment: http://berkeley.edu/climatechamber#fan_A_supply
   selected: false

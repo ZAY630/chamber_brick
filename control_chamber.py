@@ -17,4 +17,5 @@ import query_brick_chamber
 # %%
 control_soo = query_brick_chamber.control_soo
 selected = query_brick_chamber.selected
+
 # %%

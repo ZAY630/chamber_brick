@@ -9,7 +9,7 @@ g = brickschema.Graph()
 g.load_file('chamber_shacl_expanded.ttl')
 
 # %%
-def query_ahu_user(loop, brick_point, equipment_type):
+def query_ahu_path(loop, brick_point, equipment_type):
     """
     return ahu
     """
@@ -62,6 +62,60 @@ def query_ahu_user(loop, brick_point, equipment_type):
 
     return ahus_dict
     
+
+def query_specific_user(upstream, equipment_use_type, brick_point):
+    """
+    return all terminal units for selected equipment
+    """
+    q_results = []
+
+    for point in brick_point:
+
+        query = f""" SELECT ?equipment ?equipment_type ?t_type WHERE {{
+        VALUES ?equipment_type {{ { equipment_use_type } }}
+        VALUES ?t_type {{ {point} }} 
+
+            ?upstream   brick:hasPart                 ?equipment .
+            ?equipment  rdf:type/rdfs:subClassOf*     ?equipment_type .
+            ?equipment  brick:hasPoint                ?point .
+            ?point      rdf:type/rdfs:subClassOf?     ?t_type .
+            ?point      brick:hasUnit                 ?point_unit .
+
+            ?point      ref:hasExternalReference      ?ref.
+            ?ref        bacnet:object-name            ?obj_name .
+            ?ref        bacnet:object-identifier      ?obj_identifier .
+            ?ref        bacnet:objectOf               ?obj_device .
+            ?obj_device bacnet:hasPort                ?ref_port .
+            ?ref_port   ref:storedAt                  ?bacnet_address .
+
+        }}"""
+
+        q_result = g.query(query, initBindings={"upstream": upstream})
+        q_results = q_results + list(q_result)
+    
+    df_result = pd.DataFrame(q_results, columns=[str(s) for s in q_result.vars])
+    value_counts = df_result['equipment'].value_counts()
+
+    to_remove = value_counts[value_counts < len(seq_name)].index
+    df_filtered = df_result[~df_result['equipment'].isin(to_remove)]
+    df_filtered = df_filtered.drop_duplicates('equipment')
+
+    if not df_filtered.empty:
+        result_dict = df_filtered.to_dict('records')
+        equipments_dict = {}
+    
+        for idx, result in enumerate(result_dict):
+            equipment_dict = {'attributes': 
+                            {'equipment': str(result['equipment']), 
+                            'equipment_type': str(result['equipment_type'])}
+                        }  
+            equipment_dict['selected'] = False 
+            equipments_dict[f"equipment_path_{idx+1}"] = equipment_dict
+    
+    else:
+        equipments_dict = {}
+
+    return equipments_dict
 
 
 def query_bacnet_user(brick_point, equipment):
@@ -164,7 +218,7 @@ def write_yaml_config(results_dict, filepath):
     """
 
     with open(filepath, 'w') as file:
-        yaml.dump(results_dict, file)
+        yaml.dump(results_dict, file, sort_keys=False)
 
 
 def load_yaml_config(filepath):
@@ -190,7 +244,6 @@ def update_yaml_config(section, new_content, filepath):
     write_yaml_config(config, filepath)
     
 # %%
-
 control_soo = {}
 yaml_path = './readfiles/config.yaml'
 water_loop = "cooling"
@@ -198,7 +251,7 @@ water_loop = "cooling"
 seq_name = ['run:fan_enable', 'check:fan_status']
 brick_point = ['brick:Run_Enable_Command', 'brick:Fan_On_Off_Status']
 equipment_type = 'brick:Supply_Fan'
-ahu_dict = query_ahu_user(water_loop, brick_point, equipment_type)
+ahu_dict = query_ahu_path(water_loop, brick_point, equipment_type)
 if ahu_dict == {}:
     print("no air handling units found, please modify query")
 else:
@@ -229,13 +282,59 @@ for key, value in config.items():
             obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
             fan_soo = {brick_point[idx]: bacnet_return[idx]} 
             control_soo[seq_name[idx]] = fan_soo
-            bacnet.update({seq_name[idx]:obj_name})
+            bacnet.update({'operation': {seq_name[idx]:obj_name}})
         bacnet_update_ahu.append(bacnet)
         ahu_path_keys.append(key)
 
 # %%
 for idx in range(len(ahu_path_keys)):
     update_yaml_config([ahu_path_keys[idx]], bacnet_update_ahu[idx], yaml_path)
+
+# %%
+brick_point = ['brick:Fan_Speed_Command']
+specific_user_type = 'brick:Fan_VFD'
+seq_name = ['write:fan_speed']
+
+for idx, ahu in selected.items():
+    specific_user_dict = query_specific_user(rdflib.URIRef(ahu['equipment']), specific_user_type, brick_point)
+    if specific_user_dict == {}:
+        print("no equipment found")
+    else:
+        print("query returned, check config.yaml file")
+        update_yaml_config([idx], specific_user_dict, yaml_path)
+
+# %%
+import pdb; pdb.set_trace()
+bacnet_update_ahu = []
+specific_user_path_keys = []
+config = load_yaml_config(yaml_path)
+for key, value in config.items():
+    if value['selected']:
+        bacnet_update_specific_user = []
+        for specific_user_key, specific_user_value in value.items():
+            if ('equipment_path' in specific_user_key):
+                if specific_user_value['selected']:
+                    equipment = rdflib.URIRef(specific_user_value['attributes']['equipment'])
+
+                    selected[key].update({specific_user_key: {'specific_user':specific_user_value, 
+                                                        'equipment':str(equipment)}})
+
+                    specific_user_path_keys.append(specific_user_key)
+                    bacnet_return = query_bacnet_user(brick_point, equipment)
+                    bacnet = {}
+                    for idx in range(len(seq_name)):
+                        obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
+                        fan_soo = {brick_point[idx]: bacnet_return[idx]} 
+                        control_soo[seq_name[idx]] = fan_soo
+                        bacnet.update({'operation': {seq_name[idx]:obj_name}})
+
+                    bacnet_update_specific_user.append(bacnet)
+        bacnet_update_ahu.append(bacnet_update_specific_user)
+
+# %%
+for idx in range(len(ahu_path_keys)):
+    for jdx in range(len(specific_user_path_keys)):
+        update_yaml_config([ahu_path_keys[idx], specific_user_path_keys[jdx]], bacnet_update_ahu[idx][jdx], yaml_path)
 
 # %%
 brick_point = ['brick:Supply_Air_Flow_Sensor', 'brick:Supply_Air_Temperature_Sensor']
@@ -272,7 +371,7 @@ for key, value in config.items():
                         obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
                         fan_soo = {brick_point[idx]: bacnet_return[idx]} 
                         control_soo[seq_name[idx]] = fan_soo
-                        bacnet.update({seq_name[idx]:obj_name})
+                        bacnet.update({'operation': {seq_name[idx]:obj_name}})
 
                     bacnet_update_terminal.append(bacnet)
         bacnet_update_ahu.append(bacnet_update_terminal)

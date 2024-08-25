@@ -204,6 +204,7 @@ def make():
     g.add((CHB["AHU_C"], BRICK.hasPart, CHB["damper_supply"]))
     g.add((CHB["AHU_C"], BRICK.hasPart, CHB["fan_supply"]))
     g.add((CHB["AHU_C"], BRICK.hasPart, CHB["damper_out"]))
+    g.add((CHB["AHU_C"], BRICK.hasPart, CHB["VFD_supply"]))
     g.add((CHB["fan_exhaust"], BRICK.hasPart, CHB["VFD_exhaust"]))
     g.add((CHB["damper_out"], BRICK.feeds, CHB["fan_supply"]))
     g.add((CHB["fan_supply"], BRICK.feeds, CHB["damper_supply"]))
