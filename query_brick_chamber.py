@@ -9,7 +9,7 @@ g = brickschema.Graph()
 g.load_file('chamber_shacl_expanded.ttl')
 
 # %%
-def query_ahu_path(loop, brick_point, equipment_type):
+def query_ahu_path(loop, brick_point, equipment_type, additional_filter=""""""):
     """
     return ahu
     """
@@ -30,7 +30,8 @@ def query_ahu_path(loop, brick_point, equipment_type):
                         ?ahu                    brick:hasPart               ?equipment .
                         ?equipment              rdf:type/rdfs:subClassOf?   ?equipment_type .
                         ?equipment              brick:hasPoint              ?point .
-                        ?point                  rdf:type/rdfs:subClassOf?   ?t_type .                  
+                        ?point                  rdf:type/rdfs:subClassOf?   ?t_type .  
+                        {additional_filter}                
                     }}"""
             )
             queries = queries + list(query)
@@ -63,7 +64,7 @@ def query_ahu_path(loop, brick_point, equipment_type):
     return ahus_dict
     
 
-def query_specific_user(upstream, equipment_use_type, brick_point):
+def query_specific_user(upstream, equipment_use_type, brick_point, name, additional_filter=""""""):
     """
     return all terminal units for selected equipment
     """
@@ -87,7 +88,7 @@ def query_specific_user(upstream, equipment_use_type, brick_point):
             ?ref        bacnet:objectOf               ?obj_device .
             ?obj_device bacnet:hasPort                ?ref_port .
             ?ref_port   ref:storedAt                  ?bacnet_address .
-
+            {additional_filter}
         }}"""
 
         q_result = g.query(query, initBindings={"upstream": upstream})
@@ -110,7 +111,7 @@ def query_specific_user(upstream, equipment_use_type, brick_point):
                             'equipment_type': str(result['equipment_type'])}
                         }  
             equipment_dict['selected'] = False 
-            equipments_dict[f"equipment_path_{idx+1}"] = equipment_dict
+            equipments_dict[f"{name}_path_{idx+1}"] = equipment_dict
     
     else:
         equipments_dict = {}
@@ -156,7 +157,7 @@ def query_bacnet_user(brick_point, equipment):
 
 
 
-def query_terminal_user(ahu, terminal_use_type, brick_point):
+def query_terminal_user(ahu, terminal_use_type, brick_point, additional_filter=""""""):
     """
     return all terminal units for selected equipment
     """
@@ -180,7 +181,7 @@ def query_terminal_user(ahu, terminal_use_type, brick_point):
             ?ref        bacnet:objectOf               ?obj_device .
             ?obj_device bacnet:hasPort                ?ref_port .
             ?ref_port   ref:storedAt                  ?bacnet_address .
-
+            {additional_filter}
         }}"""
 
         q_result = g.query(query, initBindings={"ahu": ahu})
@@ -234,8 +235,12 @@ def load_yaml_config(filepath):
 def update_yaml_config(section, new_content, filepath):
 
     config = load_yaml_config(filepath)
-    if len(section) > 1:
+    if len(section) == 2:
         section_value = config.get(section[0]).get(section[1])
+    elif len(section) == 3:
+        section_value = config.get(section[0]).get(section[1]).get(section[2])
+    elif len(section) == 4:
+        section_value = config.get(section[0]).get(section[1]).get(section[2]).get(section[3])
     else:
         section_value = config.get(section[0])
 
@@ -259,12 +264,12 @@ else:
     write_yaml_config(ahu_dict, yaml_path)
 
 # %%
-import pdb; pdb.set_trace()
-ahu_path_keys = []
-bacnet_update_ahu = []
+# import pdb; pdb.set_trace()
+
 selected = {}
 config = load_yaml_config(yaml_path)
 for key, value in config.items():
+
     if value['selected']:
 
         plant = rdflib.URIRef(value['path']['plant'])
@@ -282,106 +287,163 @@ for key, value in config.items():
             obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
             fan_soo = {brick_point[idx]: bacnet_return[idx]} 
             control_soo[seq_name[idx]] = fan_soo
-            bacnet.update({'operation': {seq_name[idx]:obj_name}})
-        bacnet_update_ahu.append(bacnet)
-        ahu_path_keys.append(key)
+            bacnet.update({f'operation_{idx+1}': {seq_name[idx]:obj_name}})
+
+        ahu_path_key = key
+        ahu_selected = str(ahu)
 
 # %%
-for idx in range(len(ahu_path_keys)):
-    update_yaml_config([ahu_path_keys[idx]], bacnet_update_ahu[idx], yaml_path)
+update_yaml_config([ahu_path_key], bacnet, yaml_path)
 
 # %%
 brick_point = ['brick:Fan_Speed_Command']
 specific_user_type = 'brick:Fan_VFD'
 seq_name = ['write:fan_speed']
+name = 'VFD'
 
-for idx, ahu in selected.items():
-    specific_user_dict = query_specific_user(rdflib.URIRef(ahu['equipment']), specific_user_type, brick_point)
-    if specific_user_dict == {}:
-        print("no equipment found")
-    else:
-        print("query returned, check config.yaml file")
-        update_yaml_config([idx], specific_user_dict, yaml_path)
+specific_user_dict = query_specific_user(rdflib.URIRef(ahu_selected), specific_user_type, brick_point, name)
+if specific_user_dict == {}:
+    print("no equipment found")
+else:
+    print("query returned, check config.yaml file")
+    update_yaml_config([ahu_path_key], specific_user_dict, yaml_path)
 
 # %%
-import pdb; pdb.set_trace()
-bacnet_update_ahu = []
-specific_user_path_keys = []
+# import pdb; pdb.set_trace()
 config = load_yaml_config(yaml_path)
-for key, value in config.items():
-    if value['selected']:
-        bacnet_update_specific_user = []
-        for specific_user_key, specific_user_value in value.items():
-            if ('equipment_path' in specific_user_key):
-                if specific_user_value['selected']:
-                    equipment = rdflib.URIRef(specific_user_value['attributes']['equipment'])
+ahu_path = config[ahu_path_key]
+for key, value in ahu_path.items():
+    if (f'{name}_path' in key):
+        if value['selected']:
+            equipment = rdflib.URIRef(value['attributes']['equipment'])
 
-                    selected[key].update({specific_user_key: {'specific_user':specific_user_value, 
-                                                        'equipment':str(equipment)}})
+            selected[ahu_path_key].update({key: {'specific_user':value, 
+                                                'equipment':str(equipment)}})
 
-                    specific_user_path_keys.append(specific_user_key)
-                    bacnet_return = query_bacnet_user(brick_point, equipment)
-                    bacnet = {}
-                    for idx in range(len(seq_name)):
-                        obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
-                        fan_soo = {brick_point[idx]: bacnet_return[idx]} 
-                        control_soo[seq_name[idx]] = fan_soo
-                        bacnet.update({'operation': {seq_name[idx]:obj_name}})
-
-                    bacnet_update_specific_user.append(bacnet)
-        bacnet_update_ahu.append(bacnet_update_specific_user)
+            specific_user_path_key = key
+            bacnet_return = query_bacnet_user(brick_point, equipment)
+            bacnet = {}
+            for idx in range(len(seq_name)):
+                obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
+                fan_soo = {brick_point[idx]: bacnet_return[idx]} 
+                control_soo[seq_name[idx]] = fan_soo
+                bacnet.update({f'operation_{idx+1}': {seq_name[idx]:obj_name}})
 
 # %%
-for idx in range(len(ahu_path_keys)):
-    for jdx in range(len(specific_user_path_keys)):
-        update_yaml_config([ahu_path_keys[idx], specific_user_path_keys[jdx]], bacnet_update_ahu[idx][jdx], yaml_path)
+update_yaml_config([ahu_path_key, specific_user_path_key], bacnet, yaml_path)
 
 # %%
-brick_point = ['brick:Supply_Air_Flow_Sensor', 'brick:Supply_Air_Temperature_Sensor']
+brick_point = ['brick:Damper_Position_Sensor']
+specific_user_type = 'brick:Damper'
+seq_name = ['write:supply_damper_position']
+name = 'Damper'
+
+specific_user_dict = query_specific_user(rdflib.URIRef(ahu_selected), specific_user_type, brick_point, name)
+if specific_user_dict == {}:
+    print("no equipment found")
+else:
+    print("query returned, check config.yaml file")
+    update_yaml_config([ahu_path_key], specific_user_dict, yaml_path)
+
+# %%
+# import pdb; pdb.set_trace()
+config = load_yaml_config(yaml_path)
+ahu_path = config[ahu_path_key]
+for key, value in ahu_path.items():
+    if (f'{name}_path' in key):
+        if value['selected']:
+            equipment = rdflib.URIRef(value['attributes']['equipment'])
+
+            selected[ahu_path_key].update({key: {'specific_user':value, 
+                                                'equipment':str(equipment)}})
+
+            specific_user_path_key = key
+            bacnet_return = query_bacnet_user(brick_point, equipment)
+            bacnet = {}
+            for idx in range(len(seq_name)):
+                obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
+                fan_soo = {brick_point[idx]: bacnet_return[idx]} 
+                control_soo[seq_name[idx]] = fan_soo
+                bacnet.update({f'operation_{idx+1}': {seq_name[idx]:obj_name}})
+
+# %%
+update_yaml_config([ahu_path_key, specific_user_path_key], bacnet, yaml_path)
+
+# %%
+brick_point = ['brick:Supply_Air_Flow_Sensor']
 terminal_use_type = 'brick:Terminal_Unit'
-seq_name = ['check:diffuser_airflow', 'check:diffuser_airtemp']
-for idx, ahu in selected.items():
-    terminal_dict = query_terminal_user(rdflib.URIRef(ahu['ahu']), terminal_use_type, brick_point)
-    if terminal_dict == {}:
+seq_name = ['check:diffuser_airflow']
+name = 'terminal'
+terminal_dict = query_terminal_user(rdflib.URIRef(ahu_selected), terminal_use_type, brick_point)
+if terminal_dict == {}:
+    print("no downstream terminal found")
+else:
+    print("query returned, check config.yaml file")
+    update_yaml_config([ahu_path_key], {'terminal':{}}, yaml_path)
+    update_yaml_config([ahu_path_key, 'terminal'], terminal_dict, yaml_path)
+
+# %%
+# import pdb; pdb.set_trace()
+terminal_path_keys = []
+
+config = load_yaml_config(yaml_path)
+terminal_path = config[ahu_path_key]['terminal']
+terminal_unit = {}
+for key, value in terminal_path.items():
+    if (f'{name}_path' in key):
+        equipment = rdflib.URIRef(value['attributes']['equipment'])
+        terminal_unit.update({key:{'tu':str(equipment)}})
+
+        terminal_path_keys.append(key)
+        bacnet_return = query_bacnet_user(brick_point, equipment)
+        bacnet = {}
+        for idx in range(len(seq_name)):
+            obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
+            fan_soo = {brick_point[idx]: bacnet_return[idx]} 
+            control_soo[seq_name[idx]] = fan_soo
+            bacnet.update({f'operation_{idx+1}': {seq_name[idx]:obj_name}})
+
+        update_yaml_config([ahu_path_key, 'terminal', key], bacnet, yaml_path)
+
+selected[ahu_path_key]['terminal'] = terminal_unit
+
+# %%
+brick_point = ['brick:Damper_Position_Sensor']
+specific_user_type = 'brick:Damper'
+seq_name = ['write:vav_damper_position']
+name = 'VAV_Damper'
+
+for terminal in terminal_path_keys:
+    specific_user_dict = query_specific_user(rdflib.URIRef(selected[ahu_path_key]['terminal'][terminal]['tu']), specific_user_type, brick_point, name)
+    if specific_user_dict == {}:
         print("no downstream terminal found")
     else:
         print("query returned, check config.yaml file")
-        update_yaml_config([idx], terminal_dict, yaml_path)
+        update_yaml_config([ahu_path_key, 'terminal', terminal], specific_user_dict, yaml_path)
 
 # %%
-import pdb; pdb.set_trace()
-bacnet_update_ahu = []
-terminal_path_keys = []
+# import pdb; pdb.set_trace()
 config = load_yaml_config(yaml_path)
-for key, value in config.items():
-    if value['selected']:
-        bacnet_update_terminal = []
-        for terminal_key, terminal_value in value.items():
-            if ('terminal' in terminal_key):
-                if terminal_value['selected']:
-                    equipment = rdflib.URIRef(terminal_value['attributes']['equipment'])
+terminal_path = config[ahu_path_key]['terminal']
+for terminal_key, terminal_value in terminal_path.items():
+    for key, value in terminal_value.items():
+        if (f'{name}_path' in key):
+            equipment = rdflib.URIRef(value['attributes']['equipment'])
 
-                    selected[key].update({terminal_key: {'terminal':terminal_value, 
-                                                        'equipment':str(equipment)}})
+            selected[ahu_path_key]['terminal'][terminal_key].update({key: {'specific_user':value, 
+                                                'equipment':str(equipment)}})
 
-                    terminal_path_keys.append(terminal_key)
-                    bacnet_return = query_bacnet_user(brick_point, equipment)
-                    bacnet = {}
-                    for idx in range(len(seq_name)):
-                        obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
-                        fan_soo = {brick_point[idx]: bacnet_return[idx]} 
-                        control_soo[seq_name[idx]] = fan_soo
-                        bacnet.update({'operation': {seq_name[idx]:obj_name}})
+            specific_user_path_key = key
+            bacnet_return = query_bacnet_user(brick_point, equipment)
+            bacnet = {}
+            for idx in range(len(seq_name)):
+                obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
+                fan_soo = {brick_point[idx]: bacnet_return[idx]} 
+                control_soo[seq_name[idx]] = fan_soo
+                bacnet.update({f'operation_{idx+1}': {seq_name[idx]:obj_name}})
 
-                    bacnet_update_terminal.append(bacnet)
-        bacnet_update_ahu.append(bacnet_update_terminal)
-
-
-# %%
-for idx in range(len(ahu_path_keys)):
-    for jdx in range(len(terminal_path_keys)):
-        update_yaml_config([ahu_path_keys[idx], terminal_path_keys[jdx]], bacnet_update_ahu[idx][jdx], yaml_path)
+            update_yaml_config([ahu_path_key, 'terminal', terminal_key, key], bacnet, yaml_path)
 
 # %%
 if __name__ == "__main__":
-    print("running queries ......")
+    print("Finished querying")
