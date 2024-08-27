@@ -2,70 +2,54 @@ ahu_path_1:
   path:
     plant: http://berkeley.edu/climatechamber#CH_1
     water_loop: http://berkeley.edu/climatechamber#SCHW_L
-    coil: http://berkeley.edu/climatechamber#CHW_SC_coil
+    coil: http://berkeley.edu/climatechamber#CHW_coil
     ahu: http://berkeley.edu/climatechamber#AHU_C
     equipment: http://berkeley.edu/climatechamber#fan_supply
-  selected: true
+  user_selected: true
   operation_1:
-    run:fan_enable: sf_enable_10
-  operation_2:
     check:fan_status: sf_status_10
+  operation_2:
+    write:fan_enable: sf_enable_10
   VFD_path_1:
     attributes:
       equipment: http://berkeley.edu/climatechamber#VFD_supply
       equipment_type: https://brickschema.org/schema/Brick#Fan_VFD
-    selected: true
+    user_selected: true
     operation_1:
       write:fan_speed: sf_vfd_spd_10
   Damper_path_1:
     attributes:
-      equipment: http://berkeley.edu/climatechamber#damper_out
-      equipment_type: https://brickschema.org/schema/Brick#Damper
-    selected: false
-  Damper_path_2:
-    attributes:
-      equipment: http://berkeley.edu/climatechamber#damper_return
-      equipment_type: https://brickschema.org/schema/Brick#Damper
-    selected: false
-  Damper_path_3:
-    attributes:
       equipment: http://berkeley.edu/climatechamber#damper_SC_supply
       equipment_type: https://brickschema.org/schema/Brick#Damper
-    selected: false
-  Damper_path_4:
-    attributes:
-      equipment: http://berkeley.edu/climatechamber#damper_exhaust
-      equipment_type: https://brickschema.org/schema/Brick#Damper
-    selected: false
-  Damper_path_5:
-    attributes:
-      equipment: http://berkeley.edu/climatechamber#damper_supply
-      equipment_type: https://brickschema.org/schema/Brick#Damper
-    selected: true
+    user_selected: true
     operation_1:
-      write:supply_damper_position: supply_damper_pos_10
+      check:supply_damper_position: spot_clg_dmpr_pos_ao_6
+    operation_2:
+      write:supply_damper_command: spot_clg_dmpr_pos_ao_6
   terminal:
     terminal_path_1:
       attributes:
-        equipment: http://berkeley.edu/climatechamber#OH_diffuser
-        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
-      selected: false
-      operation_1:
-        check:diffuser_airflow: oh_airflow_10
-    terminal_path_2:
-      attributes:
         equipment: http://berkeley.edu/climatechamber#VAV
         equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
-      selected: false
+      user_selected: false
       operation_1:
         check:diffuser_airflow: vav_cfm_6
       VAV_Damper_path_1:
         attributes:
           equipment: http://berkeley.edu/climatechamber#damper_SC_VAV
           equipment_type: https://brickschema.org/schema/Brick#Damper
-        selected: false
+        user_selected: false
         operation_1:
-          write:vav_damper_position: vav_dmpr_pos_6
+          check:vav_damper_position: vav_dmpr_pos_6
+        operation_2:
+          write:vav_damper_command: vav_dmpr_pos_6
+    terminal_path_2:
+      attributes:
+        equipment: http://berkeley.edu/climatechamber#OH_diffuser
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: oh_airflow_10
 ahu_path_2:
   path:
     plant: http://berkeley.edu/climatechamber#CH_1
@@ -73,4 +57,4 @@ ahu_path_2:
     coil: http://berkeley.edu/climatechamber#CHW_A_coil
     ahu: http://berkeley.edu/climatechamber#AHU_A
     equipment: http://berkeley.edu/climatechamber#fan_A_supply
-  selected: false
+  user_selected: false

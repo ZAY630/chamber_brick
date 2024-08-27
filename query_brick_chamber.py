@@ -56,7 +56,7 @@ def query_ahu_path(loop, brick_point, equipment_type, additional_filter=""""""):
                        'ahu': str(result['ahu']), 
                        'equipment': str(result['equipment'])}
                        }  
-            ahu_dict['selected'] = False 
+            ahu_dict['user_selected'] = False 
             ahus_dict[f"ahu_path_{idx+1}"] = ahu_dict
     else:
         ahus_dict = {}
@@ -110,7 +110,7 @@ def query_specific_user(upstream, equipment_use_type, brick_point, name, additio
                             {'equipment': str(result['equipment']), 
                             'equipment_type': str(result['equipment_type'])}
                         }  
-            equipment_dict['selected'] = False 
+            equipment_dict['user_selected'] = False 
             equipments_dict[f"{name}_path_{idx+1}"] = equipment_dict
     
     else:
@@ -203,7 +203,7 @@ def query_terminal_user(ahu, terminal_use_type, brick_point, additional_filter="
                             {'equipment': str(result['equipment']), 
                             'equipment_type': str(result['equipment_type'])}
                         }  
-            terminal_dict['selected'] = False 
+            terminal_dict['user_selected'] = False 
             terminals_dict[f"terminal_path_{idx+1}"] = terminal_dict
     
     else:
@@ -253,8 +253,8 @@ control_soo = {}
 yaml_path = './readfiles/config.yaml'
 water_loop = "cooling"
 
-seq_name = ['run:fan_enable', 'check:fan_status']
-brick_point = ['brick:Run_Enable_Command', 'brick:Fan_On_Off_Status']
+seq_name = ['check:fan_status', 'write:fan_enable']
+brick_point = ['brick:Fan_On_Off_Status', 'brick:Run_Enable_Command']
 equipment_type = 'brick:Supply_Fan'
 ahu_dict = query_ahu_path(water_loop, brick_point, equipment_type)
 if ahu_dict == {}:
@@ -264,13 +264,13 @@ else:
     write_yaml_config(ahu_dict, yaml_path)
 
 # %%
-# import pdb; pdb.set_trace()
+import pdb; pdb.set_trace()
 
 selected = {}
 config = load_yaml_config(yaml_path)
 for key, value in config.items():
 
-    if value['selected']:
+    if value['user_selected']:
 
         plant = rdflib.URIRef(value['path']['plant'])
         ahu = rdflib.URIRef(value['path']['ahu'])
@@ -309,12 +309,12 @@ else:
     update_yaml_config([ahu_path_key], specific_user_dict, yaml_path)
 
 # %%
-# import pdb; pdb.set_trace()
+import pdb; pdb.set_trace()
 config = load_yaml_config(yaml_path)
 ahu_path = config[ahu_path_key]
 for key, value in ahu_path.items():
     if (f'{name}_path' in key):
-        if value['selected']:
+        if value['user_selected']:
             equipment = rdflib.URIRef(value['attributes']['equipment'])
 
             selected[ahu_path_key].update({key: {'specific_user':value, 
@@ -333,12 +333,16 @@ for key, value in ahu_path.items():
 update_yaml_config([ahu_path_key, specific_user_path_key], bacnet, yaml_path)
 
 # %%
-brick_point = ['brick:Damper_Position_Sensor']
+brick_point = ['brick:Damper_Position_Sensor', 'brick:Damper_Position_Command']
 specific_user_type = 'brick:Damper'
-seq_name = ['write:supply_damper_position']
+additional_filter = """
+?equipment brick:feeds+ ?vav .
+?vav a brick:VAV .
+"""
+seq_name = ['check:supply_damper_position', 'write:supply_damper_command']
 name = 'Damper'
 
-specific_user_dict = query_specific_user(rdflib.URIRef(ahu_selected), specific_user_type, brick_point, name)
+specific_user_dict = query_specific_user(rdflib.URIRef(ahu_selected), specific_user_type, brick_point, name, additional_filter)
 if specific_user_dict == {}:
     print("no equipment found")
 else:
@@ -346,12 +350,12 @@ else:
     update_yaml_config([ahu_path_key], specific_user_dict, yaml_path)
 
 # %%
-# import pdb; pdb.set_trace()
+import pdb; pdb.set_trace()
 config = load_yaml_config(yaml_path)
 ahu_path = config[ahu_path_key]
 for key, value in ahu_path.items():
     if (f'{name}_path' in key):
-        if value['selected']:
+        if value['user_selected']:
             equipment = rdflib.URIRef(value['attributes']['equipment'])
 
             selected[ahu_path_key].update({key: {'specific_user':value, 
@@ -408,9 +412,9 @@ for key, value in terminal_path.items():
 selected[ahu_path_key]['terminal'] = terminal_unit
 
 # %%
-brick_point = ['brick:Damper_Position_Sensor']
+brick_point = ['brick:Damper_Position_Sensor', 'brick:Damper_Position_Command']
 specific_user_type = 'brick:Damper'
-seq_name = ['write:vav_damper_position']
+seq_name = ['check:vav_damper_position', 'write:vav_damper_command']
 name = 'VAV_Damper'
 
 for terminal in terminal_path_keys:

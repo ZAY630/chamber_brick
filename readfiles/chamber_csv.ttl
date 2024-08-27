@@ -6507,7 +6507,7 @@ chamber:duct_stat_press_ai_10 a brick:Static_Pressure_Sensor ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:ea_dmpr_pos_10 a brick:Damper_Position_Sensor ;
+chamber:ea_dmpr_pos_10 a brick:Damper_Position_Command ;
     brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,10" ;
@@ -6635,7 +6635,7 @@ chamber:mode_10 a brick:Mode_Command ;
             bacnet:object-type "multiStateValue" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:oa_dmpr_pos_10 a brick:Damper_Position_Sensor ;
+chamber:oa_dmpr_pos_10 a brick:Damper_Position_Command ;
     brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,12" ;
@@ -6707,7 +6707,7 @@ chamber:press_stpt_6 a brick:Supply_Air_Static_Pressure_Setpoint ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:ra_dmpr_pos_10 a brick:Damper_Position_Sensor ;
+chamber:ra_dmpr_pos_10 a brick:Damper_Position_Command ;
     brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,13" ;
@@ -6835,7 +6835,7 @@ chamber:spot_cc_temp_6 a brick:Preheat_Supply_Air_Temperature_Sensor ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:spot_clg_dmpr_pos_ao_6 a brick:Damper_Position_Sensor ;
+chamber:spot_clg_dmpr_pos_ao_6 a brick:Damper_Position_Command ;
     brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,4" ;
@@ -6859,7 +6859,7 @@ chamber:spot_clg_vlv_pos_6 a brick:Valve_Position_Sensor ;
             bacnet:object-type "analogOutput" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:supply_damper_pos_10 a brick:Damper_Position_Sensor ;
+chamber:supply_damper_pos_10 a brick:Damper_Position_Command ;
     brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,16" ;
@@ -6906,7 +6906,7 @@ chamber:vav_cfm_6 brick:hasUnit unit:FT3-PER-MIN ;
             bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:vav_dmpr_pos_6 a brick:Damper_Position_Sensor ;
+chamber:vav_dmpr_pos_6 a brick:Damper_Position_Command ;
     brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,6" ;
