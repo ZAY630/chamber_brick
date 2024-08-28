@@ -6,7 +6,7 @@ import rdflib
 
 # %%
 g = brickschema.Graph()
-g.load_file('chamber_shacl_expanded.ttl')
+g.load_file('sdh_2024_shacl_expanded.ttl')
 
 # %%
 def query_ahu_path(loop, brick_point, equipment_type, additional_filter=""""""):
@@ -37,7 +37,7 @@ def query_ahu_path(loop, brick_point, equipment_type, additional_filter=""""""):
             queries = queries + list(query)
 
     df_result = pd.DataFrame(queries, columns=[str(s) for s in query.vars])
-
+    import pdb; pdb.set_trace()
     value_counts = df_result['equipment'].value_counts()
 
     to_remove = value_counts[value_counts < len(seq_name)].index
@@ -282,6 +282,7 @@ for key, value in config.items():
                             'equipment':str(equipment)}})
 
         bacnet_return = query_bacnet_user(brick_point, equipment)
+
         bacnet = {}
         for idx in range(len(seq_name)):
             obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
