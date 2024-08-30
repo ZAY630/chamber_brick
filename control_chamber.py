@@ -40,9 +40,10 @@ verified = True
 # Step 10: restore all conditions
 
 # %%
+import pdb; pdb.set_trace()
 result_dict.update({'step_1':{}})
 
-vav_damper_position = control_soo.get('check:vav_damper_position').get('brick:Damper_Position_Sensor')
+vav_damper_position = control_soo.get('check:vav_damper_position')[1].get('terminal_path_2').get('brick:Damper_Position_Sensor')
 position = BACnet_Point(**vav_damper_position) if bool(vav_damper_position) else vav_damper_position
 values = []
 for i in range(10):
@@ -67,7 +68,7 @@ for i in range(10):
 
 result_dict.get('step_1').update({'supply_damper_value':values})
 
-supply_airflow_rate = control_soo.get('check:diffuser_airflow').get('brick:Supply_Air_Flow_Sensor')
+supply_airflow_rate = control_soo.get('check:diffuser_airflow')[1].get('terminal_path_2').get('brick:Supply_Air_Flow_Sensor')
 vav_afr = BACnet_Point(**supply_airflow_rate) if bool(supply_airflow_rate) else supply_airflow_rate
 values = []
 for i in range(10):
@@ -99,11 +100,12 @@ result_dict.get('step_1').update({'fan_enable':enable_check})
 if (enable_check == 'active') & verified:
     result_dict.get('step_1').update({'verified':True})
 
+import pdb; pdb.set_trace()
 # %%
 if result_dict.get('step_1').get('verified'):
     result_dict.update({'setp_2':{}})
 
-    vav_damper_command = control_soo.get('write:vav_damper_command').get('brick:Damper_Position_Command')
+    vav_damper_command = control_soo.get('write:vav_damper_command')[1].get('terminal_path_2').get('brick:Damper_Position_Command')
     command = BACnet_Point(**vav_damper_command) if bool(vav_damper_command) else vav_damper_command
     command.write_point_value(BACpypesAPP, 100, 13)
 
@@ -143,6 +145,7 @@ if result_dict.get('step_1').get('verified'):
 else:
     print("Step 1 verification failed!")
 
+import pdb; pdb.set_trace()
 # %%
 if result_dict.get('step_2').get('verified'):
     result_dict.update({'setp_3':{}})
@@ -170,11 +173,12 @@ if result_dict.get('step_2').get('verified'):
 else:
     print("Step 2 verification failed!")
 
+import pdb; pdb.set_trace()
 # %%
 if result_dict.get('step_3').get('verified'):
     result_dict.update({'setp_4':{}})
 
-    supply_airflow_rate = control_soo.get('check:diffuser_airflow').get('brick:Supply_Air_Flow_Sensor')
+    supply_airflow_rate = control_soo.get('check:diffuser_airflow')[1].get('terminal_path_2').get('brick:Supply_Air_Flow_Sensor')
     vav_afr = BACnet_Point(**supply_airflow_rate) if bool(supply_airflow_rate) else supply_airflow_rate
     values = []
     for i in range(10):

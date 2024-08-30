@@ -395,19 +395,20 @@ terminal_path = config[ahu_path_key]['terminal']
 terminal_unit = {}
 soo = [[] for _ in range(len(seq_name))]
 
-for key, value in terminal_path.items():
-    if (f'{name}_path' in key):
-
-        equipment = rdflib.URIRef(value['attributes']['equipment'])
-        terminal_unit.update({key:{'tu':str(equipment)}})
-        terminal_path_keys.append(key)
+for terminal_key, terminal_value in terminal_path.items():
+    if (f'{name}_path' in terminal_key):
+        equipment = rdflib.URIRef(terminal_value['attributes']['equipment'])
+        terminal_unit.update({terminal_key:{'tu':str(equipment)}})
+        terminal_path_keys.append(terminal_key)
         bacnet_return = query_bacnet_user(brick_point, equipment)
         bacnet = {}
+
         for idx in range(len(seq_name)):
             obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
-            soo[idx].append({key:{brick_point[idx]:bacnet_return[idx]}})
+            soo[idx].append({terminal_key:{brick_point[idx]:bacnet_return[idx]}})
             bacnet.update({f'operation_{idx+1}': {seq_name[idx]:obj_name}})
-        update_yaml_config([ahu_path_key, 'terminal', key], bacnet, yaml_path)
+        update_yaml_config([ahu_path_key, 'terminal', terminal_key], bacnet, yaml_path)
+
 
 for idx in range(len(seq_name)):
     control_soo.update({seq_name[idx]:soo[idx]})
@@ -433,8 +434,10 @@ config = load_yaml_config(yaml_path)
 terminal_path = config[ahu_path_key]['terminal']
 soo = [[] for _ in range(len(seq_name))]
 for terminal_key, terminal_value in terminal_path.items():
+    found = False
     for key, value in terminal_value.items():
         if (f'{name}_path' in key):
+            found = True
             equipment = rdflib.URIRef(value['attributes']['equipment'])
 
             selected[ahu_path_key]['terminal'][terminal_key].update({key: {'specific_user':value, 
@@ -448,6 +451,10 @@ for terminal_key, terminal_value in terminal_path.items():
                 soo[idx].append({terminal_key:{brick_point[idx]:bacnet_return[idx]}})
                 bacnet.update({f'operation_{idx+1}': {seq_name[idx]:obj_name}})
             update_yaml_config([ahu_path_key, 'terminal', terminal_key, key], bacnet, yaml_path)
+
+    if not found:
+        for idx in range(len(seq_name)):
+            soo[idx].append({terminal_key:{}})
 
 for idx in range(len(seq_name)):
     control_soo.update({seq_name[idx]:soo[idx]})
