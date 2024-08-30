@@ -18,6 +18,8 @@ import query_brick_chamber
 # %%
 control_soo = query_brick_chamber.control_soo
 selected = query_brick_chamber.selected
+selected_ahu = list(selected.keys())[0]
+selected_terminal = list(selected[selected_ahu]['terminal'].keys())
 result_dict = {}
 print(list(control_soo.keys()))
 verified = True
@@ -87,14 +89,14 @@ result_dict.get('step_1').update({'fan_status':value})
 
 supply_fan_enable = control_soo.get('write:fan_enable').get('brick:Run_Enable_Command')
 fan_enable = BACnet_Point(**supply_fan_enable) if bool(supply_fan_enable) else supply_fan_enable
-command = fan_enable.get_point_value(BACpypesAPP)
-if command == 'inactive':
-    command.write_point_value(BACpypesAPP, "active", 13)
+enable_check = fan_enable.get_point_value(BACpypesAPP)
+if enable_check == 'inactive':
+    fan_enable.write_point_value(BACpypesAPP, "active", 13)
 
-command = fan_enable.get_point_value(BACpypesAPP)
-result_dict.get('step_1').update({'fan_enable':command})
+enable_check = fan_enable.get_point_value(BACpypesAPP)
+result_dict.get('step_1').update({'fan_enable':enable_check})
 
-if (command == 'active') & verified:
+if (enable_check == 'active') & verified:
     result_dict.get('step_1').update({'verified':True})
 
 # %%

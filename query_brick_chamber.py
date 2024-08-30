@@ -6,7 +6,7 @@ import rdflib
 
 # %%
 g = brickschema.Graph()
-g.load_file('sdh_2024_shacl_expanded.ttl')
+g.load_file('chamber_shacl_expanded.ttl')
 
 # %%
 def query_ahu_path(loop, brick_point, equipment_type, additional_filter=""""""):
@@ -37,7 +37,7 @@ def query_ahu_path(loop, brick_point, equipment_type, additional_filter=""""""):
             queries = queries + list(query)
 
     df_result = pd.DataFrame(queries, columns=[str(s) for s in query.vars])
-    import pdb; pdb.set_trace()
+
     value_counts = df_result['equipment'].value_counts()
 
     to_remove = value_counts[value_counts < len(seq_name)].index
@@ -286,8 +286,8 @@ for key, value in config.items():
         bacnet = {}
         for idx in range(len(seq_name)):
             obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
-            fan_soo = {brick_point[idx]: bacnet_return[idx]} 
-            control_soo[seq_name[idx]] = fan_soo
+            soo = {brick_point[idx]: bacnet_return[idx]} 
+            control_soo[seq_name[idx]] = soo
             bacnet.update({f'operation_{idx+1}': {seq_name[idx]:obj_name}})
 
         ahu_path_key = key
@@ -326,8 +326,8 @@ for key, value in ahu_path.items():
             bacnet = {}
             for idx in range(len(seq_name)):
                 obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
-                fan_soo = {brick_point[idx]: bacnet_return[idx]} 
-                control_soo[seq_name[idx]] = fan_soo
+                soo = {brick_point[idx]: bacnet_return[idx]} 
+                control_soo[seq_name[idx]] = soo
                 bacnet.update({f'operation_{idx+1}': {seq_name[idx]:obj_name}})
 
 # %%
@@ -367,8 +367,8 @@ for key, value in ahu_path.items():
             bacnet = {}
             for idx in range(len(seq_name)):
                 obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
-                fan_soo = {brick_point[idx]: bacnet_return[idx]} 
-                control_soo[seq_name[idx]] = fan_soo
+                soo = {brick_point[idx]: bacnet_return[idx]} 
+                control_soo[seq_name[idx]] = soo
                 bacnet.update({f'operation_{idx+1}': {seq_name[idx]:obj_name}})
 
 # %%
@@ -388,27 +388,29 @@ else:
     update_yaml_config([ahu_path_key, 'terminal'], terminal_dict, yaml_path)
 
 # %%
-# import pdb; pdb.set_trace()
 terminal_path_keys = []
 
 config = load_yaml_config(yaml_path)
 terminal_path = config[ahu_path_key]['terminal']
 terminal_unit = {}
+soo = [[] for _ in range(len(seq_name))]
+
 for key, value in terminal_path.items():
     if (f'{name}_path' in key):
+
         equipment = rdflib.URIRef(value['attributes']['equipment'])
         terminal_unit.update({key:{'tu':str(equipment)}})
-
         terminal_path_keys.append(key)
         bacnet_return = query_bacnet_user(brick_point, equipment)
         bacnet = {}
         for idx in range(len(seq_name)):
             obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
-            fan_soo = {brick_point[idx]: bacnet_return[idx]} 
-            control_soo[seq_name[idx]] = fan_soo
+            soo[idx].append({key:{brick_point[idx]:bacnet_return[idx]}})
             bacnet.update({f'operation_{idx+1}': {seq_name[idx]:obj_name}})
-
         update_yaml_config([ahu_path_key, 'terminal', key], bacnet, yaml_path)
+
+for idx in range(len(seq_name)):
+    control_soo.update({seq_name[idx]:soo[idx]})
 
 selected[ahu_path_key]['terminal'] = terminal_unit
 
@@ -427,9 +429,9 @@ for terminal in terminal_path_keys:
         update_yaml_config([ahu_path_key, 'terminal', terminal], specific_user_dict, yaml_path)
 
 # %%
-# import pdb; pdb.set_trace()
 config = load_yaml_config(yaml_path)
 terminal_path = config[ahu_path_key]['terminal']
+soo = [[] for _ in range(len(seq_name))]
 for terminal_key, terminal_value in terminal_path.items():
     for key, value in terminal_value.items():
         if (f'{name}_path' in key):
@@ -443,12 +445,14 @@ for terminal_key, terminal_value in terminal_path.items():
             bacnet = {}
             for idx in range(len(seq_name)):
                 obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
-                fan_soo = {brick_point[idx]: bacnet_return[idx]} 
-                control_soo[seq_name[idx]] = fan_soo
+                soo[idx].append({terminal_key:{brick_point[idx]:bacnet_return[idx]}})
                 bacnet.update({f'operation_{idx+1}': {seq_name[idx]:obj_name}})
-
             update_yaml_config([ahu_path_key, 'terminal', terminal_key, key], bacnet, yaml_path)
+
+for idx in range(len(seq_name)):
+    control_soo.update({seq_name[idx]:soo[idx]})
 
 # %%
 if __name__ == "__main__":
     print("Finished querying")
+# %%
