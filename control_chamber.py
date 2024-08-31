@@ -8,8 +8,8 @@ import time
 # g.load_file('chamber_shacl_expanded.ttl')
 
 # %%
-# bacnet_ini_file = '..\\bacpypes\\BACnet_connect.ini'
-# access_bacnet = BACpypesAPP.Init(bacnet_ini_file)
+bacnet_ini_file = '..\\bacpypes\\BACnet_connect.ini'
+access_bacnet = BACpypesAPP.Init(bacnet_ini_file)
 
 
 # %%
@@ -103,7 +103,7 @@ if (enable_check == 'active') & verified:
 import pdb; pdb.set_trace()
 # %%
 if result_dict.get('step_1').get('verified'):
-    result_dict.update({'setp_2':{}})
+    result_dict.update({'step_2':{}})
 
     vav_damper_command = control_soo.get('write:vav_damper_command')[1].get('terminal_path_2').get('brick:Damper_Position_Command')
     command = BACnet_Point(**vav_damper_command) if bool(vav_damper_command) else vav_damper_command
@@ -148,7 +148,7 @@ else:
 import pdb; pdb.set_trace()
 # %%
 if result_dict.get('step_2').get('verified'):
-    result_dict.update({'setp_3':{}})
+    result_dict.update({'step_3':{}})
 
     fan_speed_command = control_soo.get('write:fan_speed').get('brick:Fan_Speed_Command')
     command = BACnet_Point(**fan_speed_command) if bool(fan_speed_command) else fan_speed_command
@@ -160,7 +160,7 @@ if result_dict.get('step_2').get('verified'):
         values.append(value)
         time.sleep(2)
 
-    result_dict.get('step_2').update({'fan_speed_command':values})
+    result_dict.get('step_3').update({'fan_speed_command':values})
 
     if values != []:
         verified = verified * True
@@ -168,7 +168,7 @@ if result_dict.get('step_2').get('verified'):
         verified = False
     
     if verified:
-        result_dict.get('step_2').update({'verified':True})
+        result_dict.get('step_3').update({'verified':True})
 
 else:
     print("Step 2 verification failed!")
@@ -176,7 +176,7 @@ else:
 import pdb; pdb.set_trace()
 # %%
 if result_dict.get('step_3').get('verified'):
-    result_dict.update({'setp_4':{}})
+    result_dict.update({'step_4':{}})
 
     supply_airflow_rate = control_soo.get('check:diffuser_airflow')[1].get('terminal_path_2').get('brick:Supply_Air_Flow_Sensor')
     vav_afr = BACnet_Point(**supply_airflow_rate) if bool(supply_airflow_rate) else supply_airflow_rate
@@ -195,3 +195,5 @@ if result_dict.get('step_3').get('verified'):
 
 else:
     print("Step 3 verification failed!")
+
+import pdb; pdb.set_trace()
