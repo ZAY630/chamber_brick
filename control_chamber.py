@@ -3,9 +3,6 @@ import pandas as pd
 from functions.bacnet_point import BACnet_Point
 import functions.readWriteProperty as BACpypesAPP
 import time
-# %%
-# g = brickschema.Graph()
-# g.load_file('chamber_shacl_expanded.ttl')
 
 # %%
 bacnet_ini_file = '..\\bacpypes\\BACnet_connect.ini'
@@ -22,8 +19,6 @@ selected_ahu = list(selected.keys())[0]
 selected_terminal = list(selected[selected_ahu]['terminal'].keys())
 result_dict = {}
 print(list(control_soo.keys()))
-# %%
-tbcontrolled = [0, 'terminal_path_1']
 verified = True
 # %%
 ############################################
@@ -93,27 +88,31 @@ if (enable_check == 'active') & verified:
     
 import pdb; pdb.set_trace()
 # %%
+tbcontrolled = [0, 'terminal_path_1']
 test = 'Test_1'
 if result_dict.get('Pre').get('verified'):
     result_dict.update({test:{'step_1':{}}})
 
     # open terminal damper position to 100%
     vav_damper_command = control_soo.get('write:vav_damper_command')[tbcontrolled[0]].get(tbcontrolled[1]).get('brick:Damper_Position_Command')
-    command = BACnet_Point(**vav_damper_command) if bool(vav_damper_command) else vav_damper_command
-    command.write_point_value(BACpypesAPP, 100, 13)
+    
+    if vav_damper_command != {}:
 
-    values = []
-    for i in range(3):
-        value = command.get_point_value(BACpypesAPP)
-        values.append(value)
-        time.sleep(2)
+        command = BACnet_Point(**vav_damper_command) if bool(vav_damper_command) else vav_damper_command
+        command.write_point_value(BACpypesAPP, 100, 13)
 
-    result_dict.get(test).get('step_1').update({'vav_damper_position':values})
+        values = []
+        for i in range(3):
+            value = command.get_point_value(BACpypesAPP)
+            values.append(value)
+            time.sleep(2)
 
-    if values != []:
-        verified = verified * True
-    else:
-        verified = False
+        result_dict.get(test).get('step_1').update({'vav_damper_position':values})
+
+        if values != []:
+            verified = verified * True
+        else:
+            verified = False
 
     # read terminal supply airflow rate for baseline
     supply_airflow_rate = control_soo.get('check:diffuser_airflow')[tbcontrolled[0]].get(tbcontrolled[1]).get('brick:Supply_Air_Flow_Sensor')
@@ -180,12 +179,15 @@ if result_dict.get(test).get('step_2').get('verified'):
         values.append(value)
         time.sleep(5)
 
+    result_dict.get(test).get('step_3').update({'airflow_rate_value':values})
+
     if values != []:
         verified = verified * True
     else:
         verified = False
 
-    result_dict.get(test).get('step_3').update({'airflow_rate_value':values})
+    if verified:
+        result_dict.get(test).get('step_3').update({'verified':True})
 
 else:
     print("Step 2 verification failed!")
@@ -215,21 +217,22 @@ if result_dict.get(test).get('step_3').get('verified'):
     
     # reduce terminal damper position to 0%
     vav_damper_command = control_soo.get('write:vav_damper_command')[tbcontrolled[0]].get(tbcontrolled[1]).get('brick:Damper_Position_Command')
-    command = BACnet_Point(**vav_damper_command) if bool(vav_damper_command) else vav_damper_command
-    command.write_point_value(BACpypesAPP, 0, 13)
+    if vav_damper_command != {}:
+        command = BACnet_Point(**vav_damper_command) if bool(vav_damper_command) else vav_damper_command
+        command.write_point_value(BACpypesAPP, 0, 13)
 
-    values = []
-    for i in range(3):
-        value = command.get_point_value(BACpypesAPP)
-        values.append(value)
-        time.sleep(2)
+        values = []
+        for i in range(3):
+            value = command.get_point_value(BACpypesAPP)
+            values.append(value)
+            time.sleep(2)
 
-    result_dict.get(test).get('step_4').update({'vav_damper_position':values})
+        result_dict.get(test).get('step_4').update({'vav_damper_position':values})
 
-    if values != []:
-        verified = verified * True
-    else:
-        verified = False
+        if values != []:
+            verified = verified * True
+        else:
+            verified = False
     
     if verified:
         result_dict.get(test).get('step_4').update({'verified':True})
