@@ -2,7 +2,7 @@ ahu_path_1:
   path:
     plant: http://berkeley.edu/climatechamber#CH_1
     water_loop: http://berkeley.edu/climatechamber#SCHW_L
-    coil: http://berkeley.edu/climatechamber#CHW_coil
+    coil: http://berkeley.edu/climatechamber#CHW_SC_coil
     ahu: http://berkeley.edu/climatechamber#AHU_C
     equipment: http://berkeley.edu/climatechamber#fan_supply
   user_selected: true
