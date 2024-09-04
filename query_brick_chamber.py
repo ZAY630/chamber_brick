@@ -284,8 +284,8 @@ control_soo = {}
 yaml_path = './readfiles/config.yaml'
 water_loop = "cooling"
 
-seq_name = ['check:fan_status', 'write:fan_enable']
-brick_point = ['brick:Fan_On_Off_Status', 'brick:Run_Enable_Command']
+seq_name = ['check:fan_status']
+brick_point = ['brick:Fan_On_Off_Status']
 equipment_type = 'brick:Supply_Fan'
 ahu_dict = query_ahu_path(water_loop, brick_point, equipment_type)
 if ahu_dict == {}:
@@ -328,9 +328,9 @@ for key, value in config.items():
 update_yaml_config([ahu_path_key], bacnet, yaml_path)
 
 # %%
-brick_point = ['brick:Fan_Speed_Command']
+brick_point = ['brick:Run_Enable_Command', 'brick:Fan_Speed_Command']
 specific_user_type = 'brick:Fan_VFD'
-seq_name = ['write:fan_speed']
+seq_name = ['write:vfd_enable', 'write:fan_speed']
 name = 'VFD'
 
 specific_user_dict = query_specific_user(rdflib.URIRef(ahu_selected), specific_user_type, brick_point, name, query_relaxation = False)

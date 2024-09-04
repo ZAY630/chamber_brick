@@ -8,14 +8,14 @@ ahu_path_1:
   user_selected: true
   operation_1:
     check:fan_status: sf_status_10
-  operation_2:
-    write:fan_enable: sf_enable_10
   VFD_path_1:
     attributes:
       equipment: http://berkeley.edu/climatechamber#VFD_supply
       equipment_type: https://brickschema.org/schema/Brick#Fan_VFD
     user_selected: true
     operation_1:
+      write:vfd_enable: sf_enable_10
+    operation_2:
       write:fan_speed: sf_vfd_spd_10
   Damper_path_1:
     attributes:

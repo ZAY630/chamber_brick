@@ -301,7 +301,7 @@ def make():
     g.add((CHB["VFD_supply"], BRICK.hasPoint, CHB["run_stop_8"]))
     g.add((CHB["VFD_supply"], BRICK.hasPoint, CHB["run_enable_8"]))
     g.add((CHB["fan_supply"], BRICK.hasPoint, CHB["sf_status_10"]))
-    g.add((CHB["fan_supply"], BRICK.hasPoint, CHB["sf_enable_10"]))
+    g.add((CHB["VFD_supply"], BRICK.hasPoint, CHB["sf_enable_10"]))
     g.add((CHB["damper_supply"], BRICK.hasPoint, CHB["supply_damper_pos_10"]))
     g.add((CHB["AHU_C"], BRICK.hasPoint, CHB["chamber_cc_temp_10"]))
     g.add((CHB["AHU_C"], BRICK.hasPoint, CHB["eff_sa_temp_10"]))
