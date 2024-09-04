@@ -1,60 +1,2200 @@
 ahu_path_1:
   path:
-    plant: http://berkeley.edu/climatechamber#CH_1
-    water_loop: http://berkeley.edu/climatechamber#SCHW_L
-    coil: http://berkeley.edu/climatechamber#CHW_coil
-    ahu: http://berkeley.edu/climatechamber#AHU_C
-    equipment: http://berkeley.edu/climatechamber#fan_supply
+    plant: urn:sdh#CH2
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH02_Cooling_Coil
+    ahu: urn:sdh#RAH02
+    equipment: urn:sdh#RAH02_Supply_Fan
+  user_selected: false
+ahu_path_2:
+  path:
+    plant: urn:sdh#CH2
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH07_Cooling_Coil
+    ahu: urn:sdh#RAH07
+    equipment: urn:sdh#RAH07_Supply_Fan
+  user_selected: false
+ahu_path_3:
+  path:
+    plant: urn:sdh#CH2
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH08_Cooling_Coil
+    ahu: urn:sdh#RAH08
+    equipment: urn:sdh#RAH08_Supply_Fan
+  user_selected: false
+ahu_path_4:
+  path:
+    plant: urn:sdh#CH1
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH11_Cooling_Coil
+    ahu: urn:sdh#RAH11
+    equipment: urn:sdh#RAH11_Supply_Fan
+  user_selected: false
+ahu_path_5:
+  path:
+    plant: urn:sdh#CH1
+    water_loop: urn:sdh#Office_Space_Water_Loop
+    coil: urn:sdh#AH2A_Cooling_Coil
+    ahu: urn:sdh#AH2A
+    equipment: urn:sdh#AH2A_Return_Fan
   user_selected: true
   operation_1:
-    check:fan_status: sf_status_10
-  operation_2:
-    write:fan_enable: sf_enable_10
+    check:fan_status: SDH.AH2A.RF_PRF
   VFD_path_1:
     attributes:
-      equipment: http://berkeley.edu/climatechamber#VFD_supply
+      equipment: urn:sdh#AH2A_RF_VFD
       equipment_type: https://brickschema.org/schema/Brick#Fan_VFD
     user_selected: true
     operation_1:
-      write:fan_speed: sf_vfd_spd_10
-  Damper_path_1:
-    attributes:
-      equipment: http://berkeley.edu/climatechamber#damper_SC_supply
-      equipment_type: https://brickschema.org/schema/Brick#Damper
-    user_selected: true
-    operation_1:
-      check:supply_damper_position: spot_clg_dmpr_pos_ao_6
+      write:fan_speed: SDH.AH2A.RTN_FAN_CFM_LOOPOUT
     operation_2:
-      write:supply_damper_command: spot_clg_dmpr_pos_ao_6
+      write:fan_enable: SDH.AH2A.RF_VFD.CMD.STP.STRT
   terminal:
     terminal_path_1:
       attributes:
-        equipment: http://berkeley.edu/climatechamber#VAV
+        equipment: urn:sdh#S4-06_VAV
         equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
       user_selected: false
       operation_1:
-        check:diffuser_airflow: vav_cfm_6
+        check:diffuser_airflow: SDH.S4-06.AIR_VOLUME
       VAV_Damper_path_1:
         attributes:
-          equipment: http://berkeley.edu/climatechamber#damper_SC_VAV
-          equipment_type: https://brickschema.org/schema/Brick#Damper
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
         user_selected: false
         operation_1:
-          check:vav_damper_position: vav_dmpr_pos_6
-        operation_2:
-          write:vav_damper_command: vav_dmpr_pos_6
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
     terminal_path_2:
       attributes:
-        equipment: http://berkeley.edu/climatechamber#OH_diffuser
+        equipment: urn:sdh#S6-03_VAV
         equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
       user_selected: false
       operation_1:
-        check:diffuser_airflow: oh_airflow_10
-ahu_path_2:
+        check:diffuser_airflow: SDH.S6-03:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_3:
+      attributes:
+        equipment: urn:sdh#S3-09_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-09:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_4:
+      attributes:
+        equipment: urn:sdh#S3-20_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-20:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_5:
+      attributes:
+        equipment: urn:sdh#S6-08_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-08:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_6:
+      attributes:
+        equipment: urn:sdh#S2-07_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-07:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_7:
+      attributes:
+        equipment: urn:sdh#S4-18_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-18.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_8:
+      attributes:
+        equipment: urn:sdh#S2-06_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-06:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_9:
+      attributes:
+        equipment: urn:sdh#S5-20_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-20:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_10:
+      attributes:
+        equipment: urn:sdh#S4-11_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-11.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_11:
+      attributes:
+        equipment: urn:sdh#S5-17_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-17:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_12:
+      attributes:
+        equipment: urn:sdh#S4-14_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-14.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_13:
+      attributes:
+        equipment: urn:sdh#S3-18_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-18:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_14:
+      attributes:
+        equipment: urn:sdh#S4-03_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-03.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_15:
+      attributes:
+        equipment: urn:sdh#S7-09_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S7-09:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_16:
+      attributes:
+        equipment: urn:sdh#S7-07_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S7-07:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_17:
+      attributes:
+        equipment: urn:sdh#S4-20_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-20.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_18:
+      attributes:
+        equipment: urn:sdh#S4-05_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-05.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_19:
+      attributes:
+        equipment: urn:sdh#S7-04_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S7-04:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_20:
+      attributes:
+        equipment: urn:sdh#S2-14_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-14:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_21:
+      attributes:
+        equipment: urn:sdh#S4-04_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-04.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_22:
+      attributes:
+        equipment: urn:sdh#S3-04_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-04:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_23:
+      attributes:
+        equipment: urn:sdh#S4-02_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-02.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_24:
+      attributes:
+        equipment: urn:sdh#S5-18_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-18:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_25:
+      attributes:
+        equipment: urn:sdh#S3-17_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-17:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_26:
+      attributes:
+        equipment: urn:sdh#S1-15_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-15:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_27:
+      attributes:
+        equipment: urn:sdh#S5-10_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-10:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_28:
+      attributes:
+        equipment: urn:sdh#S4-01_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-01.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_29:
+      attributes:
+        equipment: urn:sdh#S1-04_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-04:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_30:
+      attributes:
+        equipment: urn:sdh#S1-09_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-09:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_31:
+      attributes:
+        equipment: urn:sdh#S4-15_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-15.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_32:
+      attributes:
+        equipment: urn:sdh#S6-18_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-18:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_33:
+      attributes:
+        equipment: urn:sdh#S4-17_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-17.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_34:
+      attributes:
+        equipment: urn:sdh#S1-01_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-01:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_35:
+      attributes:
+        equipment: urn:sdh#S6-14_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-14:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_36:
+      attributes:
+        equipment: urn:sdh#S7-13_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S7-13:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_37:
+      attributes:
+        equipment: urn:sdh#S5-16_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-16:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_38:
+      attributes:
+        equipment: urn:sdh#S2-12_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-12:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_39:
+      attributes:
+        equipment: urn:sdh#S5-14_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-14:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_40:
+      attributes:
+        equipment: urn:sdh#S5-03_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-03:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_41:
+      attributes:
+        equipment: urn:sdh#S1-16_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-16:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_42:
+      attributes:
+        equipment: urn:sdh#S3-21_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-21:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_43:
+      attributes:
+        equipment: urn:sdh#S5-13_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-13:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_44:
+      attributes:
+        equipment: urn:sdh#S6-10_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-10:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_45:
+      attributes:
+        equipment: urn:sdh#S1-19_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-19:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_46:
+      attributes:
+        equipment: urn:sdh#S5-21_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-21:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_47:
+      attributes:
+        equipment: urn:sdh#S7-10_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S7-10:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_48:
+      attributes:
+        equipment: urn:sdh#S1-13_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-13:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_49:
+      attributes:
+        equipment: urn:sdh#S6-20_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-20:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_50:
+      attributes:
+        equipment: urn:sdh#S2-04_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-04:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_51:
+      attributes:
+        equipment: urn:sdh#S6-07_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-07:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_52:
+      attributes:
+        equipment: urn:sdh#S3-16_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-16:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_53:
+      attributes:
+        equipment: urn:sdh#S2-02_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-02:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_54:
+      attributes:
+        equipment: urn:sdh#S3-07_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-07:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_55:
+      attributes:
+        equipment: urn:sdh#S1-18_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-18:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_56:
+      attributes:
+        equipment: urn:sdh#S2-15_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-15:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_57:
+      attributes:
+        equipment: urn:sdh#S4-13_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-13.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_58:
+      attributes:
+        equipment: urn:sdh#S1-03_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-03:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_59:
+      attributes:
+        equipment: urn:sdh#S7-15_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S7-15:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_60:
+      attributes:
+        equipment: urn:sdh#S7-02_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S7-02:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_61:
+      attributes:
+        equipment: urn:sdh#S3-11_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-11:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_62:
+      attributes:
+        equipment: urn:sdh#S5-08_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-08:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_63:
+      attributes:
+        equipment: urn:sdh#S5-19_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-19:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_64:
+      attributes:
+        equipment: urn:sdh#S4-09_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-09.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_65:
+      attributes:
+        equipment: urn:sdh#S4-21_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-21.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_66:
+      attributes:
+        equipment: urn:sdh#S2-01_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-01:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_67:
+      attributes:
+        equipment: urn:sdh#S6-05_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-05:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_68:
+      attributes:
+        equipment: urn:sdh#S6-19_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-19:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_69:
+      attributes:
+        equipment: urn:sdh#S5-07_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-07:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_70:
+      attributes:
+        equipment: urn:sdh#S6-09_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-09:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_71:
+      attributes:
+        equipment: urn:sdh#S2-09_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-09:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_72:
+      attributes:
+        equipment: urn:sdh#S5-15_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-15:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_73:
+      attributes:
+        equipment: urn:sdh#S5-01_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-01:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_74:
+      attributes:
+        equipment: urn:sdh#S6-17_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-17:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_75:
+      attributes:
+        equipment: urn:sdh#S6-16_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-16:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_76:
+      attributes:
+        equipment: urn:sdh#S4-07_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-07.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_77:
+      attributes:
+        equipment: urn:sdh#S7-14_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S7-14:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_78:
+      attributes:
+        equipment: urn:sdh#S1-05_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-05:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_79:
+      attributes:
+        equipment: urn:sdh#S5-05_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-05:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_80:
+      attributes:
+        equipment: urn:sdh#S2-11_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-11:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_81:
+      attributes:
+        equipment: urn:sdh#S7-01_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S7-01:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_82:
+      attributes:
+        equipment: urn:sdh#S3-10_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-10:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_83:
+      attributes:
+        equipment: urn:sdh#S4-16_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-16.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_84:
+      attributes:
+        equipment: urn:sdh#S6-13_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-13:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_85:
+      attributes:
+        equipment: urn:sdh#S2-10_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-10:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_86:
+      attributes:
+        equipment: urn:sdh#S6-04_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-04:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_87:
+      attributes:
+        equipment: urn:sdh#S4-10_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-10.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_88:
+      attributes:
+        equipment: urn:sdh#S3-14_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-14:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_89:
+      attributes:
+        equipment: urn:sdh#S2-17_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-17:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_90:
+      attributes:
+        equipment: urn:sdh#S2-21_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-21:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_91:
+      attributes:
+        equipment: urn:sdh#S2-13_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-13:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_92:
+      attributes:
+        equipment: urn:sdh#S3-19_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-19:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_93:
+      attributes:
+        equipment: urn:sdh#S1-06_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-06:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_94:
+      attributes:
+        equipment: urn:sdh#S7-16_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S7-16:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_95:
+      attributes:
+        equipment: urn:sdh#S3-05_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-05:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_96:
+      attributes:
+        equipment: urn:sdh#S6-01_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-01:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_97:
+      attributes:
+        equipment: urn:sdh#S7-06_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S7-06:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_98:
+      attributes:
+        equipment: urn:sdh#S3-02_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-02:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_99:
+      attributes:
+        equipment: urn:sdh#S2-19_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-19:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_100:
+      attributes:
+        equipment: urn:sdh#S3-15_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-15:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_101:
+      attributes:
+        equipment: urn:sdh#S2-16_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-16:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_102:
+      attributes:
+        equipment: urn:sdh#S3-03_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-03:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_103:
+      attributes:
+        equipment: urn:sdh#S4-08_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-08.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_104:
+      attributes:
+        equipment: urn:sdh#S7-11_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S7-11:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_105:
+      attributes:
+        equipment: urn:sdh#S1-02_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-02:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_106:
+      attributes:
+        equipment: urn:sdh#S5-12_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-12:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_107:
+      attributes:
+        equipment: urn:sdh#S3-08_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-08:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_108:
+      attributes:
+        equipment: urn:sdh#S4-12_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-12.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_109:
+      attributes:
+        equipment: urn:sdh#S1-14_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-14:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_110:
+      attributes:
+        equipment: urn:sdh#S2-05_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-05:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_111:
+      attributes:
+        equipment: urn:sdh#S6-02_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-02:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_112:
+      attributes:
+        equipment: urn:sdh#S7-08_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S7-08:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_113:
+      attributes:
+        equipment: urn:sdh#S7-05_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S7-05:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_114:
+      attributes:
+        equipment: urn:sdh#S4-19_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S4-19.AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_115:
+      attributes:
+        equipment: urn:sdh#S6-11_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-11:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_116:
+      attributes:
+        equipment: urn:sdh#S1-20_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-20:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_117:
+      attributes:
+        equipment: urn:sdh#S1-10_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-10:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_118:
+      attributes:
+        equipment: urn:sdh#S3-01_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-01:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_119:
+      attributes:
+        equipment: urn:sdh#S2-20_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-20:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_120:
+      attributes:
+        equipment: urn:sdh#S2-18_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-18:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_121:
+      attributes:
+        equipment: urn:sdh#S5-11_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-11:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_122:
+      attributes:
+        equipment: urn:sdh#S1-17_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-17:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_123:
+      attributes:
+        equipment: urn:sdh#S2-08_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-08:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_124:
+      attributes:
+        equipment: urn:sdh#S1-07_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-07:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_125:
+      attributes:
+        equipment: urn:sdh#S3-06_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-06:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_126:
+      attributes:
+        equipment: urn:sdh#S2-03_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S2-03:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_127:
+      attributes:
+        equipment: urn:sdh#S3-12_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-12:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_128:
+      attributes:
+        equipment: urn:sdh#S3-13_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S3-13:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_129:
+      attributes:
+        equipment: urn:sdh#S6-15_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-15:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_130:
+      attributes:
+        equipment: urn:sdh#S5-04_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-04:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_131:
+      attributes:
+        equipment: urn:sdh#S7-12_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S7-12:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_132:
+      attributes:
+        equipment: urn:sdh#S6-06_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-06:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_133:
+      attributes:
+        equipment: urn:sdh#S5-02_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-02:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_134:
+      attributes:
+        equipment: urn:sdh#S7-03_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S7-03:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_135:
+      attributes:
+        equipment: urn:sdh#S5-09_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-09:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_136:
+      attributes:
+        equipment: urn:sdh#S6-12_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S6-12:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_137:
+      attributes:
+        equipment: urn:sdh#S1-08_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S1-08:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+    terminal_path_138:
+      attributes:
+        equipment: urn:sdh#S5-06_VAV
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: SDH.S5-06:AIR_VOLUME
+      VAV_Damper_path_1:
+        attributes:
+          equipment: urn:sdh#S5-06_VAV
+          equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+        user_selected: false
+        operation_1:
+          write:vav_damper_command: SDH.S5-06:DMPR_COMD
+ahu_path_6:
   path:
-    plant: http://berkeley.edu/climatechamber#CH_1
-    water_loop: http://berkeley.edu/climatechamber#SCHW_L
-    coil: http://berkeley.edu/climatechamber#CHW_A_coil
-    ahu: http://berkeley.edu/climatechamber#AHU_A
-    equipment: http://berkeley.edu/climatechamber#fan_A_supply
+    plant: urn:sdh#CH2
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH19_Cooling_Coil
+    ahu: urn:sdh#RAH19
+    equipment: urn:sdh#RAH19_Supply_Fan
+  user_selected: false
+ahu_path_7:
+  path:
+    plant: urn:sdh#CH1
+    water_loop: urn:sdh#Office_Space_Water_Loop
+    coil: urn:sdh#AH2B_Cooling_Coil
+    ahu: urn:sdh#AH2B
+    equipment: urn:sdh#AH2B_Return_Fan
+  user_selected: false
+ahu_path_8:
+  path:
+    plant: urn:sdh#CH2
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH09_Cooling_Coil
+    ahu: urn:sdh#RAH09
+    equipment: urn:sdh#RAH09_Supply_Fan
+  user_selected: false
+ahu_path_9:
+  path:
+    plant: urn:sdh#CH1
+    water_loop: urn:sdh#Office_Space_Water_Loop
+    coil: urn:sdh#AH2B_Cooling_Coil
+    ahu: urn:sdh#AH2B
+    equipment: urn:sdh#AH2B_Supply_Fan
+  user_selected: false
+ahu_path_10:
+  path:
+    plant: urn:sdh#CH1
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH17_Cooling_Coil
+    ahu: urn:sdh#RAH17
+    equipment: urn:sdh#RAH17_Supply_Fan
+  user_selected: false
+ahu_path_11:
+  path:
+    plant: urn:sdh#CH1
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH13_Cooling_Coil
+    ahu: urn:sdh#RAH13
+    equipment: urn:sdh#RAH13_Supply_Fan
+  user_selected: false
+ahu_path_12:
+  path:
+    plant: urn:sdh#CH2
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH21_Cooling_Coil
+    ahu: urn:sdh#RAH21
+    equipment: urn:sdh#RAH21_Supply_Fan
+  user_selected: false
+ahu_path_13:
+  path:
+    plant: urn:sdh#CH2
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH12_Cooling_Coil
+    ahu: urn:sdh#RAH12
+    equipment: urn:sdh#RAH12_Supply_Fan
+  user_selected: false
+ahu_path_14:
+  path:
+    plant: urn:sdh#CH1
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH10_Cooling_Coil
+    ahu: urn:sdh#RAH10
+    equipment: urn:sdh#RAH10_Supply_Fan
+  user_selected: false
+ahu_path_15:
+  path:
+    plant: urn:sdh#CH2
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH26_Cooling_Coil
+    ahu: urn:sdh#RAH26
+    equipment: urn:sdh#RAH26_Supply_Fan
+  user_selected: false
+ahu_path_16:
+  path:
+    plant: urn:sdh#CH1
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH22_Cooling_Coil
+    ahu: urn:sdh#RAH22
+    equipment: urn:sdh#RAH22_Supply_Fan
+  user_selected: false
+ahu_path_17:
+  path:
+    plant: urn:sdh#CH1
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH04_Cooling_Coil
+    ahu: urn:sdh#RAH04
+    equipment: urn:sdh#RAH04_Supply_Fan
+  user_selected: false
+ahu_path_18:
+  path:
+    plant: urn:sdh#CH1
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH05_Cooling_Coil
+    ahu: urn:sdh#RAH05
+    equipment: urn:sdh#RAH05_Supply_Fan
+  user_selected: false
+ahu_path_19:
+  path:
+    plant: urn:sdh#CH1
+    water_loop: urn:sdh#SCHW_and_AH1_Water_Loop
+    coil: urn:sdh#AH1B_Cooling_Coil
+    ahu: urn:sdh#AH1B
+    equipment: urn:sdh#AH1B_Supply_Fan
+  user_selected: false
+ahu_path_20:
+  path:
+    plant: urn:sdh#CHM-1
+    water_loop: urn:sdh#MDF_Chilled_Water_Loop
+    coil: urn:sdh#AH4_Cooling_Coil
+    ahu: urn:sdh#AH4
+    equipment: urn:sdh#AH4_Supply_Fan
+  user_selected: false
+ahu_path_21:
+  path:
+    plant: urn:sdh#CH2
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH15_Cooling_Coil
+    ahu: urn:sdh#RAH15
+    equipment: urn:sdh#RAH15_Supply_Fan
+  user_selected: false
+ahu_path_22:
+  path:
+    plant: urn:sdh#CH1
+    water_loop: urn:sdh#SCHW_and_AH1_Water_Loop
+    coil: urn:sdh#AH1A_Cooling_Coil
+    ahu: urn:sdh#AH1A
+    equipment: urn:sdh#AH1A_Supply_Fan
+  user_selected: false
+ahu_path_23:
+  path:
+    plant: urn:sdh#CH1
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH23_Cooling_Coil
+    ahu: urn:sdh#RAH23
+    equipment: urn:sdh#RAH23_Supply_Fan
+  user_selected: false
+ahu_path_24:
+  path:
+    plant: urn:sdh#CH2
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH25_Cooling_Coil
+    ahu: urn:sdh#RAH25
+    equipment: urn:sdh#RAH25_Supply_Fan
+  user_selected: false
+ahu_path_25:
+  path:
+    plant: urn:sdh#CH1
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH01_Cooling_Coil
+    ahu: urn:sdh#RAH01
+    equipment: urn:sdh#RAH01_Supply_Fan
+  user_selected: false
+ahu_path_26:
+  path:
+    plant: urn:sdh#CH2
+    water_loop: urn:sdh#Office_Space_Water_Loop
+    coil: urn:sdh#AH2A_Cooling_Coil
+    ahu: urn:sdh#AH2A
+    equipment: urn:sdh#AH2A_Supply_Fan
+  user_selected: false
+ahu_path_27:
+  path:
+    plant: urn:sdh#CH2
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH24_Cooling_Coil
+    ahu: urn:sdh#RAH24
+    equipment: urn:sdh#RAH24_Supply_Fan
+  user_selected: false
+ahu_path_28:
+  path:
+    plant: urn:sdh#CH2
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH06_Cooling_Coil
+    ahu: urn:sdh#RAH06
+    equipment: urn:sdh#RAH06_Supply_Fan
+  user_selected: false
+ahu_path_29:
+  path:
+    plant: urn:sdh#CH1
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH14_Cooling_Coil
+    ahu: urn:sdh#RAH14
+    equipment: urn:sdh#RAH14_Supply_Fan
+  user_selected: false
+ahu_path_30:
+  path:
+    plant: urn:sdh#CH1
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH03_Cooling_Coil
+    ahu: urn:sdh#RAH03
+    equipment: urn:sdh#RAH03_Supply_Fan
+  user_selected: false
+ahu_path_31:
+  path:
+    plant: urn:sdh#CH2
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH18_Cooling_Coil
+    ahu: urn:sdh#RAH18
+    equipment: urn:sdh#RAH18_Supply_Fan
+  user_selected: false
+ahu_path_32:
+  path:
+    plant: urn:sdh#CH2
+    water_loop: urn:sdh#Secondary_Chilled_Water_Loop
+    coil: urn:sdh#RAH20_Cooling_Coil
+    ahu: urn:sdh#RAH20
+    equipment: urn:sdh#RAH20_Supply_Fan
   user_selected: false
