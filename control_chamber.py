@@ -1,5 +1,5 @@
 # %%
-import pandas as pd
+import numpy as np
 from functions.bacnet_point import BACnet_Point
 import functions.readWriteProperty as BACpypesAPP
 import time
@@ -64,23 +64,27 @@ if enable_check == 'inactive':
 enable_check = fan_enable.get_point_value(BACpypesAPP)
 result_dict.get('Pre').update({'fan_enable':enable_check})
 
-# open supply damper position to 100%
+# open supply damper position to 50% if closed
 supply_damper_command = control_soo.get('write:supply_damper_command').get('brick:Damper_Position_Command')
-command = BACnet_Point(**supply_damper_command) if bool(supply_damper_command) else supply_damper_command
-command.write_point_value(BACpypesAPP, 100, 13)
 
-values = []
-for i in range(3):
-    value = command.get_point_value(BACpypesAPP)
-    values.append(value)
-    time.sleep(2)
+if supply_damper_command != {}:
+    command = BACnet_Point(**supply_damper_command) if bool(supply_damper_command) else supply_damper_command
+    current_value = command.get_point_value(BACpypesAPP)
+    if current_value == 0:
+        command.write_point_value(BACpypesAPP, 50, 13)
 
-result_dict.get('Pre').update({'supply_damper_value':values})
+    values = []
+    for i in range(3):
+        value = command.get_point_value(BACpypesAPP)
+        values.append(value)
+        time.sleep(2)
 
-if values != []:
-    verified = verified * True
-else:
-    verified = False
+    result_dict.get('Pre').update({'supply_damper_value':values})
+
+    if values != []:
+        verified = verified * True
+    else:
+        verified = False
 
 
 if (enable_check == 'active') & verified:
@@ -93,13 +97,15 @@ test = 'Test_1'
 if result_dict.get('Pre').get('verified'):
     result_dict.update({test:{'step_1':{}}})
 
-    # open terminal damper position to 100%
+    # open terminal damper position to 50% if closed
     vav_damper_command = control_soo.get('write:vav_damper_command')[tbcontrolled[0]].get(tbcontrolled[1]).get('brick:Damper_Position_Command')
     
     if vav_damper_command != {}:
 
         command = BACnet_Point(**vav_damper_command) if bool(vav_damper_command) else vav_damper_command
-        command.write_point_value(BACpypesAPP, 100, 13)
+        current_value = command.get_point_value(BACpypesAPP)
+        if current_value == 0:
+            command.write_point_value(BACpypesAPP, 50, 13)
 
         values = []
         for i in range(3):
@@ -128,7 +134,8 @@ if result_dict.get('Pre').get('verified'):
     else:
         verified = False
 
-    result_dict.get(test).get('step_1').update({'airflow_rate_value':values})
+    result_dict.get(test).get('step_1').update({'airflow_rate_value': values, 
+                                                'mean_airflow_rate': np.mean(values)})
 
     if verified:
         result_dict.get(test).get('step_1').update({'verified':True})
@@ -144,7 +151,11 @@ if result_dict.get(test).get('step_1').get('verified'):
     # increase fan speed to 25 %
     fan_speed_command = control_soo.get('write:fan_speed').get('brick:Fan_Speed_Command')
     command = BACnet_Point(**fan_speed_command) if bool(fan_speed_command) else fan_speed_command
-    command.write_point_value(BACpypesAPP, 25, 13)
+    current_value = command.get_point_value(BACpypesAPP)
+    if current_value == 0:
+        command.write_point_value(BACpypesAPP, 25, 13)
+    else:
+        command.write_point_value(BACpypesAPP, current_value + 10, 13)
 
     values = []
     for i in range(3):
@@ -179,9 +190,10 @@ if result_dict.get(test).get('step_2').get('verified'):
         values.append(value)
         time.sleep(5)
 
-    result_dict.get(test).get('step_3').update({'airflow_rate_value':values})
+    result_dict.get(test).get('step_3').update({'airflow_rate_value': value, 
+                                                'mean_airflow_rate:': np.mean(values)})
 
-    if values != []:
+    if result_dict.get(test).get('step_1').get('mean_airflow_rate') < np.mean(values):
         verified = verified * True
     else:
         verified = False
@@ -198,9 +210,9 @@ import pdb; pdb.set_trace()
 if result_dict.get(test).get('step_3').get('verified'):
     result_dict.get(test).update({'step_4':{}})
 
-    # reduce fan speed to 0
+    # erase: fan speed command 
     command = BACnet_Point(**fan_speed_command) if bool(fan_speed_command) else fan_speed_command
-    command.write_point_value(BACpypesAPP, 0, 13)
+    command.write_point_value(BACpypesAPP, 'Null', 13)
 
     values = []
     for i in range(3):
@@ -214,12 +226,12 @@ if result_dict.get(test).get('step_3').get('verified'):
         verified = verified * True
     else:
         verified = False
-    
-    # reduce terminal damper position to 0%
+
+    # erase: vav damper command
     vav_damper_command = control_soo.get('write:vav_damper_command')[tbcontrolled[0]].get(tbcontrolled[1]).get('brick:Damper_Position_Command')
     if vav_damper_command != {}:
         command = BACnet_Point(**vav_damper_command) if bool(vav_damper_command) else vav_damper_command
-        command.write_point_value(BACpypesAPP, 0, 13)
+        command.write_point_value(BACpypesAPP, 'Null', 13)
 
         values = []
         for i in range(3):
@@ -234,6 +246,26 @@ if result_dict.get(test).get('step_3').get('verified'):
         else:
             verified = False
     
+    # erase supply damper command
+    if supply_damper_command != {}:
+        command = BACnet_Point(**supply_damper_command) if bool(supply_damper_command) else supply_damper_command
+        current_value = command.get_point_value(BACpypesAPP)
+        if current_value == 0:
+            command.write_point_value(BACpypesAPP, 50, 13)
+
+        values = []
+        for i in range(3):
+            value = command.get_point_value(BACpypesAPP)
+            values.append(value)
+            time.sleep(2)
+
+        result_dict.get('Pre').update({'supply_damper_value':values})
+
+        if values != []:
+            verified = verified * True
+        else:
+            verified = False
+    
     if verified:
         result_dict.get(test).get('step_4').update({'verified':True})
 
@@ -241,3 +273,9 @@ else:
     print("Step 3 verification failed!")
 
 import pdb; pdb.set_trace()
+
+# %%
+if result_dict.get(test).get('step_4').get('verified'):
+    print('finished commissioning!')
+else:
+    print('Step 4 verification failed!')
