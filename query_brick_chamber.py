@@ -295,7 +295,7 @@ else:
     write_yaml_config(ahu_dict, yaml_path)
 
 # %%
-# import pdb; pdb.set_trace()
+import pdb; pdb.set_trace()
 
 selected = {}
 config = load_yaml_config(yaml_path)
@@ -342,7 +342,7 @@ else:
     update_yaml_config([ahu_path_key], specific_user_dict, yaml_path)
 
 # %%
-# import pdb; pdb.set_trace()
+import pdb; pdb.set_trace()
 config = load_yaml_config(yaml_path)
 ahu_path = config[ahu_path_key]
 for key, value in ahu_path.items():
@@ -384,7 +384,7 @@ else:
     update_yaml_config([ahu_path_key], specific_user_dict, yaml_path)
 
 # %%
-# import pdb; pdb.set_trace()
+import pdb; pdb.set_trace()
 config = load_yaml_config(yaml_path)
 ahu_path = config[ahu_path_key]
 for key, value in ahu_path.items():
@@ -412,10 +412,9 @@ brick_point = ['brick:Supply_Air_Flow_Sensor']
 terminal_use_type = 'brick:Terminal_Unit'
 seq_name = ['check:diffuser_airflow']
 name = 'terminal'
-specific_user_dict = query_specific_user(rdflib.URIRef(ahu_selected), specific_user_type, brick_point, name, query_relaxation = False)
+terminal_dict = query_terminal_user(rdflib.URIRef(ahu_selected), terminal_use_type, brick_point)
 if terminal_dict == {}:
     print("no downstream terminal found")
-    specific_user_dict = query_specific_user(rdflib.URIRef(ahu_selected), specific_user_type, brick_point, name, query_relaxation = True)
 else:
     print("query returned, check config.yaml file")
     update_yaml_config([ahu_path_key], {'terminal':{}}, yaml_path)
