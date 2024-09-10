@@ -362,6 +362,11 @@ specific_user_dict = query_specific_user(rdflib.URIRef(ahu_selected), specific_u
 if specific_user_dict == {}:
     print("no equipment found, tying query relaxation ...")
     specific_user_dict = query_specific_user(rdflib.URIRef(ahu_selected), specific_user_type, brick_point, name, query_relaxation = True)
+    if specific_user_dict == {}:
+        print("no equipment found")
+    else:
+        print("query returned, check config.yaml file")
+        update_yaml_config([ahu_path_key], specific_user_dict, yaml_path)
 else:
     print("query returned, check config.yaml file")
     update_yaml_config([ahu_path_key], specific_user_dict, yaml_path)
@@ -528,8 +533,13 @@ name = 'VAV_Damper'
 for terminal in terminal_path_keys:
     specific_user_dict = query_specific_user(rdflib.URIRef(selected[ahu_path_key]['terminal'][terminal]['tu']), specific_user_type, brick_point, name, query_relaxation = False)
     if specific_user_dict == {}:
+        print("no downstream terminal found, trying query relaxation ...")
         specific_user_dict = query_specific_user(rdflib.URIRef(selected[ahu_path_key]['terminal'][terminal]['tu']), specific_user_type, brick_point, name, query_relaxation = True)
-        print("no downstream terminal found")
+        if specific_user_dict == {}:
+            print("no downstream terminal found")
+        else:
+            print("query returned, check config.yaml file")
+            update_yaml_config([ahu_path_key, 'terminal', terminal], specific_user_dict, yaml_path)
     else:
         print("query returned, check config.yaml file")
         update_yaml_config([ahu_path_key, 'terminal', terminal], specific_user_dict, yaml_path)
