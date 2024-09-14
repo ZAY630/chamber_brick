@@ -3,6 +3,7 @@ import numpy as np
 from functions.bacnet_point import BACnet_Point
 import functions.readWriteProperty as BACpypesAPP
 import time
+import pickle
 
 # %%
 bacnet_ini_file = '..\\bacpypes\\BACnet_connect.ini'
@@ -54,14 +55,14 @@ fan_status = BACnet_Point(**supply_fan_status) if bool(supply_fan_status) else s
 value = fan_status.get_point_value(BACpypesAPP)
 result_dict.get('Pre').update({'fan_status':value})
 
-supply_fan_enable = control_soo.get('write:fan_enable').get('brick:Run_Enable_Command')
-fan_enable = BACnet_Point(**supply_fan_enable) if bool(supply_fan_enable) else supply_fan_enable
-enable_check = fan_enable.get_point_value(BACpypesAPP)
+supply_vfd_enable = control_soo.get('write:vfd_enable').get('brick:Run_Enable_Command')
+vfd_enable = BACnet_Point(**supply_vfd_enable) if bool(supply_vfd_enable) else supply_vfd_enable
+enable_check = vfd_enable.get_point_value(BACpypesAPP)
 if enable_check == 'inactive':
-    fan_enable.write_point_value(BACpypesAPP, "active", 13)
+    vfd_enable.write_point_value(BACpypesAPP, "active", 13)
 
-enable_check = fan_enable.get_point_value(BACpypesAPP)
-result_dict.get('Pre').update({'fan_enable':enable_check})
+enable_check = vfd_enable.get_point_value(BACpypesAPP)
+result_dict.get('Pre').update({'vfd_enable':enable_check})
 
 # open supply damper position to 50% if closed
 supply_damper_command = control_soo.get('write:supply_damper_command').get('brick:Damper_Position_Command')
@@ -118,6 +119,8 @@ if result_dict.get('Pre').get('verified'):
             verified = verified * True
         else:
             verified = False
+    
+    time.sleep(10)
 
     # read terminal supply airflow rate for baseline
     supply_airflow_rate = control_soo.get('check:diffuser_airflow')[tbcontrolled[0]].get(tbcontrolled[1]).get('brick:Supply_Air_Flow_Sensor')
@@ -180,6 +183,7 @@ import pdb; pdb.set_trace()
 if result_dict.get(test).get('step_2').get('verified'):
     result_dict.get(test).update({'step_3':{}})
 
+    time.sleep(10)
     # read supply airflow change
     supply_airflow_rate = control_soo.get('check:diffuser_airflow')[tbcontrolled[0]].get(tbcontrolled[1]).get('brick:Supply_Air_Flow_Sensor')
     vav_afr = BACnet_Point(**supply_airflow_rate) if bool(supply_airflow_rate) else supply_airflow_rate
@@ -189,7 +193,7 @@ if result_dict.get(test).get('step_2').get('verified'):
         values.append(value)
         time.sleep(1)
 
-    result_dict.get(test).get('step_3').update({'airflow_rate_value': value, 
+    result_dict.get(test).get('step_3').update({'airflow_rate_value': values, 
                                                 'mean_airflow_rate:': np.mean(values)})
 
     if result_dict.get(test).get('step_1').get('mean_airflow_rate') < np.mean(values):
@@ -211,18 +215,21 @@ if result_dict.get(test).get('step_3').get('verified'):
 
     # erase: fan speed command 
     command = BACnet_Point(**fan_speed_command) if bool(fan_speed_command) else fan_speed_command
-    command.write_point_value(BACpypesAPP, 'Null', 13)
+    command.write_point_value(BACpypesAPP, 'null', 13)
 
     # erase: vav damper command
     command = BACnet_Point(**vav_damper_command) if bool(vav_damper_command) else vav_damper_command
-    command.write_point_value(BACpypesAPP, 'Null', 13)
+    command.write_point_value(BACpypesAPP, 'null', 13)
     
     # erase supply damper command
     command = BACnet_Point(**supply_damper_command) if bool(supply_damper_command) else supply_damper_command
-    command.write_point_value(BACpypesAPP, "Null", 13)
+    command.write_point_value(BACpypesAPP, "null", 13)
 
 else:
     print("Step 3 verification failed!")
 
 # %%
+with open('fan_test_result.pkl', 'wb') as f:
+    pickle.dump(result_dict, f)
+
 import pdb; pdb.set_trace()

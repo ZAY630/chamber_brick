@@ -54,14 +54,14 @@ fan_status = BACnet_Point(**supply_fan_status) if bool(supply_fan_status) else s
 value = fan_status.get_point_value(BACpypesAPP)
 result_dict.get('Pre').update({'fan_status':value})
 
-supply_fan_enable = control_soo.get('write:fan_enable').get('brick:Run_Enable_Command')
-fan_enable = BACnet_Point(**supply_fan_enable) if bool(supply_fan_enable) else supply_fan_enable
-enable_check = fan_enable.get_point_value(BACpypesAPP)
+supply_vfd_enable = control_soo.get('write:vfd_enable').get('brick:Run_Enable_Command')
+vfd_enable = BACnet_Point(**supply_vfd_enable) if bool(supply_vfd_enable) else supply_vfd_enable
+enable_check = vfd_enable.get_point_value(BACpypesAPP)
 if enable_check == 'inactive':
-    fan_enable.write_point_value(BACpypesAPP, "active", 13)
+    vfd_enable.write_point_value(BACpypesAPP, "active", 13)
 
-enable_check = fan_enable.get_point_value(BACpypesAPP)
-result_dict.get('Pre').update({'fan_enable':enable_check})
+enable_check = vfd_enable.get_point_value(BACpypesAPP)
+result_dict.get('Pre').update({'vfd_enable':enable_check})
 
 # open supply damper position to 50% if closed
 supply_damper_command = control_soo.get('write:supply_damper_command').get('brick:Damper_Position_Command')
@@ -229,15 +229,15 @@ if result_dict.get(test).get('step_3').get('verified'):
 
     # erase: fan speed command 
     command = BACnet_Point(**duct_pressure_command) if bool(duct_pressure_command) else duct_pressure_command
-    command.write_point_value(BACpypesAPP, 'Null', 13)
+    command.write_point_value(BACpypesAPP, 'null', 13)
 
     # erase: vav damper command
     command = BACnet_Point(**vav_damper_command) if bool(vav_damper_command) else vav_damper_command
-    command.write_point_value(BACpypesAPP, 'Null', 13)
+    command.write_point_value(BACpypesAPP, 'null', 13)
     
     # erase supply damper command
     command = BACnet_Point(**supply_damper_command) if bool(supply_damper_command) else supply_damper_command
-    command.write_point_value(BACpypesAPP, "Null", 13)
+    command.write_point_value(BACpypesAPP, "null", 13)
 
 else:
     print("Step 3 verification failed!")

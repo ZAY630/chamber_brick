@@ -10,7 +10,7 @@ ahu_path_2:
   path:
     plant: http://berkeley.edu/climatechamber#CH_1
     water_loop: http://berkeley.edu/climatechamber#SCHW_L
-    coil: http://berkeley.edu/climatechamber#CHW_SC_coil
+    coil: http://berkeley.edu/climatechamber#CHW_coil
     ahu: http://berkeley.edu/climatechamber#AHU_C
     equipment: http://berkeley.edu/climatechamber#fan_supply
   user_selected: true
@@ -25,15 +25,6 @@ ahu_path_2:
       write:vfd_enable: sf_enable_10
     operation_2:
       write:fan_speed: sf_vfd_spd_10
-  Duct_path_1:
-    attributes:
-      equipment: http://berkeley.edu/climatechamber#AHU_C
-      equipment_type: https://brickschema.org/schema/Brick#Air_Handling_Unit
-    user_selected: true
-    operation_1:
-      check:duct_pressure: duct_stat_press_ai_10
-    operation_2:
-      write:duct_pressure: dsp_fixed_setpoint_10
   Damper_path_1:
     attributes:
       equipment: http://berkeley.edu/climatechamber#damper_SC_supply
