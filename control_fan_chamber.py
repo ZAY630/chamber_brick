@@ -3,7 +3,8 @@ import numpy as np
 from functions.bacnet_point import BACnet_Point
 import functions.readWriteProperty as BACpypesAPP
 import time
-import pickle
+import yaml
+import functions as utils
 
 # %%
 bacnet_ini_file = '..\\bacpypes\\BACnet_connect.ini'
@@ -119,14 +120,12 @@ if result_dict.get('Pre').get('verified'):
             verified = verified * True
         else:
             verified = False
-    
-    time.sleep(10)
 
     # read terminal supply airflow rate for baseline
     supply_airflow_rate = control_soo.get('check:diffuser_airflow')[tbcontrolled[0]].get(tbcontrolled[1]).get('brick:Supply_Air_Flow_Sensor')
     vav_afr = BACnet_Point(**supply_airflow_rate) if bool(supply_airflow_rate) else supply_airflow_rate
     values = []
-    for i in range(15):
+    for i in range(30):
         value = vav_afr.get_point_value(BACpypesAPP)
         values.append(value)
         time.sleep(1)
@@ -183,12 +182,11 @@ import pdb; pdb.set_trace()
 if result_dict.get(test).get('step_2').get('verified'):
     result_dict.get(test).update({'step_3':{}})
 
-    time.sleep(10)
     # read supply airflow change
     supply_airflow_rate = control_soo.get('check:diffuser_airflow')[tbcontrolled[0]].get(tbcontrolled[1]).get('brick:Supply_Air_Flow_Sensor')
     vav_afr = BACnet_Point(**supply_airflow_rate) if bool(supply_airflow_rate) else supply_airflow_rate
     values = []
-    for i in range(15):
+    for i in range(30):
         value = vav_afr.get_point_value(BACpypesAPP)
         values.append(value)
         time.sleep(1)
@@ -225,11 +223,15 @@ if result_dict.get(test).get('step_3').get('verified'):
     command = BACnet_Point(**supply_damper_command) if bool(supply_damper_command) else supply_damper_command
     command.write_point_value(BACpypesAPP, "null", 13)
 
+    result_dict.get(test).get('step_4').update({'verified':True})
+
 else:
     print("Step 3 verification failed!")
 
 # %%
-with open('fan_test_result.pkl', 'wb') as f:
-    pickle.dump(result_dict, f)
-
 import pdb; pdb.set_trace()
+
+with open('./readfiles/results/fan_result_yaml', 'w') as file:
+    yaml.dump(result_dict, file, sort_keys=False)
+
+utils.make_plot()

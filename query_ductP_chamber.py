@@ -6,7 +6,7 @@ import rdflib
 
 # %%
 g = brickschema.Graph()
-g.load_file('chamber_shacl_expanded.ttl')
+g.load_file('./readfiles/chamber_shacl_expanded.ttl')
 
 # %%
 def query_ahu_path(loop, brick_point, equipment_type, additional_filter="""""", query_relaxation = False):

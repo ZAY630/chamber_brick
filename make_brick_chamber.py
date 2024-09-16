@@ -71,7 +71,7 @@ if __name__ == "__main__":
             meta_shacl=False,
             debug=False,
         )
-        results_graph.serialize("validation_results.ttl", format="turtle")
+        results_graph.serialize("./readfiles/validation_results.ttl", format="turtle")
         print("report generated")
 
     # g.expand(profile='owlrl+shacl+vbis+shacl')
@@ -79,6 +79,6 @@ if __name__ == "__main__":
     print(f'After: {len(g)} triples')
 
     exp_bldg_brick_file = 'chamber_shacl_expanded.ttl'
-    g.serialize(exp_bldg_brick_file, format='ttl')
+    g.serialize(join('./readfiles', exp_bldg_brick_file), format='ttl')
 
     # import pdb; pdb.set_trace()
