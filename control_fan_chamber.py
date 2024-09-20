@@ -231,7 +231,7 @@ else:
 # %%
 import pdb; pdb.set_trace()
 
-with open('./readfiles/results/fan_result_yaml', 'w') as file:
+with open('./results/fan_result_yaml', 'w') as file:
     yaml.dump(result_dict, file, sort_keys=False)
 
 utils.make_plot()

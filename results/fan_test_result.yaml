@@ -1,0 +1,61 @@
+Pre:
+  supply_damper_value:
+  - 50.0
+  - 50.0
+  - 50.0
+  fan_status: active
+  vfd_enable: active
+  verified: true
+Test_1:
+  step_1:
+    vav_damper_position:
+    - 50.0
+    - 50.0
+    - 50.0
+    airflow_rate_value:
+    - 50.7617
+    - 50.7617
+    - 50.7617
+    - 50.7617
+    - 50.7617
+    - 50.7617
+    - 50.7617
+    - 50.7617
+    - 52.2624
+    - 53.7212
+    - 55.1413
+    - 58.3208
+    - 61.3356
+    - 64.2091
+    - 69.4156
+    mean_airflow_rate:
+      - 54.69997333333333
+    verified: true
+  step_2:
+    fan_speed_command:
+    - 25.0
+    - 25.0
+    - 25.0
+    verified: true
+  step_3:
+    airflow_rate_value: 
+      - 87.9219
+      - 87.9219
+      - 87.9219
+      - 87.9219
+      - 87.9219
+      - 87.9219
+      - 87.9219
+      - 87.9219
+      - 87.9219
+      - 87.9219
+      - 87.9219
+      - 87.9219
+      - 87.9219
+      - 87.9219
+      - 87.9219
+    mean_airflow_rate:
+      - 5mean_airflow_rate:
+      - 87.92190000000002
+    verified: true
+  step_4: {}
