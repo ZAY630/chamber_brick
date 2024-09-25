@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 # %%
 def make_plot():
-    with open('./readfiles/results/fan_test_result.yaml', 'r') as f:
+    with open('./results/fan_test_result.yaml', 'r') as f:
         result_dict = yaml.safe_load(f)
 
     plt.figure(figsize=[10, 8])
@@ -14,9 +14,9 @@ def make_plot():
     plt.xlabel("Timestamp")
     plt.ylabel("Airflow rate (CFM)")
     plt.legend()
-    plt.show()
 
-    plt.savefig('../results/fan_test_result.png')
+    plt.savefig('./results/fan_test_result.png')
+    plt.show()
 
 # %%
 if __name__ == "__main__":
