@@ -2,15 +2,7 @@ ahu_path_1:
   path:
     plant: http://berkeley.edu/climatechamber#CH_1
     water_loop: http://berkeley.edu/climatechamber#SCHW_L
-    coil: http://berkeley.edu/climatechamber#CHW_A_coil
-    ahu: http://berkeley.edu/climatechamber#AHU_A
-    equipment: http://berkeley.edu/climatechamber#fan_A_supply
-  user_selected: false
-ahu_path_2:
-  path:
-    plant: http://berkeley.edu/climatechamber#CH_1
-    water_loop: http://berkeley.edu/climatechamber#SCHW_L
-    coil: http://berkeley.edu/climatechamber#CHW_SC_coil
+    coil: http://berkeley.edu/climatechamber#CHW_coil
     ahu: http://berkeley.edu/climatechamber#AHU_C
     equipment: http://berkeley.edu/climatechamber#fan_supply
   user_selected: true
@@ -58,3 +50,11 @@ ahu_path_2:
       user_selected: false
       operation_1:
         check:diffuser_airflow: oh_airflow_10
+ahu_path_2:
+  path:
+    plant: http://berkeley.edu/climatechamber#CH_1
+    water_loop: http://berkeley.edu/climatechamber#SCHW_L
+    coil: http://berkeley.edu/climatechamber#CHW_A_coil
+    ahu: http://berkeley.edu/climatechamber#AHU_A
+    equipment: http://berkeley.edu/climatechamber#fan_A_supply
+  user_selected: false

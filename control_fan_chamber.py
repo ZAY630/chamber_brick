@@ -72,7 +72,7 @@ if supply_damper_command != {}:
     command = BACnet_Point(**supply_damper_command) if bool(supply_damper_command) else supply_damper_command
     current_value = command.get_point_value(BACpypesAPP)
     if current_value == 0:
-        command.write_point_value(BACpypesAPP, 50, 13)
+        command.write_point_value(BACpypesAPP, 100, 13)
 
     values = []
     for i in range(3):
@@ -107,7 +107,7 @@ if result_dict.get('Pre').get('verified'):
         command = BACnet_Point(**vav_damper_command) if bool(vav_damper_command) else vav_damper_command
         current_value = command.get_point_value(BACpypesAPP)
         if current_value == 0:
-            command.write_point_value(BACpypesAPP, 10, 13)
+            command.write_point_value(BACpypesAPP, 50, 13)
 
         values = []
         for i in range(3):
@@ -157,7 +157,7 @@ if result_dict.get(test).get('step_1').get('verified'):
     command = BACnet_Point(**fan_speed_command) if bool(fan_speed_command) else fan_speed_command
     current_value = command.get_point_value(BACpypesAPP)
     if current_value == 0:
-        command.write_point_value(BACpypesAPP, 10, 13)
+        command.write_point_value(BACpypesAPP, 50, 13)
     else:
         command.write_point_value(BACpypesAPP, current_value + 10, 13)
 
@@ -219,6 +219,10 @@ result_dict.get(test).update({'step_4':{}})
 command = BACnet_Point(**fan_speed_command) if bool(fan_speed_command) else fan_speed_command
 command.write_point_value(BACpypesAPP, 'null', 13)
 
+# erase: fan vfd enable
+command = BACnet_Point(**supply_vfd_enable) if bool(supply_vfd_enable) else supply_vfd_enable
+command.write_point_value(BACpypesAPP, 'null', 13)
+
 # erase: vav damper command
 command = BACnet_Point(**vav_damper_command) if bool(vav_damper_command) else vav_damper_command
 command.write_point_value(BACpypesAPP, 'null', 13)
@@ -233,7 +237,6 @@ if not result_dict.get(test).get('step_3').get('verified'):
     print("Step 3 verification failed!")
 
 # %%
-import pdb; pdb.set_trace()
 
 with open('./results/fan_test_result.yaml', 'w') as file:
     yaml.dump(result_dict, file, sort_keys=False)
