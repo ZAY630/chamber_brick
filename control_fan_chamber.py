@@ -241,13 +241,14 @@ for i in range(len(control_soo.get('check:diffuser_airflow'))):
         print("Step 3 verification failed!")
 
     # %%
+    name = str(control_soo.get('check:diffuser_airflow')[tbcontrolled[0]].get(tbcontrolled[1]).get('brick:Supply_Air_Flow_Sensor')['obj_name'])
     if not os.path.exists('./results/{}'.format(test)):
         os.makedirs('./results/{}'.format(test))
 
     with open('./results/{}/fan_test_result.yaml'.format(test), 'w') as file:
         yaml.dump(result_dict, file, sort_keys=False)
 
-    utils.make_plot(test, '{}/fan_test_result'.format(test), 'Timestamp (sec)', 'Airflow rate (CFM)', 'Fan Test Result')
+    utils.make_plot(test, '{}/fan_test_result'.format(test), 'Timestamp (sec)', 'Airflow rate (CFM)', 'Fan Test Result', name)
 
     time.sleep(60)
     import pdb; pdb.set_trace()
