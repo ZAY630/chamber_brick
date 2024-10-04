@@ -5,6 +5,7 @@ import functions.readWriteProperty as BACpypesAPP
 import time
 import yaml
 import functions as utils
+import os
 
 # %%
 bacnet_ini_file = '..\\bacpypes\\BACnet_connect.ini'
@@ -51,52 +52,52 @@ for i in range(3):
 result_dict.get('Pre').update({'supply_damper_value':values})
 
 # read supply fan status (and enable fan)
-supply_fan_status = control_soo.get('check:fan_status').get('brick:Fan_On_Off_Status')
-fan_status = BACnet_Point(**supply_fan_status) if bool(supply_fan_status) else supply_fan_status
-value = fan_status.get_point_value(BACpypesAPP)
-result_dict.get('Pre').update({'fan_status':value})
-
-supply_vfd_enable = control_soo.get('write:vfd_enable').get('brick:Run_Enable_Command')
-vfd_enable = BACnet_Point(**supply_vfd_enable) if bool(supply_vfd_enable) else supply_vfd_enable
-enable_check = vfd_enable.get_point_value(BACpypesAPP)
-if enable_check == 'inactive':
-    vfd_enable.write_point_value(BACpypesAPP, "active", 13)
-
-enable_check = vfd_enable.get_point_value(BACpypesAPP)
-result_dict.get('Pre').update({'vfd_enable':enable_check})
-
-# open supply damper position to 50% if closed
-supply_damper_command = control_soo.get('write:supply_damper_command').get('brick:Damper_Position_Command')
-
-if supply_damper_command != {}:
-    command = BACnet_Point(**supply_damper_command) if bool(supply_damper_command) else supply_damper_command
-    current_value = command.get_point_value(BACpypesAPP)
-    if current_value == 0:
-        command.write_point_value(BACpypesAPP, 100, 13)
-
-    values = []
-    for i in range(3):
-        value = command.get_point_value(BACpypesAPP)
-        values.append(value)
-        time.sleep(2)
-
-    result_dict.get('Pre').update({'supply_damper_value':values})
-
-    if values != []:
-        verified = verified * True
-    else:
-        verified = False
-
-
-if (enable_check == 'active') & verified:
-    result_dict.get('Pre').update({'verified':True})
-    
-import pdb; pdb.set_trace()
-# %%
-for i in len(control_soo.get('check:diffuser_airflow')):
+for i in range(len(control_soo.get('check:diffuser_airflow'))):
 
     tbcontrolled = [i, 'terminal_path_{}'.format(i+1)]
     test = 'Test_{}'.format(i+1)
+    supply_fan_status = control_soo.get('check:fan_status').get('brick:Fan_On_Off_Status')
+    fan_status = BACnet_Point(**supply_fan_status) if bool(supply_fan_status) else supply_fan_status
+    value = fan_status.get_point_value(BACpypesAPP)
+    result_dict.get('Pre').update({'fan_status':value})
+
+    supply_vfd_enable = control_soo.get('write:vfd_enable').get('brick:Run_Enable_Command')
+    vfd_enable = BACnet_Point(**supply_vfd_enable) if bool(supply_vfd_enable) else supply_vfd_enable
+    enable_check = vfd_enable.get_point_value(BACpypesAPP)
+    if enable_check == 'inactive':
+        vfd_enable.write_point_value(BACpypesAPP, "active", 13)
+
+    enable_check = vfd_enable.get_point_value(BACpypesAPP)
+    result_dict.get('Pre').update({'vfd_enable':enable_check})
+
+    # open supply damper position to 50% if closed
+    supply_damper_command = control_soo.get('write:supply_damper_command').get('brick:Damper_Position_Command')
+
+    if supply_damper_command != None:
+        command = BACnet_Point(**supply_damper_command) if bool(supply_damper_command) else supply_damper_command
+        current_value = command.get_point_value(BACpypesAPP)
+        if current_value == 0:
+            command.write_point_value(BACpypesAPP, 100, 13)
+
+        values = []
+        for i in range(3):
+            value = command.get_point_value(BACpypesAPP)
+            values.append(value)
+            time.sleep(2)
+
+        result_dict.get('Pre').update({'supply_damper_value':values})
+
+        if values != []:
+            verified = verified * True
+        else:
+            verified = False
+
+
+    if (enable_check == 'active') & verified:
+        result_dict.get('Pre').update({'verified':True})
+        
+    import pdb; pdb.set_trace()
+# %%
 
     if result_dict.get('Pre').get('verified'):
         result_dict.update({test:{'step_1':{}}})
@@ -104,7 +105,7 @@ for i in len(control_soo.get('check:diffuser_airflow')):
         # open terminal damper position to 50% if closed
         vav_damper_command = control_soo.get('write:vav_damper_command')[tbcontrolled[0]].get(tbcontrolled[1]).get('brick:Damper_Position_Command')
         
-        if vav_damper_command != {}:
+        if vav_damper_command != None:
 
             command = BACnet_Point(**vav_damper_command) if bool(vav_damper_command) else vav_damper_command
             current_value = command.get_point_value(BACpypesAPP)
@@ -227,7 +228,7 @@ for i in len(control_soo.get('check:diffuser_airflow')):
 
     # erase: vav damper command
     command = BACnet_Point(**vav_damper_command) if bool(vav_damper_command) else vav_damper_command
-    if command != {}:
+    if command != None:
         command.write_point_value(BACpypesAPP, 'null', 13)
 
     # erase supply damper command
@@ -240,9 +241,13 @@ for i in len(control_soo.get('check:diffuser_airflow')):
         print("Step 3 verification failed!")
 
     # %%
+    if not os.path.exists('./results/{}'.format(test)):
+        os.makedirs('./results/{}'.format(test))
 
     with open('./results/{}/fan_test_result.yaml'.format(test), 'w') as file:
         yaml.dump(result_dict, file, sort_keys=False)
 
-    utils.make_plot('{}/fan_test_result'.format(test), 'Timestamp (sec)', 'Airflow rate (CFM)', 'Fan Test Result')
+    utils.make_plot(test, '{}/fan_test_result'.format(test), 'Timestamp (sec)', 'Airflow rate (CFM)', 'Fan Test Result')
+
+    time.sleep(60)
     import pdb; pdb.set_trace()
