@@ -83,7 +83,7 @@ for i in range(len(control_soo.get('check:diffuser_airflow'))):
         for i in range(3):
             value = command.get_point_value(BACpypesAPP)
             values.append(value)
-            time.sleep(2)
+            time.sleep(5)
 
         result_dict.get('Pre').update({'supply_damper_value':values})
 
@@ -116,7 +116,7 @@ for i in range(len(control_soo.get('check:diffuser_airflow'))):
             for i in range(3):
                 value = command.get_point_value(BACpypesAPP)
                 values.append(value)
-                time.sleep(2)
+                time.sleep(5)
 
             result_dict.get(test).get('step_1').update({'vav_damper_position':values})
 
@@ -129,9 +129,11 @@ for i in range(len(control_soo.get('check:diffuser_airflow'))):
         
         # read terminal supply airflow rate for baseline
         supply_airflow_rate = control_soo.get('check:diffuser_airflow')[tbcontrolled[0]].get(tbcontrolled[1]).get('brick:Supply_Air_Flow_Sensor')
+        device_name = str(supply_airflow_rate['equipment']).split('#')[-1]
+        point_name = str(supply_airflow_rate['obj_name']).split('#')[-1]
         vav_afr = BACnet_Point(**supply_airflow_rate) if bool(supply_airflow_rate) else supply_airflow_rate
         values = []
-        for i in range(30):
+        for i in range(60):
             value = vav_afr.get_point_value(BACpypesAPP)
             values.append(value)
             time.sleep(1)
@@ -141,6 +143,8 @@ for i in range(len(control_soo.get('check:diffuser_airflow'))):
         else:
             verified = False
 
+        result_dict.get(test).update({'device_name': device_name})
+        result_dict.get(test).update({'point_name': point_name})
         result_dict.get(test).get('step_1').update({'airflow_rate_value': values})
         result_dict.get(test).get('step_1').update({'mean_airflow_rate': round(np.mean(values))})
 
@@ -168,7 +172,7 @@ for i in range(len(control_soo.get('check:diffuser_airflow'))):
         for i in range(3):
             value = command.get_point_value(BACpypesAPP)
             values.append(value)
-            time.sleep(2)
+            time.sleep(5)
 
         result_dict.get(test).get('step_2').update({'fan_speed_command':values})
 
@@ -192,7 +196,7 @@ for i in range(len(control_soo.get('check:diffuser_airflow'))):
         supply_airflow_rate = control_soo.get('check:diffuser_airflow')[tbcontrolled[0]].get(tbcontrolled[1]).get('brick:Supply_Air_Flow_Sensor')
         vav_afr = BACnet_Point(**supply_airflow_rate) if bool(supply_airflow_rate) else supply_airflow_rate
         values = []
-        for i in range(30):
+        for i in range(60):
             value = vav_afr.get_point_value(BACpypesAPP)
             values.append(value)
             time.sleep(1)
@@ -208,6 +212,7 @@ for i in range(len(control_soo.get('check:diffuser_airflow'))):
 
         if verified:
             result_dict.get(test).get('step_3').update({'verified':True})
+            result_dict.get()
 
     else:
         print("Step 2 verification failed!")
@@ -241,14 +246,13 @@ for i in range(len(control_soo.get('check:diffuser_airflow'))):
         print("Step 3 verification failed!")
 
     # %%
-    name = str(control_soo.get('check:diffuser_airflow')[tbcontrolled[0]].get(tbcontrolled[1]).get('brick:Supply_Air_Flow_Sensor')['obj_name'])
     if not os.path.exists('./results/{}'.format(test)):
         os.makedirs('./results/{}'.format(test))
 
     with open('./results/{}/fan_test_result.yaml'.format(test), 'w') as file:
         yaml.dump(result_dict, file, sort_keys=False)
 
-    utils.make_plot(test, '{}/fan_test_result'.format(test), 'Timestamp (sec)', 'Airflow rate (CFM)', 'Fan Test Result', name)
+    utils.make_plot(test, '{}/fan_test_result'.format(test), 'Timestamp (sec)', 'Airflow rate (CFM)', device_name, point_name)
 
     time.sleep(60)
     import pdb; pdb.set_trace()
