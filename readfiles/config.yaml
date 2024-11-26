@@ -29,13 +29,6 @@ ahu_path_1:
   terminal:
     terminal_path_1:
       attributes:
-        equipment: http://berkeley.edu/climatechamber#OH_diffuser
-        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
-      user_selected: false
-      operation_1:
-        check:diffuser_airflow: oh_airflow_10
-    terminal_path_2:
-      attributes:
         equipment: http://berkeley.edu/climatechamber#VAV
         equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
       user_selected: false
@@ -50,6 +43,13 @@ ahu_path_1:
           check:vav_damper_position: vav_dmpr_pos_6
         operation_2:
           write:vav_damper_command: vav_dmpr_pos_6
+    terminal_path_2:
+      attributes:
+        equipment: http://berkeley.edu/climatechamber#OH_diffuser
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: oh_airflow_10
 ahu_path_2:
   path:
     plant: http://berkeley.edu/climatechamber#CH_1

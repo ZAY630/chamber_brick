@@ -187,6 +187,8 @@ for i in range(len(control_soo.get('check:diffuser_airflow'))):
     else:
         print("Step 1 verification failed!")
 
+    time.sleep(60)
+
     import pdb; pdb.set_trace()
     # %%
     if result_dict.get(test).get('step_2').get('verified'):
@@ -212,7 +214,6 @@ for i in range(len(control_soo.get('check:diffuser_airflow'))):
 
         if verified:
             result_dict.get(test).get('step_3').update({'verified':True})
-            result_dict.get()
 
     else:
         print("Step 2 verification failed!")
