@@ -2,7 +2,7 @@ ahu_path_1:
   path:
     plant: http://berkeley.edu/climatechamber#CH_1
     water_loop: http://berkeley.edu/climatechamber#SCHW_L
-    coil: http://berkeley.edu/climatechamber#CHW_coil
+    coil: http://berkeley.edu/climatechamber#CHW_SC_coil
     ahu: http://berkeley.edu/climatechamber#AHU_C
     equipment: http://berkeley.edu/climatechamber#fan_supply
   user_selected: true
@@ -26,8 +26,34 @@ ahu_path_1:
       check:supply_damper_position: spot_clg_dmpr_pos_ao_6
     operation_2:
       write:supply_damper_command: spot_clg_dmpr_pos_ao_6
+  Damper_path_2:
+    attributes:
+      equipment: http://berkeley.edu/climatechamber#damper_supply
+      equipment_type: https://brickschema.org/schema/Brick#Damper
+    user_selected: true
+    operation_1:
+      check:supply_damper_position: supply_damper_pos_10
+    operation_2:
+      write:supply_damper_command: supply_damper_pos_10
+  Damper_path_3:
+    attributes:
+      equipment: http://berkeley.edu/climatechamber#damper_out
+      equipment_type: https://brickschema.org/schema/Brick#Damper
+    user_selected: false
+  Damper_path_4:
+    attributes:
+      equipment: http://berkeley.edu/climatechamber#damper_return
+      equipment_type: https://brickschema.org/schema/Brick#Damper
+    user_selected: false
   terminal:
     terminal_path_1:
+      attributes:
+        equipment: http://berkeley.edu/climatechamber#OH_diffuser
+        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
+      user_selected: false
+      operation_1:
+        check:diffuser_airflow: oh_airflow_10
+    terminal_path_2:
       attributes:
         equipment: http://berkeley.edu/climatechamber#VAV
         equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
@@ -43,13 +69,6 @@ ahu_path_1:
           check:vav_damper_position: vav_dmpr_pos_6
         operation_2:
           write:vav_damper_command: vav_dmpr_pos_6
-    terminal_path_2:
-      attributes:
-        equipment: http://berkeley.edu/climatechamber#OH_diffuser
-        equipment_type: https://brickschema.org/schema/Brick#Terminal_Unit
-      user_selected: false
-      operation_1:
-        check:diffuser_airflow: oh_airflow_10
 ahu_path_2:
   path:
     plant: http://berkeley.edu/climatechamber#CH_1

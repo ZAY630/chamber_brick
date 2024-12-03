@@ -374,8 +374,8 @@ update_yaml_config([ahu_path_key, specific_user_path_key], bacnet, yaml_path)
 brick_point = ['brick:Damper_Position_Sensor', 'brick:Damper_Position_Command']
 specific_user_type = 'brick:Damper'
 additional_filter = """
-?equipment brick:feeds+ ?vav .
-?vav a brick:VAV .
+?equipment brick:feeds+ ?terminal .
+?terminal a brick:Terminal_Unit .
 """
 seq_name = ['check:supply_damper_position', 'write:supply_damper_command']
 name = 'Damper'
@@ -397,6 +397,8 @@ else:
 import pdb; pdb.set_trace()
 config = load_yaml_config(yaml_path)
 ahu_path = config[ahu_path_key]
+soo = [[] for _ in range(len(seq_name))]
+
 for key, value in ahu_path.items():
     if (f'{name}_path' in key):
         if value['user_selected']:
@@ -410,12 +412,13 @@ for key, value in ahu_path.items():
             bacnet = {}
             for idx in range(len(seq_name)):
                 obj_name = str(rdflib.URIRef(bacnet_return[idx]['obj_name']))
-                soo = {brick_point[idx]: bacnet_return[idx]} 
-                control_soo[seq_name[idx]] = soo
+                soo[idx].append({brick_point[idx]: bacnet_return[idx]})
                 bacnet.update({f'operation_{idx+1}': {seq_name[idx]:obj_name}})
 
-# %%
-update_yaml_config([ahu_path_key, specific_user_path_key], bacnet, yaml_path)
+    update_yaml_config([ahu_path_key, specific_user_path_key], bacnet, yaml_path)
+
+for idx in range(len(seq_name)):
+    control_soo.update({seq_name[idx]:soo[idx]})
 
 # %%
 brick_point = ['brick:Supply_Air_Flow_Sensor']
