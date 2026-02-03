@@ -58,23 +58,25 @@ if __name__ == "__main__":
     # infer/expand and validate brick model
     # g.expand(profile='owlrl')
     g.expand(profile='shacl', simplify=True)
-    
-    valid, _, report = g.validate()
-    print(f"Graph is valid? {valid}")
-    shacl_graph = Graph().parse(brick_schema_file, format="turtle")
-    if not valid:
-        conforms, results_graph, results_text = pyshacl.validate(
-            data_graph=g,
-            shacl_graph=shacl_graph,
-            inference="rdfs",
-            abort_on_first=False,
-            meta_shacl=False,
-            debug=False,
-        )
-        results_graph.serialize("./readfiles/validation_results.ttl", format="turtle")
-        print("report generated")
+    # import pdb; pdb.set_trace()
 
-    # g.expand(profile='owlrl+shacl+vbis+shacl')
+    # valid, _, report = g.validate()
+    # print(f"Graph is valid? {valid}")
+    # shacl_graph = Graph().parse(brick_schema_file, format="turtle")
+
+    # if not valid:
+    #     conforms, results_graph, results_text = pyshacl.validate(
+    #         data_graph=g,
+    #         shacl_graph=shacl_graph,
+    #         inference="rdfs",
+    #         abort_on_first=False,
+    #         meta_shacl=False,
+    #         debug=False,
+    #     )
+    #     results_graph.serialize("./readfiles/validation_results.ttl", format="turtle")
+    #     print("report generated")
+
+    # # g.expand(profile='owlrl+shacl+vbis+shacl')
 
     print(f'After: {len(g)} triples')
 

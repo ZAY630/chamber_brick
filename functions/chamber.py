@@ -41,6 +41,7 @@ def make():
     g.add((CHB["damper_supply"], A, BRICK["Damper"]))
     g.add((CHB["fan_supply"], A, BRICK["Supply_Fan"]))
     g.add((CHB["damper_out"], A, BRICK["Outside_Damper"]))
+    g.add((CHB["damper_out"], A, BRICK["Economizer_Damper"]))
     g.add((CHB["VFD_supply"], A, BRICK["Fan_VFD"]))
     g.add((CHB["VFD_exhaust"], A, BRICK["Fan_VFD"]))
 
@@ -98,13 +99,13 @@ def make():
     g.add((CHB["oa_temperature_9"], A, BRICK["Intake_Air_Temperature_Sensor"]))
     g.add((CHB["oa_flow_10"], A, BRICK["Outside_Air_Flow_Sensor"]))
     g.add((CHB["oa_humidity_9"], A, BRICK["Outside_Air_Humidity_Sensor"]))
-    g.add((CHB["oa_dmpr_pos_10"], A, BRICK["Damper_Position_Sensor"]))
+    g.add((CHB["oa_dmpr_pos_10"], A, BRICK["Damper_Position_Command"]))
     g.add((CHB["duct_stat_press_ai_10"], A, BRICK["Static_Pressure_Sensor"]))
     g.add((CHB["ma_temp_10"], A, BRICK["Mixed_Air_Temperature_Sensor"]))
     g.add((CHB["sf_vfd_spd_10"], A, BRICK["Fan_Speed_Command"]))
     g.add((CHB["sf_status_10"], A, BRICK["Fan_On_Off_Status"]))
     g.add((CHB["sf_enable_10"], A, BRICK["Run_Enable_Command"]))
-    g.add((CHB["supply_damper_pos_10"], A, BRICK["Damper_Position_Sensor"]))
+    g.add((CHB["supply_damper_pos_10"], A, BRICK["Damper_Position_Command"]))
     g.add((CHB["chamber_cc_temp_10"], A, BRICK["Preheat_Supply_Air_Temperature_Sensor"]))
     g.add((CHB["eff_sa_temp_10"], A, BRICK["Supply_Air_Temperature_Sensor"]))
     g.add((CHB["Perc_steam"], A, BRICK["Steam_Usage_Sensor"]))
@@ -115,13 +116,13 @@ def make():
     g.add((CHB["underfloor_sa_temp_10"], A, BRICK["Underfloor_Air_Temperature_Sensor"]))
     g.add((CHB["uf_airflow_10"], A, BRICK["Supply_Air_Flow_Sensor"]))
     g.add((CHB["uf_fpm_10"], A, BRICK["Supply_Air_Velocity_Pressure_Sensor"]))
-    g.add((CHB["ra_dmpr_pos_10"], A, BRICK["Damper_Position_Sensor"]))
+    g.add((CHB["ra_dmpr_pos_10"], A, BRICK["Damper_Position_Command"]))
     g.add((CHB["ra_temp_10"], A, BRICK["Return_Air_Temperature_Sensor"]))
-    g.add((CHB["ea_dmpr_pos_10"], A, BRICK["Damper_Position_Sensor"]))
+    g.add((CHB["ea_dmpr_pos_10"], A, BRICK["Damper_Position_Command"]))
     g.add((CHB["ef_vfd_spd_10"], A, BRICK["Fan_Speed_Command"]))
     g.add((CHB["ef_ss_10"], A, BRICK["Start_Stop_Command"]))
     g.add((CHB["h_1_enable_10"], A, BRICK["Humidify_Command"]))
-    g.add((CHB["chw_valve_10"], A, BRICK["Valve_Position_Sensor"]))
+    g.add((CHB["chw_valve_10"], A, BRICK["Valve_Position_Command"]))
     g.add((CHB["run_stop_8"], A, BRICK["Run_Status"]))
     g.add((CHB["run_enable_8"], A, BRICK["Enable_Status"]))
     g.add((CHB["run_stop_7"], A, BRICK["Run_Status"]))
@@ -139,7 +140,7 @@ def make():
     # Air cooled chiller sensor
     g.add((CHB["ch1_ss_1"], A, BRICK["On_Off_Status"]))
     g.add((CHB["chwp1_ss_1"], A, BRICK["Pump_On_Off_Status"]))
-    g.add((CHB["mix_vlv_pos_1"], A, BRICK["Valve_Position_Sensor"]))
+    g.add((CHB["mix_vlv_pos_1"], A, BRICK["Valve_Position_Command"]))
     g.add((CHB["chwp2_ss_1"], A, BRICK["Pump_On_Off_Status"]))
     g.add((CHB["chwp3_ss_1"], A, BRICK["Pump_On_Off_Status"]))
     g.add((CHB["schws_temp_1"], A, BRICK["Leaving_Chilled_Water_Temperature_Sensor"]))
@@ -147,42 +148,42 @@ def make():
     g.add((CHB["pchws_temp_1"], A, BRICK["Leaving_Chilled_Water_Temperature_Sensor"]))
     g.add((CHB["pchwr_temp_1"], A, BRICK["Entering_Chilled_Water_Temperature_Sensor"]))
 
-    g.add((CHB["Pos_RCHWS_valve"], A, BRICK["Valve_Position_Sensor"]))
+    g.add((CHB["Pos_RCHWS_valve"], A, BRICK["Valve_Position_Command"]))
 
     # Electric water heater sensor
     g.add((CHB["Enable_WH"], A, BRICK["On_Off_Status"]))
     g.add((CHB["RT_HW"], A, BRICK["Entering_Hot_Water_Temperature_Sensor"]))
     g.add((CHB["Start_HW_pump_1"], A, BRICK["Pump_On_Off_Status"]))
     g.add((CHB["ST_HW"], A, BRICK["Leaving_Hot_Water_Temperature_Sensor"]))
-    g.add((CHB["hw_valve_10"], A, BRICK["Valve_Position_Sensor"]))
+    g.add((CHB["hw_valve_10"], A, BRICK["Valve_Position_Command"]))
     g.add((CHB["hwp2_ss_2"], A, BRICK["Pump_On_Off_Status"]))
-    g.add((CHB["Pos_HWR_valve"], A, BRICK["Valve_Position_Sensor"]))
-    g.add((CHB["Pos_RHWS_valve"], A, BRICK["Valve_Position_Sensor"]))
+    g.add((CHB["Pos_HWR_valve"], A, BRICK["Valve_Position_Command"]))
+    g.add((CHB["Pos_RHWS_valve"], A, BRICK["Valve_Position_Command"]))
 
     # Spot cooling sensor
-    g.add((CHB["spot_clg_vlv_pos_6"], A, BRICK["Valve_Position_Sensor"]))
-    g.add((CHB["spot_clg_dmpr_pos_ao_6"], A, BRICK["Damper_Position_Sensor"]))
+    g.add((CHB["spot_clg_vlv_pos_6"], A, BRICK["Valve_Position_Command"]))
+    g.add((CHB["spot_clg_dmpr_pos_ao_6"], A, BRICK["Damper_Position_Command"]))
     g.add((CHB["spot_cc_temp_6"], A, BRICK["Preheat_Supply_Air_Temperature_Sensor"]))
     g.add((CHB["spot_clg_sa_temp_6"], A, BRICK["Supply_Air_Temperature_Sensor"]))
     g.add((CHB["vav_cfm_6"], A, BRICK["Supply_Air_Flow_Sensor"]))
-    g.add((CHB["vav_dmpr_pos_6"], A, BRICK["Damper_Position_Sensor"]))
+    g.add((CHB["vav_dmpr_pos_6"], A, BRICK["Damper_Position_Command"]))
 
     # Annular system sensor
     g.add((CHB["sf_enable_1"], A, BRICK["Run_Enable_Command"]))
     g.add((CHB["sf_status_1"], A, BRICK["Fan_On_Off_Status"]))
     g.add((CHB["ra_temp_1"], A, BRICK["Return_Air_Temperature_Sensor"]))
-    g.add((CHB["chw_valve_1"], A, BRICK["Valve_Position_Sensor"]))
+    g.add((CHB["chw_valve_1"], A, BRICK["Valve_Position_Command"]))
     g.add((CHB["ann_cc_temp_1"], A, BRICK["Preheat_Supply_Air_Temperature_Sensor"]))
     g.add((CHB["sa_temp_1"], A, BRICK["Supply_Air_Temperature_Sensor"]))
-    g.add((CHB["hw_valve_1"], A, BRICK["Valve_Position_Sensor"]))
+    g.add((CHB["hw_valve_1"], A, BRICK["Valve_Position_Command"]))
 
     # Radiant system sensor
     g.add((CHB["Start_RW_pump"], A, BRICK["Pump_On_Off_Status"]))
     g.add((CHB["Speed_RW_pump"], A, BRICK["Motor_Speed_Sensor"]))
     g.add((CHB["T_RWS"], A, BRICK["Water_Temperature_Sensor"]))
     g.add((CHB["T_RWR"], A, BRICK["Entering_Water_Temperature_Sensor"]))
-    g.add((CHB["Pos_RHWR_valve"], A, BRICK["Valve_Position_Sensor"]))
-    g.add((CHB["Pos_RCHWR_valve"], A, BRICK["Valve_Position_Sensor"]))
+    g.add((CHB["Pos_RHWR_valve"], A, BRICK["Valve_Position_Command"]))
+    g.add((CHB["Pos_RCHWR_valve"], A, BRICK["Valve_Position_Command"]))
 
     ##############################################
     #### Equipment Relationship Specification ####
@@ -255,6 +256,7 @@ def make():
     g.add((CHB["HW_L"], BRICK.hasPart, CHB["HW_valve_S1"]))
     
     g.add((CHB["HW_L"], BRICK.feeds, CHB["HW_coil"]))
+    g.add((CHB["HW_L"], BRICK.feeds, CHB["HW_A_coil"]))
     g.add((CHB["HW_coil"], BRICK.feeds, CHB["Zone"]))
 
     # Spot cooling
@@ -373,7 +375,7 @@ def make():
     g.add((CHB["WH_1"], BRICK.hasPoint, CHB["RT_HW"]))
     g.add((CHB["HW_pump_1"], BRICK.hasPoint, CHB["Start_HW_pump_1"]))
     g.add((CHB["WH_1"], BRICK.hasPoint, CHB["ST_HW"]))
-    g.add((CHB["HW_valve_A"], BRICK.hasPoint, CHB["hw_valve_10"]))
+    g.add((CHB["HW_valve"], BRICK.hasPoint, CHB["hw_valve_10"]))
     g.add((CHB["HW_pump_2"], BRICK.hasPoint, CHB["hwp2_ss_2"]))
     g.add((CHB["HW_valve"], BRICK.hasPoint, CHB["Pos_HWR_valve"]))
     g.add((CHB["RHWS_valve"], BRICK.hasPoint, CHB["Pos_RHWS_valve"]))

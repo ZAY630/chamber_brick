@@ -129,7 +129,7 @@ for i in range(len(control_soo.get('check:diffuser_airflow'))):
             else:
                 verified = False
 
-        time.sleep(10)
+        time.sleep(60)
         
         # read terminal supply airflow rate for baseline
         supply_airflow_rate = control_soo.get('check:diffuser_airflow')[tbcontrolled[0]].get(tbcontrolled[1]).get('brick:Supply_Air_Flow_Sensor')
