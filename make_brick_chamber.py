@@ -48,8 +48,8 @@ if __name__ == "__main__":
     g.load_file(bldg_brick_file)
 
     # load units schema
-    g.load_file('https://qudt.org/2.1/vocab/unit')
-    g.load_file('https://qudt.org/schema/qudt/')
+    # g.load_file('https://qudt.org/2.1/vocab/unit')
+    # g.load_file('https://qudt.org/schema/qudt/')
 
 
     print(f'Before: {len(g)} triples')

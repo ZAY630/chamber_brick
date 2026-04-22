@@ -974,8 +974,7 @@ chamber:Zone brick:hasPoint chamber:Effective_Cooling_Setpoint_10,
         chamber:chamber_rh_10,
         chamber:zone_co2_10,
         chamber:zone_rh_av_10,
-        chamber:zone_temp_10,
-        chamber:zone_temp_av_10 .
+        chamber:zone_temp_10 .
 
 chamber:Zone_Temp_Trend_1 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "trendLog,3" ;
@@ -6311,6 +6310,12 @@ chamber:zone_lo_2_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-type "binaryValue" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
+chamber:zone_temp_av_10 ref:hasExternalReference [ a ref:BACnetReference ;
+            bacnet:object-identifier "analogValue,71" ;
+            bacnet:object-name "zone_temp_av_10" ;
+            bacnet:object-type "analogValue" ;
+            bacnet:objectOf chamber:dev-2400002.0 ] .
+
 chamber:zone_temp_trend_log_10 ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "trendLog,244" ;
             bacnet:object-name "zone_temp_trend_log_10" ;
@@ -6427,7 +6432,7 @@ chamber:chamber_rh_10 a brick:Zone_Air_Humidity_Sensor ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:chw_valve_1 a brick:Valve_Position_Sensor ;
+chamber:chw_valve_1 a brick:Valve_Position_Command ;
     brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,1" ;
@@ -6435,7 +6440,7 @@ chamber:chw_valve_1 a brick:Valve_Position_Sensor ;
             bacnet:object-type "analogOutput" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:chw_valve_10 a brick:Valve_Position_Sensor ;
+chamber:chw_valve_10 a brick:Valve_Position_Command ;
     brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,7" ;
@@ -6587,7 +6592,7 @@ chamber:h_1_enable_10 a brick:Humidify_Command ;
             bacnet:object-type "binaryOutput" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:hw_valve_1 a brick:Valve_Position_Sensor ;
+chamber:hw_valve_1 a brick:Valve_Position_Command ;
     brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,2" ;
@@ -6595,7 +6600,7 @@ chamber:hw_valve_1 a brick:Valve_Position_Sensor ;
             bacnet:object-type "analogOutput" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:hw_valve_10 a brick:Valve_Position_Sensor ;
+chamber:hw_valve_10 a brick:Valve_Position_Command ;
     brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,11" ;
@@ -6851,7 +6856,7 @@ chamber:spot_clg_sa_temp_6 a brick:Supply_Air_Temperature_Sensor ;
             bacnet:object-type "analogInput" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
-chamber:spot_clg_vlv_pos_6 a brick:Valve_Position_Sensor ;
+chamber:spot_clg_vlv_pos_6 a brick:Valve_Position_Command ;
     brick:hasUnit unit:PERCENT ;
     ref:hasExternalReference [ a ref:BACnetReference ;
             bacnet:object-identifier "analogOutput,5" ;
@@ -6944,14 +6949,6 @@ chamber:zone_temp_10 a brick:Zone_Air_Temperature_Sensor ;
             bacnet:object-identifier "analogInput,30" ;
             bacnet:object-name "zone_temp_10" ;
             bacnet:object-type "analogInput" ;
-            bacnet:objectOf chamber:dev-2400002.0 ] .
-
-chamber:zone_temp_av_10 a brick:Zone_Air_Temperature_Sensor ;
-    brick:hasUnit unit:DEG_F ;
-    ref:hasExternalReference [ a ref:BACnetReference ;
-            bacnet:object-identifier "analogValue,71" ;
-            bacnet:object-name "zone_temp_av_10" ;
-            bacnet:object-type "analogValue" ;
             bacnet:objectOf chamber:dev-2400002.0 ] .
 
 chamber:dev-57017.0 a bacnet:BACnetDevice ;
